@@ -1,31 +1,29 @@
-HELP.md
+# maven ignore
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+*.versionsBackup
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
+# eclipse ignore
+.settings/
 .project
-.settings
-.springBeans
-.sts4-cache
+.classpath
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
+# idea ignore
+.idea/
 *.ipr
+*.iml
+*.iws
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
 
-### VS Code ###
-.vscode/
+# system ignore
+.DS_Store
+Thumbs.db
+
+gitlabci/.generated
+
+application-default.yml
