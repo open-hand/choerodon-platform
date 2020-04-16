@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.choerodon</groupId>
         <artifactId>choerodon-framework-parent</artifactId>
-        <version>0.16.1-SNAPSHOT</version>
+        <version>0.16.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>hzero-platform</artifactId>
@@ -18,16 +18,28 @@
     </properties>
 
     <dependencies>
-        <!-- 数据库驱动 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
         <!-- 依赖的服务 -->
         <dependency>
             <groupId>org.hzero</groupId>
             <artifactId>hzero-platform-saas</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hzero-starter-dynamic-route</artifactId>
+                    <groupId>org.hzero.starter</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hzero.starter</groupId>
+                    <artifactId>hzero-starter-hitoa</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hzero-starter-integrate-dd</artifactId>
+                    <groupId>org.hzero.starter</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hzero-starter-integrate-wechat-enterprise</artifactId>
+                    <groupId>org.hzero.starter</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
