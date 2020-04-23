@@ -18,6 +18,13 @@
     </properties>
 
     <dependencies>
+
+        <!-- 数据库驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
         <!-- 依赖的服务 -->
         <dependency>
             <groupId>org.hzero</groupId>

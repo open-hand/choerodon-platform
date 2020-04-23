@@ -12,6 +12,7 @@ spring:
       maximum-pool-size: ${SPRING_DATASOURCE_MAXIMUM_POOL_SIZE:200}
       # 等待连接池分配连接的最大时长（毫秒）
       connection-timeout: ${SPRING_DATASOURCE_CONNECTION_TIMEOUT:30000}
+    driver-class-name: com.mysql.jdbc.Driver
   redis:
     host: ${SPRING_REDIS_HOST:redis.hzero.org}
     port: ${SPRING_REDIS_PORT:6379}
