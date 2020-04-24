@@ -30,6 +30,7 @@ preJob:
       url: jdbc:mysql://localhost:3306/base_service?useUnicode=true&characterEncoding=utf-8&useSSL=false&useInformationSchema=true&remarks=true&serverTimezone=Asia/Shanghai
       username: username
       password: password
+      driver: com.mysql.jdbc.Driver
 
 ## 实例运行数量
 replicaCount: 1
@@ -103,9 +104,6 @@ env:
     # 网关地址
     CHOERODON_GATEWAY_URL: http://api.example.com
 
-    #用户默认密码
-    CHOERODON_USER_DEFAULT_PASSWORD: abcd1234
-
 ## Liveness 和 Readiness 探针相关配置
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 livenessProbe:
@@ -144,7 +142,7 @@ service:
   # 是否启用 service 暴露本服务
   enabled: true
   # Service 名称
-  name: base-service
+  name: hzero-platform
   # Service 类型
   type: ClusterIP
   # 指定 service 的 clusterIP
