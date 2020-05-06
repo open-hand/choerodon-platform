@@ -12,11 +12,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_domain.groovy') {
             createSequence(sequenceName: 'hiam_domain_s', startValue: "1")
         }
         createTable(tableName: "hiam_domain", remarks: "单点二级域名") {
-            column(name: "domain_id", type: "bigint(20)", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
+            column(name: "domain_id", type: "bigint", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
-            column(name: "tenant_id", type: "bigint(20)", remarks: "客户租户ID") { constraints(nullable: "false") }
-            column(name: "company_id", type: "bigint(20)", defaultValue: "0", remarks: "客户公司ID，HPFM_COMPANY.COMPANY_ID")
+            column(name: "tenant_id", type: "bigint", remarks: "客户租户ID") { constraints(nullable: "false") }
+            column(name: "company_id", type: "bigint", defaultValue: "0", remarks: "客户公司ID，HPFM_COMPANY.COMPANY_ID")
             column(name: "domain_url", type: "varchar("+240 * weight+")", remarks: "域名") { constraints(nullable: "false") }
             column(name: "sso_type_code", type: "varchar("+60 * weight+")", remarks: "CAS|AUTH|SAML|IDM|NULL")
             column(name: "sso_server_url", type: "varchar("+1000 * weight+")", remarks: "单点认证服务器地址")
@@ -26,16 +26,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_domain.groovy') {
             column(name: "sso_user_info", type: "varchar("+1000 * weight+")", remarks: "sso获取用户信息地址")
             column(name: "client_host_url", type: "varchar("+1000 * weight+")", remarks: "客户端URL")
             column(name: "remark", type: "varchar("+1000 * weight+")", remarks: "备注说明")
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") {
                 constraints(nullable: "false")
             }
-            column(name: "created_by", type: "bigint(20)", defaultValue: "-1", remarks: "") {
+            column(name: "created_by", type: "bigint", defaultValue: "-1", remarks: "") {
                 constraints(nullable: "false")
             }
-            column(name: "last_updated_by", type: "bigint(20)", defaultValue: "-1", remarks: "") {
+            column(name: "last_updated_by", type: "bigint", defaultValue: "-1", remarks: "") {
                 constraints(nullable: "false")
             }
             column(name: "last_update_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") {

@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_form_line_tl.groovy') {
             createSequence(sequenceName: 'hpfm_form_line_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_form_line_tl", remarks: "表单配置行多语言") {
-            column(name: "form_line_id", type: "bigint(20)", remarks: "表单配置行Id，hpfm_form_line.form_line_id")  {constraints(nullable:"false")}
+            column(name: "form_line_id", type: "bigint", remarks: "表单配置行Id，hpfm_form_line.form_line_id")  {constraints(nullable:"false")}
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}
             column(name: "item_name", type: "varchar(" + 255 * weight + ")", remarks: "配置项名称")  {constraints(nullable:"false")}
             column(name: "item_description", type: "varchar(" + 480 * weight + ")", remarks: "配置项说明")

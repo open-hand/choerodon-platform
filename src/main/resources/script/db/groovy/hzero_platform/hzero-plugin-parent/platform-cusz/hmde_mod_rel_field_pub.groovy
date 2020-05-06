@@ -17,7 +17,7 @@ databaseChangeLog(logicalFilePath: 'hmde_mod_rel_field_pub.groovy') {
             column(name: "id", type: "bigint", autoIncrement: "true", startWith: "10001", remarks: "表ID，主键") {
                 constraints(nullable: "false", primaryKey: "true", primaryKeyName: "hmde_mod_rel_field_pub_pk")
             }
-            column(name: "relation_id", type: "bigint(20)", remarks: "模型关系ID，hmde_model_relation_pub.id") {
+            column(name: "relation_id", type: "bigint", remarks: "模型关系ID，hmde_model_relation_pub.id") {
                 constraints(nullable: "false")
             }
             column(name: "master_model_field_code", type: "varchar(" + 32 * weight + ")", remarks: "主字段代码，hmde_model_field_pub.code") {
@@ -26,7 +26,7 @@ databaseChangeLog(logicalFilePath: 'hmde_mod_rel_field_pub.groovy') {
             column(name: "relation_model_field_code", type: "varchar(" + 32 * weight + ")", remarks: "关联字段代码，hmde_model_field_pub.code") {
                 constraints(nullable: "false")
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1") {

@@ -12,15 +12,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_user_authority.groovy') {
             createSequence(sequenceName: 'hiam_user_authority_s', startValue:"1")
         }
         createTable(tableName: "hiam_user_authority", remarks: "用户权限管理") {
-            column(name: "authority_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
-            column(name: "user_id", type: "bigint(20)",  remarks: "用户ID，HIAM.HIAM_USER")  {constraints(nullable:"false")}  
-            column(name: "tenant_id", type: "bigint(20)",  remarks: "租户ID，HPFM.HPFM_TENANT")  {constraints(nullable:"false")}  
+            column(name: "authority_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "user_id", type: "bigint",  remarks: "用户ID，HIAM.HIAM_USER")  {constraints(nullable:"false")}  
+            column(name: "tenant_id", type: "bigint",  remarks: "租户ID，HPFM.HPFM_TENANT")  {constraints(nullable:"false")}  
             column(name: "authority_type_code", type: "varchar(" + 30 * weight + ")",  remarks: "权限类型代码，HIAM.USER_AUTHORITY_TYPE_CODE")  {constraints(nullable:"false")}  
-            column(name: "include_all_flag", type: "tinyint(1)",   defaultValue:"0",   remarks: "是否包含所有标识")  {constraints(nullable:"false")}
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}
+            column(name: "include_all_flag", type: "tinyint",   defaultValue:"0",   remarks: "是否包含所有标识")  {constraints(nullable:"false")}
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }

@@ -12,13 +12,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_field_par.groovy') 
             createSequence(sequenceName: 'hpfm_cusz_unit_field_par_s', startValue: "1")
         }
         createTable(tableName: "hpfm_cusz_unit_field_par") {
-            column(name: "unit_field_par_id", type: "bigint(20)", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
+            column(name: "unit_field_par_id", type: "bigint", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID") {
                 constraints(nullable: false)
             }
-            column(name: "unit_field_id", type: "bigint(20)", remarks: "字段id，hpfm_cusz_unit_field.config_field_id") {
+            column(name: "unit_field_id", type: "bigint", remarks: "字段id，hpfm_cusz_unit_field.config_field_id") {
                 constraints(nullable: false)
             }
             column(name: "param_key", type: "varchar(" + 120 * weight + ")", remarks: "参数key") {
@@ -30,14 +30,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_field_par.groovy') 
             column(name: "param_type", type: "varchar(" + 30 * weight + ")", remarks: "参数类型，固定值、上下文变量、页面字段") {
                 constraints(nullable: false)
             }
-            column(name: "param_unit_id", type: "bigint(20)", remarks: "param_type为页面字段时，参数所属单元ID") {
+            column(name: "param_unit_id", type: "bigint", remarks: "param_type为页面字段时，参数所属单元ID") {
                 constraints(nullable: true)
             }
-            column(name: "param_field_id", type: "bigint(20)", remarks: "param_type为页面字段时，参数字段ID") {
+            column(name: "param_field_id", type: "bigint", remarks: "param_type为页面字段时，参数字段ID") {
                 constraints(nullable: true)
             }
 
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: false)
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")

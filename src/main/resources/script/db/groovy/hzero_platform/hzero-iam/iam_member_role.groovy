@@ -12,18 +12,18 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_member_role.groovy') {
             createSequence(sequenceName: 'iam_member_role_s', startValue:"1")
         }
         createTable(tableName: "iam_member_role", remarks: "") {
-            column(name: "id", type: "bigint(20)", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
-            column(name: "role_id", type: "bigint(20)",  remarks: "角色id")  {constraints(nullable:"false")}  
-            column(name: "member_id", type: "bigint(20)",  remarks: "成员id,可以是userId,clientId等，与member_type对应")  {constraints(nullable:"false")}  
+            column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
+            column(name: "role_id", type: "bigint",  remarks: "角色id")  {constraints(nullable:"false")}  
+            column(name: "member_id", type: "bigint",  remarks: "成员id,可以是userId,clientId等，与member_type对应")  {constraints(nullable:"false")}  
             column(name: "member_type", type: "varchar(" + 32 * weight + ")",   defaultValue:"user",   remarks: "成员类型，默认为user，值集：HIAM.MEMBER_TYPE")   
-            column(name: "source_id", type: "bigint(20)",  remarks: "创建该记录的源id，可以是projectId,也可以是organizarionId等")  {constraints(nullable:"false")}  
+            column(name: "source_id", type: "bigint",  remarks: "创建该记录的源id，可以是projectId,也可以是organizarionId等")  {constraints(nullable:"false")}  
             column(name: "source_type", type: "varchar(" + 32 * weight + ")",  remarks: "创建该记录的源类型，sit/organization/project/user等")  {constraints(nullable:"false")}  
             column(name: "h_assign_level", type: "varchar(" + 20 * weight + ")",  remarks: "分配层级")   
-            column(name: "h_assign_level_value", type: "bigint(20)",  remarks: "分配层级值")   
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "")   
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"0",   remarks: "")   
+            column(name: "h_assign_level_value", type: "bigint",  remarks: "分配层级值")   
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "")   
+            column(name: "created_by", type: "bigint",   defaultValue:"0",   remarks: "")   
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")   
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"0",   remarks: "")   
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"0",   remarks: "")   
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")   
 
         }

@@ -12,10 +12,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit.groovy') {
             createSequence(sequenceName: 'hpfm_cusz_unit_s', startValue: "1")
         }
         createTable(tableName: "hpfm_cusz_unit") {
-            column(name: "id", type: "bigint(20)", autoIncrement: "true", remarks: "表ID，主键，供其他表做外键") {
+            column(name: "id", type: "bigint", autoIncrement: "true", remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID") {
                 constraints(nullable: false)
             }
             column(name: "unit_code", type: "varchar(" + 255 * weight + ")", remarks: "个性化模型编码") {
@@ -27,18 +27,18 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit.groovy') {
             column(name: "unit_name", type: "varchar(" + 255 * weight + ")", remarks: "个性化模型名称") {
                 constraints(nullable: false)
             }
-            column(name: "unit_group_id", type: "bigint(20)", remarks: "所属分组编码") {
+            column(name: "unit_group_id", type: "bigint", remarks: "所属分组编码") {
                 constraints(nullable: false)
             }
-            column(name: "model_id", type: "bigint(20)", remarks: "主模型ID") {
+            column(name: "model_id", type: "bigint", remarks: "主模型ID") {
                 constraints(nullable: false)
             }
             column(name: "sql_ids", type: "varchar(" + 300 * weight + ")", remarks: "sql_id集合,逗号分隔")
-            column(name: "read_only", type: "Tinyint(1)", defaultValue: "0", remarks: "是否只读") {
+            column(name: "read_only", type: "Tinyint", defaultValue: "0", remarks: "是否只读") {
                 constraints(nullable: false)
             }
-            column(name: "form_max_col", type: "smallint(3)", remarks: "表单列最大值")
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "form_max_col", type: "smallint", remarks: "表单列最大值")
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: false)
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")
@@ -56,16 +56,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit.groovy') {
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-02-08_hpfm_cusz_unit") {
 
         addColumn(tableName: 'hpfm_cusz_unit') {
-            column(name: "label_col",  type:"smallint(3)", remarks: "label列数")
+            column(name: "label_col",  type:"smallint", remarks: "label列数")
         }
         addColumn(tableName: 'hpfm_cusz_unit') {
-            column(name: "wrapper_col",  type:"smallint(3)", remarks: "wrapper列数")
+            column(name: "wrapper_col",  type:"smallint", remarks: "wrapper列数")
         }
     }
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-02-11_hpfm_cusz_unit_add_enable_flag") {
         addColumn(tableName: 'hpfm_cusz_unit') {
-            column(name: "enable_flag",  type:"tinyint(1)", remarks: "启用标志" ,defaultValue: "1")
+            column(name: "enable_flag",  type:"tinyint", remarks: "启用标志" ,defaultValue: "1")
         }
     }
 

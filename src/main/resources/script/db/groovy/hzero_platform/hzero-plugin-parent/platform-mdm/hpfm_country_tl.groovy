@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_country_tl.groovy') {
             createSequence(sequenceName: 'hpfm_country_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_country_tl", remarks: "国家定义多语言") {
-            column(name: "country_id", type: "bigint(20)",  remarks: "表id，主键，供其他表做外键")  {constraints(nullable:"false")}  
+            column(name: "country_id", type: "bigint",  remarks: "表id，主键，供其他表做外键")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言编码")  {constraints(nullable:"false")}  
             column(name: "country_name", type: "varchar(" + 120 * weight + ")",  remarks: "国家名称")  {constraints(nullable:"false")}  
             column(name: "quick_index", type: "varchar(" + 30 * weight + ")",  remarks: "快速检索")  {constraints(nullable:"false")}  

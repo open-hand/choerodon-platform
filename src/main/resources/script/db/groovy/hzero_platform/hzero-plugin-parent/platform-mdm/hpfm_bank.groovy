@@ -12,16 +12,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_bank.groovy') {
             createSequence(sequenceName: 'hpfm_bank_s', startValue:"1")
         }
         createTable(tableName: "hpfm_bank", remarks: "银行信息") {
-            column(name: "bank_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "bank_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
             column(name: "bank_code", type: "varchar(" + 30 * weight + ")",  remarks: "银行代码")  {constraints(nullable:"false")}  
             column(name: "bank_name", type: "varchar(" + 120 * weight + ")",  remarks: "银行名称")  {constraints(nullable:"false")}  
             column(name: "bank_short_name", type: "varchar(" + 60 * weight + ")",  remarks: "银行简称")   
             column(name: "bank_type_code", type: "varchar(" + 60 * weight + ")",  remarks: "银行类型,值集：HMDM.BANK_TYPE")  {constraints(nullable:"false")}  
-            column(name: "enabled_flag", type: "tinyint(1)",   defaultValue:"1",   remarks: "是否启用标记")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "enabled_flag", type: "tinyint",   defaultValue:"1",   remarks: "是否启用标记")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }
@@ -32,7 +32,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_bank.groovy') {
 
     changeSet(author: "zhiying.dong@hand-china.com", id: "2019-04-03-hpfm_bank"){
         addColumn(tableName: 'hpfm_bank') {
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
                 constraints(nullable: "false")
             }
         }

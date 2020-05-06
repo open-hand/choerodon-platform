@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit_tl.groovy') {
 			createSequence(sequenceName: 'hpfm_unit_tl_s', startValue:"1")
 		}
         createTable(tableName: "hpfm_unit_tl", remarks: "部门多语言表") {
-            column(name: "unit_id", type: "bigint(20)",  remarks: "上级部门ID,hpfm_hr_unit.unit_id")  {constraints(nullable:"false")}  
+            column(name: "unit_id", type: "bigint",  remarks: "上级部门ID,hpfm_hr_unit.unit_id")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
             column(name: "unit_name", type: "varchar(" + 120 * weight + ")",  remarks: "部门名称")  {constraints(nullable:"false")}  
             column(name: "description", type: "varchar(" + 240 * weight + ")",  remarks: "描述")   

@@ -12,15 +12,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_search_query.groovy') {
             createSequence(sequenceName: 'hpfm_search_query_s', startValue:"1")
         }
         createTable(tableName: "hpfm_search_query", remarks: "高级检索查询配置") {
-            column(name: "search_query_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
-            column(name: "search_id", type: "bigint(20)",  remarks: "高级检索配置ID，hpfm_search.search_id")  {constraints(nullable:"false")}  
+            column(name: "search_query_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "search_id", type: "bigint",  remarks: "高级检索配置ID，hpfm_search.search_id")  {constraints(nullable:"false")}  
             column(name: "field_name", type: "varchar(" + 60 * weight + ")",  remarks: "排序字段名称")  {constraints(nullable:"false")}  
             column(name: "comparator", type: "varchar(" + 30 * weight + ")",  remarks: "比较符")  {constraints(nullable:"false")}  
-            column(name: "tenant_id", type: "bigint(20)",   defaultValue:"0",   remarks: "租户ID,hpfm_tenant.tenant_id")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "tenant_id", type: "bigint",   defaultValue:"0",   remarks: "租户ID,hpfm_tenant.tenant_id")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }

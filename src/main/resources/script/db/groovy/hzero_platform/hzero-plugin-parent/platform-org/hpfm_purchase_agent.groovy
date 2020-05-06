@@ -12,20 +12,20 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_purchase_agent.groovy') {
             createSequence(sequenceName: 'hpfm_purchase_agent_s', startValue:"1")
         }
         createTable(tableName: "hpfm_purchase_agent", remarks: "采购员") {
-            column(name: "purchase_agent_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
-            column(name: "tenant_id", type: "bigint(20)",  remarks: "租户ID，hpfm_tenant.tenant_id")  {constraints(nullable:"false")}  
-            column(name: "purchase_org_id", type: "bigint(20)",  remarks: "采购组织ID，hpfm_purchase_organization.purchase_org_id")   
+            column(name: "purchase_agent_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "tenant_id", type: "bigint",  remarks: "租户ID，hpfm_tenant.tenant_id")  {constraints(nullable:"false")}  
+            column(name: "purchase_org_id", type: "bigint",  remarks: "采购组织ID，hpfm_purchase_organization.purchase_org_id")   
             column(name: "purchase_agent_code", type: "varchar(" + 30 * weight + ")",  remarks: "平台编码")  {constraints(nullable:"false")}  
             column(name: "purchase_agent_name", type: "varchar(" + 30 * weight + ")",  remarks: "采购员名称")  {constraints(nullable:"false")}  
             column(name: "contact_info", type: "varchar(" + 240 * weight + ")",  remarks: "联系方式")   
-            column(name: "user_id", type: "bigint(20)",  remarks: "指定用户,iam_user.user_id")   
+            column(name: "user_id", type: "bigint",  remarks: "指定用户,iam_user.user_id")   
             column(name: "source_code", type: "varchar(" + 30 * weight + ")",  remarks: "数据来源 值集：HPFM.DATA_SOURCE")  {constraints(nullable:"false")}  
-            column(name: "enabled_flag", type: "tinyint(1)",   defaultValue:"1",   remarks: "是否启用。1启用，0未启用")  {constraints(nullable:"false")}  
+            column(name: "enabled_flag", type: "tinyint",   defaultValue:"1",   remarks: "是否启用。1启用，0未启用")  {constraints(nullable:"false")}  
             column(name: "external_system_code", type: "varchar(" + 30 * weight + ")",  remarks: "外部来源系统代码")   
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }

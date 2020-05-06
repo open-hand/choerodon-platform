@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_currency_tl.groovy') {
             createSequence(sequenceName: 'hpfm_currency_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_currency_tl", remarks: "币种信息多语言") {
-            column(name: "currency_id", type: "bigint(20)",  remarks: "币种ID")  {constraints(nullable:"false")}  
+            column(name: "currency_id", type: "bigint",  remarks: "币种ID")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
             column(name: "currency_name", type: "varchar(" + 120 * weight + ")",  remarks: "币种名称")  {constraints(nullable:"false")}  
 

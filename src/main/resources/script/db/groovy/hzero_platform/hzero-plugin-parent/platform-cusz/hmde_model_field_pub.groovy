@@ -17,7 +17,7 @@ databaseChangeLog(logicalFilePath: 'hmde_model_field_pub.groovy') {
             column(name: "id", type: "bigint", autoIncrement: "true", startWith: "10001", remarks: "表ID，主键") {
                 constraints(nullable: "false", primaryKey: "true", primaryKeyName: "hmde_model_field_pub_pk")
             }
-            column(name: "model_object_id", type: "bigint(20)", remarks: "模型对象ID，hmde_model_object_pub.id") {
+            column(name: "model_object_id", type: "bigint", remarks: "模型对象ID，hmde_model_object_pub.id") {
                 constraints(nullable: "false")
             }
             column(name: "code", type: "varchar(" + 32 * weight + ")", remarks: "字段代码") {
@@ -37,16 +37,16 @@ databaseChangeLog(logicalFilePath: 'hmde_model_field_pub.groovy') {
             }
             column(name: "default_value", type: "varchar(" + 255 * weight + ")", remarks: "字段默认值")
             column(name: "description", type: "varchar(" + 255 * weight + ")", remarks: "字段描述")
-            column(name: "required_flag", type: "tinyint(1)", defaultValue: "0", remarks: "是否必输。1是，0不是") {
+            column(name: "required_flag", type: "tinyint", defaultValue: "0", remarks: "是否必输。1是，0不是") {
                 constraints(nullable: "false")
             }
-            column(name: "change_required_flag", type: "tinyint(1)", defaultValue: "0", remarks: "是否可修改必输。1是，0不是") {
+            column(name: "change_required_flag", type: "tinyint", defaultValue: "0", remarks: "是否可修改必输。1是，0不是") {
                 constraints(nullable: "false")
             }
-            column(name: "primary_flag", type: "tinyint(1)", defaultValue: "0", remarks: "是否主键。1是，0不是") {
+            column(name: "primary_flag", type: "tinyint", defaultValue: "0", remarks: "是否主键。1是，0不是") {
                 constraints(nullable: "false")
             }
-            column(name: "multi_language_flag", type: "tinyint(1)", defaultValue: "0", remarks: "是否多语言字段。1是，0不是") {
+            column(name: "multi_language_flag", type: "tinyint", defaultValue: "0", remarks: "是否多语言字段。1是，0不是") {
                 constraints(nullable: "false")
             }
             column(name: "field_type", type: "varchar(" + 20 * weight + ")", remarks: "字段类型") {
@@ -56,10 +56,10 @@ databaseChangeLog(logicalFilePath: 'hmde_model_field_pub.groovy') {
             column(name: "formula_content", type: "clob", remarks: "公式内容")
             column(name: "value_list_type", type: "varchar(" + 20 * weight + ")", remarks: "值集类型")
             column(name: "value_list_code", type: "varchar(" + 60 * weight + ")", remarks: "值集编码或值集视图编码")
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID") {
                 constraints(nullable: "false")
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1") {

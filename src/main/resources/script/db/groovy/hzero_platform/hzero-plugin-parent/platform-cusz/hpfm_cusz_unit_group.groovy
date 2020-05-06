@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_group.groovy') {
             createSequence(sequenceName: 'hpfm_cusz_unit_group_s', startValue: "1")
         }
         createTable(tableName: "hpfm_cusz_unit_group") {
-            column(name: "unit_group_id", type: "bigint(20)", autoIncrement: "true", remarks: "表ID，主键，供其他表做外键") {
+            column(name: "unit_group_id", type: "bigint", autoIncrement: "true", remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
             column(name: "group_code", type: "varchar(" + 255 * weight + ")", remarks: "组编码") {
@@ -24,7 +24,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_group.groovy') {
             column(name: "group_menu_code", type: "varchar(" + 255 * weight + ")", remarks: "菜单编码") {
                 constraints(nullable: false)
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: false)
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")

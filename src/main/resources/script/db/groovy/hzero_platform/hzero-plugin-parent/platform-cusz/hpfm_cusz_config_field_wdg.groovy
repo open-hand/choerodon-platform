@@ -15,29 +15,29 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field_wdg.groovy'
             column(name: "id", type: "bigint", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
-            column(name: "config_field_id", type: "bigint(20)", remarks: "个性化字段配置表主键") {
+            column(name: "config_field_id", type: "bigint", remarks: "个性化字段配置表主键") {
                 constraints(nullable: false)
             }
-            column(name: "tenant_id", type: "bigint(20)", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", remarks: "租户ID") {
                 constraints(nullable: false)
             }
             column(name: "field_widget", type: "varchar(" + 255 * weight + ")", remarks: "字段控件类型")
-            column(name: "text_max_length", type: "Int(6)", remarks: "TEXT最大程度")
-            column(name: "text_min_length", type: "Int(6)", remarks: "TEXT最小程度")
-            column(name: "text_area_max_line", type: "Int(6)", remarks: "文本域组件，最大行数")
+            column(name: "text_max_length", type: "int", remarks: "TEXT最大程度")
+            column(name: "text_min_length", type: "int", remarks: "TEXT最小程度")
+            column(name: "text_area_max_line", type: "int", remarks: "文本域组件，最大行数")
             column(name: "source_code", type: "varchar(" + 255 * weight + ")", remarks: "LOV值集或者值集视图编码")
             column(name: "date_format", type: "varchar(" + 60 * weight + ")", remarks: "日期格式")
-            column(name: "number_precision", type: "Tinyint(3)", remarks: "数值精度")
-            column(name: "number_min", type: "Int(11)", remarks: "数值最小值")
-            column(name: "number_max", type: "bigint(20)", remarks: "数值最大值")
+            column(name: "number_precision", type: "Tinyint", remarks: "数值精度")
+            column(name: "number_min", type: "int", remarks: "数值最小值")
+            column(name: "number_max", type: "bigint", remarks: "数值最大值")
             column(name: "switch_value", type: "varchar(" + 30 * weight + ")", remarks: "开关值")
             column(name: "bucket_name", type: "varchar(" + 255 * weight + ")", remarks: "上传组件，桶名")
             column(name: "bucket_directory", type: "varchar(" + 255 * weight + ")", remarks: "上传组件，桶目录")
             column(name: "link_title", type: "varchar(" + 255 * weight + ")", remarks: "链接标题")
             column(name: "link_href", type: "varchar(" + 510 * weight + ")", remarks: "链接地址")
-            column(name: "link_new_window", type: "Tinyint(1)", defaultValue: "0", remarks: "是否打开新窗口")
+            column(name: "link_new_window", type: "Tinyint", defaultValue: "0", remarks: "是否打开新窗口")
 
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: false)
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")

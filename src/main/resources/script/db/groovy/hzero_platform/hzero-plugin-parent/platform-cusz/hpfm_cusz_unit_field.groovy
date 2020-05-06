@@ -14,40 +14,40 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_field.groovy') {
             createSequence(sequenceName: 'hpfm_cusz_unit_field_s', startValue: "1")
         }
         createTable(tableName: "hpfm_cusz_unit_field") {
-            column(name:"id",type:"bigint(20)",autoIncrement:"true",remarks:"表ID，主键，供其他表做外键"){
+            column(name:"id",type:"bigint",autoIncrement:"true",remarks:"表ID，主键，供其他表做外键"){
                 constraints(primaryKey: true)
             }
-            column(name:"tenant_id",type:"bigint(20)",remarks:"租户ID"){
+            column(name:"tenant_id",type:"bigint",remarks:"租户ID"){
                 constraints(nullable:false)
             }
-            column(name:"unit_id",type:"bigint(20)",remarks:"单元ID"){
+            column(name:"unit_id",type:"bigint",remarks:"单元ID"){
                 constraints(nullable:false)
             }
-            column(name:"model_id",type:"bigint(20)",remarks:"模型ID"){
+            column(name:"model_id",type:"bigint",remarks:"模型ID"){
                 constraints(nullable:false)
             }
-            column(name:"field_id",type:"bigint(20)",remarks:"模型字段ID"){
+            column(name:"field_id",type:"bigint",remarks:"模型字段ID"){
                 constraints(nullable:false)
             }
             column(name:"field_name",type:"varchar(" + 255 * weight + ")",remarks:"模型字段编码"){
                 constraints(nullable:false)
             }
             column(name:"field_alias",type:"varchar(" + 255 * weight + ")",remarks:"字段别名")
-            column(name:"field_editable",type:"smallint(1)",remarks:"是否可编辑，-1条件控制"){
+            column(name:"field_editable",type:"smallint",remarks:"是否可编辑，-1条件控制"){
                 constraints(nullable:false)
             }
-            column(name:"field_required",type:"smallint(1)",remarks:"是否必输，-1条件控制"){
+            column(name:"field_required",type:"smallint",remarks:"是否必输，-1条件控制"){
                 constraints(nullable:false)
             }
-            column(name:"form_col",type:"smallint(3)",remarks:"表单列序号")
-            column(name:"form_row",type:"smallint(3)",remarks:"表单行序号")
-            column(name:"grid_seq",type:"smallint(5)",remarks:"表格列排序号")
-            column(name:"grid_width",type:"smallint(3)",remarks:"表格列宽度")
+            column(name:"form_col",type:"smallint",remarks:"表单列序号")
+            column(name:"form_row",type:"smallint",remarks:"表单行序号")
+            column(name:"grid_seq",type:"smallint",remarks:"表格列排序号")
+            column(name:"grid_width",type:"smallint",remarks:"表格列宽度")
             column(name:"grid_fixed",type:"varchar(" + 30 * weight + ")",remarks:"表格冻结配置")
             column(name:"render_options",type:"varchar(" + 30 * weight + ")",defaultValue:"WIDGET",remarks:"渲染方式"){
                 constraints(nullable:false)
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: false)
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")
@@ -60,7 +60,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_field.groovy') {
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-02-06_hpfm_cusz_unit_field") {
         addColumn(tableName: 'hpfm_cusz_unit_field') {
-            column(name: "field_visible",  type: "smallint(1)", defaultValue: "1", remarks: "是否显示字段,-1条件控制"){
+            column(name: "field_visible",  type: "smallint", defaultValue: "1", remarks: "是否显示字段,-1条件控制"){
                 constraints(nullable:"false")
             }
         }
@@ -68,10 +68,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_field.groovy') {
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-02-08_hpfm_cusz_unit_field") {
         addColumn(tableName: 'hpfm_cusz_unit_field') {
-            column(name: "label_col",  type:"smallint(3)", remarks: "label列数")
+            column(name: "label_col",  type:"smallint", remarks: "label列数")
         }
         addColumn(tableName: 'hpfm_cusz_unit_field') {
-            column(name: "wrapper_col",  type:"smallint(3)", remarks: "wrapper列数")
+            column(name: "wrapper_col",  type:"smallint", remarks: "wrapper列数")
         }
     }
 

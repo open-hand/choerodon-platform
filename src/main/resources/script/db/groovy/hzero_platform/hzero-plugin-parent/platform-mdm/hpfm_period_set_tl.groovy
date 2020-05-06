@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_period_set_tl.groovy') {
             createSequence(sequenceName: 'hpfm_period_set_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_period_set_tl", remarks: "会计期定义多语言") {
-            column(name: "period_set_id", type: "bigint(20)",  remarks: "会计期ID")  {constraints(nullable:"false")}  
+            column(name: "period_set_id", type: "bigint",  remarks: "会计期ID")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
             column(name: "period_set_name", type: "varchar(" + 240 * weight + ")",  remarks: "会计期名称")   
 

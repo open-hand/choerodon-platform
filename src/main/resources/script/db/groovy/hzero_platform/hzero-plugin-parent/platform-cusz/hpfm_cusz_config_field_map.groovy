@@ -15,25 +15,25 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field_map.groovy'
             column(name: "id", type: "bigint", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
-            column(name: "tenant_id", type: "bigint(20)", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", remarks: "租户ID") {
                 constraints(nullable: false)
             }
-            column(name: "config_field_id", type: "bigint(20)", remarks: "个性化字段ID") {
+            column(name: "config_field_id", type: "bigint", remarks: "个性化字段ID") {
                 constraints(nullable: false)
             }
-            column(name: "target_field_id", type: "bigint(20)", remarks: "映射目标字段ID") {
+            column(name: "target_field_id", type: "bigint", remarks: "映射目标字段ID") {
                 constraints(nullable: false)
             }
-            column(name: "source_model_id", type: "bigint(20)", remarks: "目标字段所属模型") {
+            column(name: "source_model_id", type: "bigint", remarks: "目标字段所属模型") {
                 constraints(nullable: false)
             }
-            column(name: "source_field_id", type: "bigint(20)", remarks: "映射源字段ID") {
+            column(name: "source_field_id", type: "bigint", remarks: "映射源字段ID") {
                 constraints(nullable: false)
             }
             column(name: "source_field_alias", type:"varchar(" + 120 * weight + ")", remarks: "映射源字段别名") {
                 constraints(nullable: false)
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: false)
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")

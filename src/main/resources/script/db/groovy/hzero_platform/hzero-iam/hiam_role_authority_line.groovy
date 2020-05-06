@@ -12,14 +12,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_role_authority_line.groovy') 
             createSequence(sequenceName: 'hiam_role_authority_line_s', startValue:"1")
         }
         createTable(tableName: "hiam_role_authority_line", remarks: "角色数据权限行定义") {
-            column(name: "role_auth_line_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
-            column(name: "role_auth_id", type: "bigint(20)",  remarks: "角色数据权限ID，hiam_role_authority.role_auth_id")  {constraints(nullable:"false")}  
-            column(name: "role_id", type: "bigint(20)",  remarks: "角色ID，iam_role.id")  {constraints(nullable:"false")}  
+            column(name: "role_auth_line_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "role_auth_id", type: "bigint",  remarks: "角色数据权限ID，hiam_role_authority.role_auth_id")  {constraints(nullable:"false")}  
+            column(name: "role_id", type: "bigint",  remarks: "角色ID，iam_role.id")  {constraints(nullable:"false")}  
             column(name: "auth_type_code", type: "varchar(" + 30 * weight + ")",  remarks: "权限类型代码，HIAM.AUTHORITY_TYPE_CODE")  {constraints(nullable:"false")}
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }

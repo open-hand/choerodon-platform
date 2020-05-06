@@ -38,7 +38,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_export_task.groovy') {
                 constraints(nullable:"false")
             }
             column(name:"end_date_time",type:"datetime",remarks:"任务结束时间")
-            column(name:"object_version_number",type:"bigint(20)",defaultValue:"1",remarks:"行版本号，用来处理锁"){
+            column(name:"object_version_number",type:"bigint",defaultValue:"1",remarks:"行版本号，用来处理锁"){
                 constraints(nullable:"false")
             }
             column(name:"CREATED_BY",type:"bigint", defaultValue : "-1")

@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_uom_type_tl.groovy') {
             createSequence(sequenceName: 'hpfm_uom_type_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_uom_type_tl", remarks: "计量单位类型多语言") {
-            column(name: "uom_type_id", type: "bigint(20)",  remarks: "单位类型ID,hmdm_uom_type.uom_type_id")  {constraints(nullable:"false")}  
+            column(name: "uom_type_id", type: "bigint",  remarks: "单位类型ID,hmdm_uom_type.uom_type_id")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
             column(name: "uom_type_name", type: "varchar(" + 60 * weight + ")",  remarks: "单位类型名称")  {constraints(nullable:"false")}  
 

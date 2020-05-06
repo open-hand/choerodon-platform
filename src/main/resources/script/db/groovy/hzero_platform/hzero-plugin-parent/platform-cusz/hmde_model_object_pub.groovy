@@ -32,24 +32,24 @@ databaseChangeLog(logicalFilePath: 'hmde_model_object_pub.groovy') {
             column(name: "ref_database_type", type: "varchar(" + 30 * weight + ")", remarks: "引用表所属数据库类型，hmde_table.database_type")
             column(name: "ref_table_name", type: "varchar(" + 30 * weight + ")", remarks: "引用表名称，hmde_table.name")
             column(name: "primary_key", type: "varchar(" + 120 * weight + ")", remarks: "引用表主键字段，hmde_table_column.name")
-            column(name: "multi_language_flag", type: "tinyint(1)", defaultValue: "0", remarks: "是否为多语言表。1是，0不是")
+            column(name: "multi_language_flag", type: "tinyint", defaultValue: "0", remarks: "是否为多语言表。1是，0不是")
             column(name: "description", type: "varchar(" + 255 * weight + ")", remarks: "模型描述")
             column(name: "type", type: "varchar(" + 20 * weight + ")", remarks: "模型类型", defaultValue: "TABLE") {
                 constraints(nullable: "false")
             }
-            column(name: "publish_version", type: "bigint(20)", defaultValue: "1", remarks: "模型版本号") {
+            column(name: "publish_version", type: "bigint", defaultValue: "1", remarks: "模型版本号") {
                 constraints(nullable: "false")
             }
-            column(name: "app_id", type: "bigint(20)", remarks: "应用ID", defaultValue: "0") {
+            column(name: "app_id", type: "bigint", remarks: "应用ID", defaultValue: "0") {
                 constraints(nullable: "false")
             }
-            column(name: "tenant_id", type: "bigint(20)", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", remarks: "租户ID") {
                 constraints(nullable: "false")
             }
-            column(name: "tenant_flag", type: "tinyint(1)", defaultValue: "0", remarks: "是否是租户级。1是，0不是") {
+            column(name: "tenant_flag", type: "tinyint", defaultValue: "0", remarks: "是否是租户级。1是，0不是") {
                 constraints(nullable: "false")
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1") {

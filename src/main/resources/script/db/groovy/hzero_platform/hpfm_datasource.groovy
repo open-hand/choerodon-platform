@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource.groovy') {
             createSequence(sequenceName: 'hpfm_datasource_s', startValue: "1")
         }
         createTable(tableName: "hpfm_datasource", remarks: "数据源配置") {
-            column(name: "datasource_id", type: "bigint(20)", autoIncrement: true, remarks: "表ID，主键") {
+            column(name: "datasource_id", type: "bigint", autoIncrement: true, remarks: "表ID，主键") {
                 constraints(primaryKey: true)
             }
             column(name: "ds_purpose_code", type: "varchar(" + 30 * weight + ")", remarks: "数据源用途，值集：HPFM.DATASOURCE_PURPOSE DT:数据分发 DI:数据导入 DR:数据报表") {
@@ -44,20 +44,20 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource.groovy') {
             column(name: "pool_class", type: "varchar(" + 240 * weight + ")", remarks: "报表引擎查询器使用的数据源连接池类名")
             column(name: "options", type: "longtext", remarks: "数据源配置选项(JSON格式）")
             column(name: "remark", type: "varchar(" + 240 * weight + ")", remarks: "")
-            column(name: "enabled_flag", type: "tinyint(1)", defaultValue: "1", remarks: "是否启用，1启用、0禁用")
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+            column(name: "enabled_flag", type: "tinyint", defaultValue: "1", remarks: "是否启用，1启用、0禁用")
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
                 constraints(nullable: "false")
             }
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "") {
                 constraints(nullable: "false")
             }
             column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") {
                 constraints(nullable: "false")
             }
-            column(name: "created_by", type: "bigint(20)", defaultValue: "-1", remarks: "") {
+            column(name: "created_by", type: "bigint", defaultValue: "-1", remarks: "") {
                 constraints(nullable: "false")
             }
-            column(name: "last_updated_by", type: "bigint(20)", defaultValue: "-1", remarks: "") {
+            column(name: "last_updated_by", type: "bigint", defaultValue: "-1", remarks: "") {
                 constraints(nullable: "false")
             }
             column(name: "last_update_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") {
@@ -80,7 +80,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource.groovy') {
             column(name: "ext_config", type: "longtext", remarks: "扩展数据库配置信息(JSON格式)")
         }
         addColumn(tableName: 'hpfm_datasource') {
-            column(name: "driver_id", type: "bigint(20)", remarks: "驱动Id,用于关联自定义驱动配置项")
+            column(name: "driver_id", type: "bigint", remarks: "驱动Id,用于关联自定义驱动配置项")
         }
         addDefaultValue(tableName: 'hpfm_datasource', columnName: 'db_pool_type', columnDataType: "varchar(" + 30 * weight + ")", defaultValue: "No")
     }

@@ -12,13 +12,13 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_history.groovy') {
             createSequence(sequenceName: 'oauth_password_history_s', startValue:"1")
         }
         createTable(tableName: "oauth_password_history", remarks: "") {
-            column(name: "id", type: "bigint(20)", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
-            column(name: "user_id", type: "bigint(20)",  remarks: "用户id")  {constraints(nullable:"false")}  
+            column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
+            column(name: "user_id", type: "bigint",  remarks: "用户id")  {constraints(nullable:"false")}  
             column(name: "password", type: "varchar(" + 128 * weight + ")",  remarks: "Hash之后的密码")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "")   
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"0",   remarks: "")   
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "")   
+            column(name: "created_by", type: "bigint",   defaultValue:"0",   remarks: "")   
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")   
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"0",   remarks: "")   
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"0",   remarks: "")   
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")   
 
         }

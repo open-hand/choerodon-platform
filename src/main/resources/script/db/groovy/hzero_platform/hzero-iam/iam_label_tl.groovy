@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_label_tl.groovy') {
             createSequence(sequenceName: 'iam_label_tl_s', startValue:"1")
         }
         createTable(tableName: "iam_label_tl", remarks: "") {
-            column(name: "id", type: "bigint(20)",  remarks: "")  {constraints(nullable:"false")}
+            column(name: "id", type: "bigint",  remarks: "")  {constraints(nullable:"false")}
             column(name: "lang", type: "varchar(" + 16 * weight + ")",  remarks: "")  {constraints(nullable:"false")}
             column(name: 'description', type: "varchar(" + 128 * weight + ")", remarks: '描述')
         }

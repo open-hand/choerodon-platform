@@ -12,16 +12,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_dashboard_card_clause.groovy'
             createSequence(sequenceName: 'hpfm_dashboard_card_clause_s', startValue:"1")
         }
         createTable(tableName: "hpfm_dashboard_card_clause", remarks: "") {
-            column(name: "id", type: "bigint(20)", autoIncrement: true, remarks: "") { constraints(primaryKey: true) }
-            column(name: "card_id", type: "bigint(20)",  remarks: "卡片ID") {constraints(nullable:" false")}
-            column(name: "clause_id", type: "bigint(20)",  remarks: "条目ID") {constraints(nullable:" false")}
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")
+            column(name: "id", type: "bigint", autoIncrement: true, remarks: "") { constraints(primaryKey: true) }
+            column(name: "card_id", type: "bigint",  remarks: "卡片ID") {constraints(nullable:" false")}
+            column(name: "clause_id", type: "bigint",  remarks: "条目ID") {constraints(nullable:" false")}
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")
                     {constraints(nullable:" false")}
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")
                     {constraints(nullable:" false")}
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")
                     {constraints(nullable:" false")}
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")
                     {constraints(nullable:" false")}
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")
                     {constraints(nullable:" false")}
@@ -33,7 +33,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_dashboard_card_clause.groovy'
     }
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2019-05-30-hpfm_dashboard_card_clause"){
         addColumn(tableName: "hpfm_dashboard_card_clause"){
-            column(name: "order_seq", type: "int(11)", remarks: "排序")
+            column(name: "order_seq", type: "int", remarks: "排序")
         }
     }
 }

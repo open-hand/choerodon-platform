@@ -12,16 +12,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_country.groovy') {
             createSequence(sequenceName: 'hpfm_country_s', startValue:"1")
         }
         createTable(tableName: "hpfm_country", remarks: "国家定义") {
-            column(name: "country_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表id，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "country_id", type: "bigint", autoIncrement: true ,   remarks: "表id，主键，供其他表做外键")  {constraints(primaryKey: true)} 
             column(name: "country_code", type: "varchar(" + 30 * weight + ")",  remarks: "国家编码")  {constraints(nullable:"false")}  
             column(name: "country_name", type: "varchar(" + 120 * weight + ")",  remarks: "国家名称")  {constraints(nullable:"false")}  
             column(name: "quick_index", type: "varchar(" + 30 * weight + ")",  remarks: "快速检索")   
             column(name: "abbreviation", type: "varchar(" + 30 * weight + ")",  remarks: "简称")   
-            column(name: "enabled_flag", type: "tinyint(1)",   defaultValue:"1",   remarks: "是否启用标记")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "记录创建人")  {constraints(nullable:"false")}  
+            column(name: "enabled_flag", type: "tinyint",   defaultValue:"1",   remarks: "是否启用标记")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "记录创建人")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "记录创建日期")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "记录更新人")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "记录更新人")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "记录更新日期")  {constraints(nullable:"false")}  
 
         }
@@ -34,7 +34,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_country.groovy') {
 
     changeSet(author: "zhiying.dong@hand-china.com", id: "2019-04-03-hpfm_country"){
         addColumn(tableName: 'hpfm_country') {
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
                 constraints(nullable: "false")
             }
         }

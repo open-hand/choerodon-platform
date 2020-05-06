@@ -6,10 +6,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_financial_code.groovy') {
             createSequence(sequenceName: 'hpfm_financial_code_s', startValue: "1")
         }
         createTable(tableName: "hpfm_financial_code", remarks: "财务代码设置") {
-            column(name: "code_id", type: "bigint(20)", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
+            column(name: "code_id", type: "bigint", autoIncrement: true, remarks: "表ID，主键，供其他表做外键") {
                 constraints(primaryKey: true)
             }
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
                 constraints(nullable: "false")
             }
             column(name: "code", type: "varchar(30)", remarks: "代码") { constraints(nullable: "false") }
@@ -17,22 +17,22 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_financial_code.groovy') {
             column(name: "type", type: "varchar(600)", remarks: "类型，逗号分隔，值引用LOV：HPFM.FINANCIAL_CODE_TYPE") {
                 constraints(nullable: "false")
             }
-            column(name: "parent_id", type: "bigint(20)", remarks: "父级ID")
+            column(name: "parent_id", type: "bigint", remarks: "父级ID")
             column(name: "level_path", type: "varchar(600)", remarks: "层级路径，父级层级路径/当前代码")
-            column(name: "enabled_flag", type: "tinyint(1)", defaultValue: "1", remarks: "是否启用。1启用，0未启用") {
+            column(name: "enabled_flag", type: "tinyint", defaultValue: "1", remarks: "是否启用。1启用，0未启用") {
                 constraints(nullable: "false")
             }
             column(name: "remark", type: "longtext", remarks: "备注说明")
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") {
                 constraints(nullable: "false")
             }
-            column(name: "created_by", type: "bigint(20)", defaultValue: "-1", remarks: "") {
+            column(name: "created_by", type: "bigint", defaultValue: "-1", remarks: "") {
                 constraints(nullable: "false")
             }
-            column(name: "last_updated_by", type: "bigint(20)", defaultValue: "-1", remarks: "") {
+            column(name: "last_updated_by", type: "bigint", defaultValue: "-1", remarks: "") {
                 constraints(nullable: "false")
             }
             column(name: "last_update_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") {

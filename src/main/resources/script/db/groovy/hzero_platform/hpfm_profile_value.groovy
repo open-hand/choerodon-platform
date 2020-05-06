@@ -12,15 +12,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_profile_value.groovy') {
             createSequence(sequenceName: 'hpfm_profile_value_s', startValue:"1")
         }
         createTable(tableName: "hpfm_profile_value", remarks: "") {
-            column(name: "profile_value_id", type: "bigint(20)", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)}
-            column(name: "profile_id", type: "bigint(20)",  remarks: "配置ID")  {constraints(nullable:"false")}
+            column(name: "profile_value_id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)}
+            column(name: "profile_id", type: "bigint",  remarks: "配置ID")  {constraints(nullable:"false")}
             column(name: "level_code", type: "varchar(" + 30 * weight + ")",  remarks: "应用层级")  {constraints(nullable:"false")}
             column(name: "level_value", type: "varchar(" + 30 * weight + ")",  remarks: "层级值")
             column(name: "value", type: "varchar(" + 30 * weight + ")",  remarks: "配置值")
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "")
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"0",   remarks: "")
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "")
+            column(name: "created_by", type: "bigint",   defaultValue:"0",   remarks: "")
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"0",   remarks: "")
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"0",   remarks: "")
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")
 
         }

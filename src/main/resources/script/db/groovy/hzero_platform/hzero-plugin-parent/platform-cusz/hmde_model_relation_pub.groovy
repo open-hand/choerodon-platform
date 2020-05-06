@@ -33,10 +33,10 @@ databaseChangeLog(logicalFilePath: 'hmde_model_relation_pub.groovy') {
                 constraints(nullable: "false")
             }
             column(name: "description", type: "varchar(" + 255 * weight + ")", remarks: "关系描述")
-            column(name: "tenant_id", type: "bigint(20)", remarks: "租户ID") {
+            column(name: "tenant_id", type: "bigint", remarks: "租户ID") {
                 constraints(nullable: "false")
             }
-            column(name: "object_version_number", type: "bigint(20) unsigned", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1") {

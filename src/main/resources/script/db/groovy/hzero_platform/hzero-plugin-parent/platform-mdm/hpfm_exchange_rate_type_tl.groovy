@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_region_tl.groovy') {
             createSequence(sequenceName: 'hpfm_exchange_rate_type_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_exchange_rate_type_tl", remarks: "汇率类型定义多语言") {
-            column(name: "rate_type_id", type: "bigint(20)",  remarks: "hpfm_exchange_rate_type.rate_type_id")  {constraints(nullable:"false")}
+            column(name: "rate_type_id", type: "bigint",  remarks: "hpfm_exchange_rate_type.rate_type_id")  {constraints(nullable:"false")}
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言编码")  {constraints(nullable:"false")}  
             column(name: "type_name", type: "varchar(" + 30 * weight + ")",  remarks: "汇率类型名称")  {constraints(nullable:"false")}
 

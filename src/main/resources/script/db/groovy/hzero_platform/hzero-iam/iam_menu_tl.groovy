@@ -13,7 +13,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_tl.groovy') {
         }
         createTable(tableName: "iam_menu_tl", remarks: "") {
             column(name: "lang", type: "varchar(" + 16 * weight + ")",  remarks: "")  {constraints(nullable:"false")}  
-            column(name: "id", type: "bigint(20)",  remarks: "")  {constraints(nullable:"false")}  
+            column(name: "id", type: "bigint",  remarks: "")  {constraints(nullable:"false")}  
             column(name: "name", type: "varchar(" + 64 * weight + ")",  remarks: "菜单名")   
 
         }

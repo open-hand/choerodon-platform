@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp_tl.groovy') {
             createSequence(sequenceName: 'hiam_sec_grp_tl_s', startValue:"1")
         }
         createTable(tableName: "hiam_sec_grp_tl", remarks: "安全组多语言表") {
-            column(name: "sec_grp_id", type: "bigint(20)",  remarks: "安全组ID")  {constraints(nullable:"false")}  
+            column(name: "sec_grp_id", type: "bigint",  remarks: "安全组ID")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
             column(name: "sec_grp_name", type: "varchar(" + 255 * weight + ")",  remarks: "安全组名称")  {constraints(nullable:"false")}  
             column(name: "remark", type: "longtext",  remarks: "备注说明")   

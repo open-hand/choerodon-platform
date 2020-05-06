@@ -12,16 +12,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_operation_unit_es.groovy') {
             createSequence(sequenceName: 'hpfm_operation_unit_es_s', startValue:"1")
         }
         createTable(tableName: "hpfm_operation_unit_es", remarks: "业务实体关联表") {
-            column(name: "ou_es_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "ou_es_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
             column(name: "external_system_code", type: "varchar(" + 30 * weight + ")",  remarks: "外部系统代码")  {constraints(nullable:"false")}  
-            column(name: "ou_id", type: "bigint(20)",  remarks: "hzero平台业务实体id")  {constraints(nullable:"false")}  
+            column(name: "ou_id", type: "bigint",  remarks: "hzero平台业务实体id")  {constraints(nullable:"false")}  
             column(name: "es_ou_id", type: "varchar(" + 50 * weight + ")",  remarks: "erp平台业务实体id")   
             column(name: "es_ou_code", type: "varchar(" + 30 * weight + ")",  remarks: "erp平台业务实体代码")   
-            column(name: "data_version", type: "bigint(20)",  remarks: "erp数据版本号")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "data_version", type: "bigint",  remarks: "erp数据版本号")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }

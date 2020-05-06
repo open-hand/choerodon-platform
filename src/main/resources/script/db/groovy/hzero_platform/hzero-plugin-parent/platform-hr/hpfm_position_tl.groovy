@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_position_tl.groovy') {
             createSequence(sequenceName: 'hpfm_position_tl_s', startValue:"1")
         }
         createTable(tableName: "hpfm_position_tl", remarks: "岗位多语言") {
-            column(name: "position_id", type: "bigint(20)",  remarks: "岗位ID")  {constraints(nullable:"false")}  
+            column(name: "position_id", type: "bigint",  remarks: "岗位ID")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
             column(name: "position_name", type: "varchar(" + 120 * weight + ")",  remarks: "岗位名称")  {constraints(nullable:"false")}  
             column(name: "description", type: "varchar(" + 240 * weight + ")",  remarks: "描述")   

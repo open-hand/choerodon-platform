@@ -12,17 +12,17 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_exchange_rate.groovy') {
             createSequence(sequenceName: 'hpfm_exchange_rate_s', startValue:"1")
         }
         createTable(tableName: "hpfm_exchange_rate", remarks: "汇率定义") {
-            column(name: "exchange_rate_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "exchange_rate_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
             column(name: "rate_type_code", type: "varchar(" + 30 * weight + ")",  remarks: "汇率类型代码,hmdm_exchange_rate_type.type_code")  {constraints(nullable:"false")}  
             column(name: "from_currency_code", type: "varchar(" + 30 * weight + ")",  remarks: "被兑换货币CODE,hmdm_currency.currency_code")  {constraints(nullable:"false")}  
             column(name: "to_currency_code", type: "varchar(" + 30 * weight + ")",  remarks: "兑换货币CODE,hmdm_currency.currency_code")  {constraints(nullable:"false")}  
             column(name: "rate", type: "decimal(16,8)",  remarks: "税率，以1为基本单位")  {constraints(nullable:"false")}  
             column(name: "rate_date", type: "date",  remarks: "汇率日期")  {constraints(nullable:"false")}  
-            column(name: "enabled_flag", type: "tinyint(1)",   defaultValue:"1",   remarks: "启用标识")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "enabled_flag", type: "tinyint",   defaultValue:"1",   remarks: "启用标识")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }
@@ -32,7 +32,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_exchange_rate.groovy') {
 
     changeSet(author: "zhiying.dong@hand-china.com", id: "2019-04-03-hpfm_exchange_rate"){
         addColumn(tableName: 'hpfm_exchange_rate') {
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
                 constraints(nullable: "false")
             }
         }

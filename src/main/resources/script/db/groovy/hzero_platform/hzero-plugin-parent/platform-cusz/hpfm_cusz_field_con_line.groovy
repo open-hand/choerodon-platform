@@ -12,36 +12,36 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_field_con_line.groovy') 
             createSequence(sequenceName: 'hpfm_cusz_field_con_line_S', startValue: "10001")
         }
         createTable(tableName: "hpfm_cusz_field_con_line") {
-            column(name: "con_line_id", type: "bigint(20)", autoIncrement: "true", startWith: "10001", remarks: "表ID，主键，供其他表做外键") {
+            column(name: "con_line_id", type: "bigint", autoIncrement: "true", startWith: "10001", remarks: "表ID，主键，供其他表做外键") {
                 constraints(nullable: "false", primaryKey: "true", primaryKeyName: "hpfm_cusz_field_con_line_PK")
             }
-            column(name: "con_header_id", type: "bigint(20)", remarks: "条件头表主键") {
+            column(name: "con_header_id", type: "bigint", remarks: "条件头表主键") {
                 constraints(nullable: "false")
             }
-            column(name: "tenant_id", type: "bigint(20)", defaultValue: "0", remarks: "租户id") {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户id") {
                 constraints(nullable: "false")
             }
-            column(name: "con_code", type: "Int(6)", remarks: "条件编码") {
+            column(name: "con_code", type: "int", remarks: "条件编码") {
                 constraints(nullable: "false")
             }
-            column(name: "source_unit_id", type: "bigint(20)", remarks: "源字段所属单元id") {
+            column(name: "source_unit_id", type: "bigint", remarks: "源字段所属单元id") {
                 constraints(nullable: "false")
             }
-            column(name: "source_model_id", type: "bigint(20)", remarks: "源字段所属模型id") {
+            column(name: "source_model_id", type: "bigint", remarks: "源字段所属模型id") {
                 constraints(nullable: "false")
             }
-            column(name: "source_field_id", type: "bigint(20)", remarks: "源字段id") {
+            column(name: "source_field_id", type: "bigint", remarks: "源字段id") {
                 constraints(nullable: "false")
             }
             column(name: "con_expression", type: "varchar(" + 12 * weight + ")", remarks: "条件运算符") {
                 constraints(nullable: "false")
             }
             column(name: "target_type", type: "varchar(" + 30 * weight + ")", remarks: "目标字段类型，本单元、固定值")
-            column(name: "target_unit_id", type: "bigint(20)", remarks: "目标字段所属单元id")
-            column(name: "target_model_id", type: "bigint(20)", remarks: "目标字段所属模型id")
-            column(name: "target_field_id", type: "bigint(20)", remarks: "目标字段id")
+            column(name: "target_unit_id", type: "bigint", remarks: "目标字段所属单元id")
+            column(name: "target_model_id", type: "bigint", remarks: "目标字段所属模型id")
+            column(name: "target_field_id", type: "bigint", remarks: "目标字段id")
             column(name: "target_value", type: "varchar(" + 225 * weight + ")", remarks: "目标字段值")
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") {
+            column(name: "object_version_number", type: "bigint", defaultValue: "1", remarks: "行版本号，用来处理锁") {
                 constraints(nullable: "false")
             }
             column(name: "created_by", type: "bigint", defaultValue: "-1")

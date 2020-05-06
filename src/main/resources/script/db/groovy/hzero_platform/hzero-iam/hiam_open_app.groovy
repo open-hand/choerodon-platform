@@ -12,7 +12,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_open_app.groovy') {
             createSequence(sequenceName: 'hiam_open_app_s', startValue:"1")
         }
         createTable(tableName: "hiam_open_app", remarks: "三方网站") {
-            column(name: "open_app_id", type: "bigint(20)", autoIncrement: true ,   remarks: "表ID")  {constraints(primaryKey: true)} 
+            column(name: "open_app_id", type: "bigint", autoIncrement: true ,   remarks: "表ID")  {constraints(primaryKey: true)} 
             column(name: "app_code", type: "varchar(" + 60 * weight + ")",  remarks: "应用编码")  {constraints(nullable:"false")}  
             column(name: "app_name", type: "varchar(" + 60 * weight + ")",  remarks: "应用名称")  {constraints(nullable:"false")}  
             column(name: "app_image", type: "varchar(" + 255 * weight + ")",  remarks: "应用图片地址")  {constraints(nullable:"false")}  
@@ -24,12 +24,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_open_app.groovy') {
             column(name: "token_path", type: "varchar(" + 255 * weight + ")",  remarks: "获取AccessToken的地址")   
             column(name: "refresh_token_path", type: "varchar(" + 255 * weight + ")",  remarks: "RereshToken的地址")   
             column(name: "self_path", type: "varchar(" + 255 * weight + ")",  remarks: "获取个人信息的地址")   
-            column(name: "order_seq", type: "int(11)",  remarks: "排序号")  {constraints(nullable:"false")}  
-            column(name: "enabled_flag", type: "tinyint(1)",   defaultValue:"1",   remarks: "是否启用。1启用，0未启用")  {constraints(nullable:"false")}  
-            column(name: "object_version_number", type: "bigint(20)",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
+            column(name: "order_seq", type: "int",  remarks: "排序号")  {constraints(nullable:"false")}  
+            column(name: "enabled_flag", type: "tinyint",   defaultValue:"1",   remarks: "是否启用。1启用，0未启用")  {constraints(nullable:"false")}  
+            column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "created_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
-            column(name: "last_updated_by", type: "bigint(20)",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
+            column(name: "last_updated_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "last_update_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
 
         }
@@ -59,7 +59,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_open_app.groovy') {
 	
 	changeSet(author: "hzero@hand-china.com", id: "2019-11-07-hiam_open_app"){      
 		addColumn(tableName: 'hiam_open_app') {
-            column(name: 'organization_id', type: "bigint(20)", defaultValue: 0, remarks: '租户ID') {
+            column(name: 'organization_id', type: "bigint", defaultValue: 0, remarks: '租户ID') {
                 constraints(nullable: false)
             }
         }   
@@ -67,7 +67,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_open_app.groovy') {
 	
 	changeSet(author: "hzero@hand-china.com", id: "2019-11-14-hiam_open_app"){      
 		addColumn(tableName: 'hiam_open_app') {
-            column(name: 'sub_app_id', type: "bigint(20)", remarks: '子应用ID') {
+            column(name: 'sub_app_id', type: "bigint", remarks: '子应用ID') {
+                constraints(nullable: true)
+            }
+        }   
+    }
+	
+	changeSet(author: "hzero@hand-china.com", id: "2020-04-17-hiam_open_app"){      
+		addColumn(tableName: 'hiam_open_app') {
+            column(name: 'scope', type: "varchar(240)", remarks: '授权列表') {
                 constraints(nullable: true)
             }
         }   
