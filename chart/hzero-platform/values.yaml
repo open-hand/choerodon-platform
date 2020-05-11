@@ -120,8 +120,6 @@ env:
     HZERO_PLATFORM_INIT_CACHE: true
     # 平台HTTP协议
     HZERO_PLATFORM_HTTP_PROTOCOL: http
-    # 数据库默认OWNER，MSSQL数据库可能需要
-    HZERO_DB_OWNER:
     # 是否开启实体类的注册
     HZERO_REGIST_ENTITY_ENABLE: false
     # 全局RSA公钥
