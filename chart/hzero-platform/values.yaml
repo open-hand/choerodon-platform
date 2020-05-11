@@ -5,7 +5,7 @@ preJob:
   # 工具 jar 包镜像库地址
   image: registry.cn-shanghai.aliyuncs.com/c7n/dbtool:0.6.7
   preInitDB:
-    # 是否初始化base_service数据库
+    # 是否初始化数据库
     enabled: true
     datasource:
       # 初始化数据库更新数据的时候忽略的表或列
