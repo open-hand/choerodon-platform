@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.choerodon.platform.infra.mapper.AuditLoginC7nMapper">
+
+    <select id="getNumberOfVisitors" resultType="int">
+        select count(DISTINCT user_id)
+        FROM hpfm_audit_login
+        WHERE login_date &gt; #{startDate} AND audit_type = 'LOGIN'
+    </select>
+
+    <select id="getAuditLoginBetweenTime" resultType="org.hzero.platform.domain.entity.AuditLogin">
+        select *
+        FROM hpfm_audit_login
+        WHERE login_date &gt; #{startDate}
+        <if test="endDate!=null">
+            AND login_date &lt; #{endDate}
+        </if>
+        AND audit_type = 'LOGIN'
+    </select>
+</mapper>
