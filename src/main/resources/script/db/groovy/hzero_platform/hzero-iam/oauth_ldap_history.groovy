@@ -28,4 +28,10 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_history.groovy') {
         }
 
     }
+	
+	changeSet(author: 'hzero@hand-china.com', id: '2020-05-25-oauth_ldap_history') {
+        addColumn(tableName: 'oauth_ldap_history') {
+            column(name: 'sync_type', type: "varchar(30)", defaultValue:"M", remarks: '同步类型(A-自动同步/M-手动同步)') {constraints(nullable:"false")} 
+        }
+    }
 }

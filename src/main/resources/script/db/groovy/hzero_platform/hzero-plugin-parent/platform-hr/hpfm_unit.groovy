@@ -101,4 +101,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit.groovy') {
             column(name: "attribute15", type: "varchar(" + 150 * weight + ")")
         }
     }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2019-12-04-hpfm_unit") {
+        addColumn(tableName: "hpfm_unit") {
+            column(name: "enable_budget_flag", type: "tinyint(1)", remarks: "是否启用预算")
+        }
+        addColumn(tableName: "hpfm_unit") {
+            column(name: "cost_code", type: "varchar(" + 128 * weight + ")", remarks: "所属成本中心编码")
+        }
+        addColumn(tableName: "hpfm_unit") {
+            column(name: "cost_name", type: "varchar(" + 128 * weight + ")", remarks: "所属成本中心名称")
+        }
+    }
 }

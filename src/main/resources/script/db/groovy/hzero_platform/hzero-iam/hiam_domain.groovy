@@ -58,4 +58,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_domain.groovy') {
             column(name: "saml_meta_url", type: "varchar("+500 * weight+")",  remarks: "saml元数据地址", afterColumn: 'sso_user_info')
         }
     }
+	
+	changeSet(author: 'hzero@hand-china.com', id: '2020-05-27-hiam_domain') {
+        addColumn(tableName: 'hiam_domain') {
+            column(name: "login_name_field", type: "varchar(60)",  remarks: "登录名属性", afterColumn: 'saml_meta_url') { constraints(nullable: "true") }
+        }
+    }
 }
