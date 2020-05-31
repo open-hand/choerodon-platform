@@ -39,4 +39,19 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_dimension.groovy') {
     changeSet(author: "hzero@hand-china.com", id: "2019-12-06-hiam_doc_type_dimension") {
         dropNotNullConstraint(tableName: "hiam_doc_type_dimension", columnName: "value_source", columnDataType: "varchar(" + 30 * weight + ")")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-05-28-hiam_doc_type_dimension"){
+        update(tableName:'hiam_doc_type_dimension'){
+            column(name:'dimension_code', value:'INV_ORGANIZATION')
+            where "dimension_code='INVORG'"
+        }
+        update(tableName:'hiam_doc_type_dimension'){
+            column(name:'dimension_code', value:'PURCHASE_ORGANIZATION')
+            where "dimension_code='PURORG'"
+        }
+        update(tableName:'hiam_doc_type_dimension'){
+            column(name:'dimension_code', value:'PURCHASE_AGENT')
+            where "dimension_code='PURAGENT'"
+        }
+    }
 }

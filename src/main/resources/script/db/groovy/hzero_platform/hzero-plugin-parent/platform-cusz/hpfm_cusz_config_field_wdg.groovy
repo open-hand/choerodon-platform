@@ -53,4 +53,21 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field_wdg.groovy'
             column(name: "default_value", type: "varchar(" + 225 * weight + ")", remarks: "组件默认值")
         }
     }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-02-28-hpfm_cusz_config_field_wdg-add_column"){
+        addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
+            column(name: "default_value", type: "varchar(" + 225 * weight + ")", remarks: "组件默认值")
+        }
+    }
+
+    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-05-12-hpfm_cusz_config_field_wdg-modify_column"){
+        modifyDataType(tableName: "hpfm_cusz_config_field_wdg", columnName: 'default_value', newDataType: "varchar(2000)")
+    }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-05-12-hpfm_cusz_config_field_wdg-add_column"){
+        addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
+            column(name: "multiple_flag ", type: "tinyint", remarks: "是否多选组件")
+        }
+    }
+
 }

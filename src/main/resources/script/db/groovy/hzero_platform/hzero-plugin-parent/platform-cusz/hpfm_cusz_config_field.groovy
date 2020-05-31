@@ -107,4 +107,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field.groovy') {
             column(name: "render_rule", type: "varchar(4000)", remarks: "虚拟字段渲染规则")
         }
     }
+
+    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-05-27_hpfm_cusz_config_field_change_u1") {
+        dropUniqueConstraint(tableName: 'hpfm_cusz_config_field', constraintName: 'hpfm_cusz_config_field_U1')
+        addUniqueConstraint(columnNames: "unit_id, user_id ,model_id,field_code,tenant_id", tableName: "hpfm_cusz_config_field", constraintName: "hpfm_cusz_config_field_U1")
+    }
 }

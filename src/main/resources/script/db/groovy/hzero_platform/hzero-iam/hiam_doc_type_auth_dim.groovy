@@ -44,4 +44,19 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_auth_dim.groovy') {
     changeSet(author: "hzero@hand-china.com", id: "2019-12-04-hiam_doc_type_auth_dim"){
         modifyDataType(tableName: "hiam_doc_type_auth_dim", columnName: 'source_match_field', newDataType: "varchar(1200)")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-05-28-hiam_doc_type_auth_dim"){
+        update(tableName:'hiam_doc_type_auth_dim'){
+            column(name:'auth_type_code', value:'INV_ORGANIZATION')
+            where "auth_type_code='INVORG'"
+        }
+        update(tableName:'hiam_doc_type_auth_dim'){
+            column(name:'auth_type_code', value:'PURCHASE_ORGANIZATION')
+            where "auth_type_code='PURORG'"
+        }
+        update(tableName:'hiam_doc_type_auth_dim'){
+            column(name:'auth_type_code', value:'PURCHASE_AGENT')
+            where "auth_type_code='PURAGENT'"
+        }
+    }
 }

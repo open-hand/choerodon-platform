@@ -33,4 +33,19 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_role_auth_data.groovy') {
             column(name: 'data_source',  type: 'varchar(30)', defaultValue: "DEFAULT", remarks: '数据来源') {constraints(nullable: "false")}
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-05-28-hiam_role_auth_data"){
+        update(tableName:'hiam_role_auth_data'){
+            column(name:'authority_type_code', value:'INV_ORGANIZATION')
+            where "authority_type_code='INVORG'"
+        }
+        update(tableName:'hiam_role_auth_data'){
+            column(name:'authority_type_code', value:'PURCHASE_ORGANIZATION')
+            where "authority_type_code='PURORG'"
+        }
+        update(tableName:'hiam_role_auth_data'){
+            column(name:'authority_type_code', value:'PURCHASE_AGENT')
+            where "authority_type_code='PURAGENT'"
+        }
+    }
 }
