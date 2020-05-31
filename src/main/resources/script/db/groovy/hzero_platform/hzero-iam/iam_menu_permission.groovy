@@ -20,4 +20,22 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_permission.groovy') {
 
         addUniqueConstraint(columnNames:"menu_id,permission_code",tableName:"iam_menu_permission",constraintName: "iam_menu_permission_u1")
     }
+
+    changeSet(author: "yuqing.zhang@hand-china.com", id: "2020-05-29-iam_menu_permission") {
+        addColumn(tableName: 'iam_menu_permission') {
+            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_menu_permission') {
+            column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_menu_permission') {
+            column(name: "created_by", type: "bigint(20)", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_menu_permission') {
+            column(name: "last_update_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_menu_permission') {
+            column(name: "last_updated_by", type: "bigint(20)", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
+        }
+    }
 }

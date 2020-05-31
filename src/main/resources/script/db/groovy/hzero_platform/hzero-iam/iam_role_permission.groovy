@@ -30,4 +30,22 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_permission.groovy') {
         dropUniqueConstraint(constraintName: "iam_role_permission_u1", tableName: "iam_role_permission")
         addUniqueConstraint(columnNames: "role_id,permission_id,type", tableName: "iam_role_permission", constraintName: "iam_role_permission_u1")
     }
+
+    changeSet(author: "yuqing.zhang@hand-china.com", id: "2020-05-28-iam_role_permission") {
+        addColumn(tableName: 'iam_role_permission') {
+            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_role_permission') {
+            column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_role_permission') {
+            column(name: "created_by", type: "bigint(20)", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_role_permission') {
+            column(name: "last_update_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
+        }
+        addColumn(tableName: 'iam_role_permission') {
+            column(name: "last_updated_by", type: "bigint(20)", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
+        }
+    }
 }
