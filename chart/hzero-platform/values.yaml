@@ -57,11 +57,6 @@ env:
     # 本实例管理端口
     MANAGEMENT_SERVER_PORT: 8031
 
-    # 是否启用配置中心
-    SPRING_CLOUD_CONFIG_ENABLED: true
-    # 配置中心地址
-    SPRING_CLOUD_CONFIG_URI: http://register-server:8000
-
     # 注册服务地址
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://register-server:8000/eureka/
 
@@ -73,7 +68,7 @@ env:
     # Redis 端口
     SPRING_REDIS_PORT: 6379
     # Redis db
-    SPRING_REDIS_DATABASE: 2
+    SPRING_REDIS_DATABASE: 1
     # 资源池中最大连接数
     # 默认8，-1表示无限制；可根据服务并发redis情况及服务端的支持上限调整
     SPRING_REDIS_POOL_MAX_ACTIVE: 50
@@ -172,7 +167,7 @@ resources:
 ## 插件相关配置
 plugins:
   # skywalking agent 镜像地址
-  skywalkingAgentImage: registry.cn-shanghai.aliyuncs.com/c7n/skywalking-agent:6.5.0
+  skywalkingAgentImage: registry.cn-shanghai.aliyuncs.com/c7n/skywalking-agent:6.6.0
 
 ## service 相关设置
 ## ref: http://kubernetes.io/docs/user-guide/services/
