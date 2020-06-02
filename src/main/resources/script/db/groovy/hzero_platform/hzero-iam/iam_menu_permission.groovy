@@ -23,9 +23,6 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_permission.groovy') {
 
     changeSet(author: "yuqing.zhang@hand-china.com", id: "2020-05-29-iam_menu_permission") {
         addColumn(tableName: 'iam_menu_permission') {
-            column(name: "object_version_number", type: "bigint(20)", defaultValue: "1", remarks: "行版本号，用来处理锁") { constraints(nullable: "false") }
-        }
-        addColumn(tableName: 'iam_menu_permission') {
             column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
         }
         addColumn(tableName: 'iam_menu_permission') {

@@ -15,7 +15,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_gantt.groovy') {
             column(name: "gantt_id", type: "bigint", autoIncrement: true ,   remarks: "甘特图id")  {constraints(primaryKey: true)}
             column(name: "gantt_code", type: "varchar(" + 30 * weight + ")",  remarks: "甘特图代码")  {constraints(nullable:"false")}
             column(name: "gantt_name", type: "varchar(" + 240 * weight + ")",  remarks: "甘特图名称")  {constraints(nullable:"false")}
-            column(name: "remarks", type: "longtext",  remarks: "备注")
+            column(name: "remark", type: "longtext",  remarks: "备注")
             column(name: "enabled_flag", type: "tinyint",   defaultValue:"1",   remarks: "是否启用。1启用，0未启用")  {constraints(nullable:"false")}
             column(name: "tenant_id", type: "bigint",   defaultValue:"0",   remarks: "租户id，hpfm_tenant.tenant_id")  {constraints(nullable:"false")}
             column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "")  {constraints(nullable:"false")}

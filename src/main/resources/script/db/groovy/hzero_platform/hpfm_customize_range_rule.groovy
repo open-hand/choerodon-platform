@@ -1,7 +1,7 @@
 package script.db
 
-databaseChangeLog(logicalFilePath: 'script/db/hiam_tenant_custom_point.groovy') {
-    changeSet(author: "hzero", id: "2019-12-16-hiam_tenant_custom_point") {
+databaseChangeLog(logicalFilePath: 'script/db/hpfm_customize_range_rule.groovy') {
+    changeSet(author: "jiangzhou.bo@hand-china.com", id: "2019-07-25-hpfm_customize_range_rule") {
         def weight = 1
         if(helper.isSqlServer()){
             weight = 2
@@ -9,12 +9,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_tenant_custom_point.groovy') 
             weight = 3
         }
         if(helper.dbType().isSupportSequence()){
-            createSequence(sequenceName: 'hiam_tenant_custom_point_s', startValue:"1")
+            createSequence(sequenceName: 'hpfm_customize_range_rule_s', startValue:"1")
         }
-        createTable(tableName: "hiam_tenant_custom_point", remarks: "租户客户化端点关系") {
-            column(name: "tenant_custom_point_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
-            column(name: "tenant_id", type: "bigint",  remarks: "租户ID")  {constraints(nullable:"false")}  
-            column(name: "custom_point_code", type: "varchar(" + 120 * weight + ")",  remarks: "客户化端点编码，hiam_custom_point.code")  {constraints(nullable:"false")}  
+        createTable(tableName: "hpfm_customize_range_rule", remarks: "API个性化范围规则关系") {
+            column(name: "range_rule_id", type: "bigint", autoIncrement: true ,   remarks: "表ID，主键，供其他表做外键")  {constraints(primaryKey: true)} 
+            column(name: "range_id", type: "bigint",  remarks: "范围ID，hpfm_customize_range.range_id")  {constraints(nullable:"false")}  
+            column(name: "rule_id", type: "bigint",  remarks: "规则ID，hpfm_customize_rule.rule_id")  {constraints(nullable:"false")}  
             column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
             column(name: "creation_date", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "")  {constraints(nullable:"false")}  
             column(name: "created_by", type: "bigint",   defaultValue:"-1",   remarks: "")  {constraints(nullable:"false")}  
@@ -23,6 +23,6 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_tenant_custom_point.groovy') 
 
         }
 
-        addUniqueConstraint(columnNames:"tenant_id,custom_point_code",tableName:"hiam_tenant_custom_point",constraintName: "hiam_tenant_custom_point_u1")
+        addUniqueConstraint(columnNames:"range_id,rule_id",tableName:"hpfm_customize_range_rule",constraintName: "hpfm_customize_range_rule_u1")
     }
 }

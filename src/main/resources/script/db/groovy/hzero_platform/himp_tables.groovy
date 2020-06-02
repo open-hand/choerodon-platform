@@ -17,7 +17,7 @@ databaseChangeLog(logicalFilePath: 'classpath:config/db/himp_tables.xml') {
             column(name: "template_code", type: "varchar(" + 30 * weight + ")",  remarks: "模板编码")  {constraints(nullable:"false")}
             column(name: "data_status", type: "varchar(" + 30 * weight + ")",  remarks: "数据状态[NEW(Excel导入),VALID_SUCCESS(验证成功),VALID_FAILED(验证失败),IMPORT_SUCCESS(导入成功),IMPORT_FAILED(导入失败)]")  {constraints(nullable:"false")}
             column(name: "sheet_index", type: "int(11)",    remarks: "页码")  {constraints(nullable:"false")}
-            column(name: "error_msg", type: "varchar(" + 255 * weight + ")",  remarks: "错误信息")  {constraints(nullable:"false")}
+            column(name: "error_msg", type: "varchar(" + 255 * weight + ")",  remarks: "错误信息")
             column(name: "data", type: "longtext",  remarks: "数据")
         }
 
