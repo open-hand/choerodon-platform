@@ -3,7 +3,7 @@ preJob:
   # job 超时时间
   timeout: 1200
   # 工具 jar 包镜像库地址
-  image: registry.cn-shanghai.aliyuncs.com/c7n/dbtool:0.6.7
+  image: registry.cn-shanghai.aliyuncs.com/c7n/dbtool:0.7.0
   preInitDB:
     # 是否初始化数据库
     enabled: true
@@ -53,15 +53,12 @@ podLabels: {}
 env:
   open:
     # 本实例服务端口
-    SERVER_PORT: 8030
+    SERVER_PORT: 8100
     # 本实例管理端口
-    MANAGEMENT_SERVER_PORT: 8031
+    MANAGEMENT_SERVER_PORT: 8101
 
     # 注册服务地址
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://register-server:8000/eureka/
-
-    # 网关地址
-    CHOERODON_GATEWAY_URL: http://api.example.com
 
     # Redis 主机地址
     SPRING_REDIS_HOST: localhost
@@ -122,13 +119,13 @@ env:
     # 全局RSA私钥
     HZERO_OAUTH_PASSWORD_PRIVATE_KEY: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkvQmSqxSgrqS3cnKiCyCo2n1UMYOn63dkAYxtWgw90c1Pad+IhWH1kw0cXuDZeIBrw7wBBbKHY+MxHQ2JRJVAwIDAQABAkB3TKXZcVP6tSSN0UgOjLPxng99Z4xvrWJ1jdHFB7TYyUDcnOtE6GkeeMGxtszYtuZ0m5rN9r8eRvIdVUciXbQhAiEA7WGcLd+cvHHA8xNFrbT78Aq4iYm0TVTS6m05ZEOS328CIQCeetcFV8Kdb+P2Y+yWvMtbyFGhROQIFizvxM3S3TiZrQIhAJLrYPB7f9SaSyOm/+89Htk4qXJmyjM6lrgFFgpaUGL9AiB+pkCr/mSDGOYfA+AQ3rPNl5rUvI9XfxFOVAMAntYayQIhAO0hrnwtng6Ubs+58BN69vAl+sd/xugf0jsHcNgZppAb
     # 匹配的资源才会解析JwtToken便于得到UserDetails
-    HZERO_RESOURCE_PATTERN: /v1/*,/hzero/*,/hpfm/v1/*,/hpfm/hzero/*
+    HZERO_RESOURCE_PATTERN: /v1/*,/hzero/*,/iam/v1/*,/iam/hzero/*,/choerodon/v1/*
     # 日志级别
     LOG_LEVEL: info
     # JVM配置
-    JAVA_OPTS: >-
-      -Xms1024m
-      -Xmx1536m
+#    JAVA_OPTS: >-
+#      -Xms1024m
+#      -Xmx1536m
 
     ## Skywalking 配置参数
     # SKYWALKING_OPTS: >-
@@ -185,19 +182,19 @@ service:
   ports: 
     # 服务端口
     http: 
-      port: 8030
-      nodePort: 30092
+      port: 8100
+      nodePort: 30106
     # 管理端口
     actuator: 
-      port: 8031
-      nodePort: 30093
+      port: 8101
+      nodePort: 30107
   ## externalIPs 设置
   # externalIPs:
   #   - externalIp1
   annotations: {}
     # prometheus.io/scrape: 'true'
     # prometheus.io/path: '/actuator/prometheus'
-    # prometheus.io/port: '8031'
+    # prometheus.io/port: '8101'
 
 ## 指标收集
 metrics:
