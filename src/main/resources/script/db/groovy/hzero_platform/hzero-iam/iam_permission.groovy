@@ -50,4 +50,8 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_permission.groovy') {
         }
     }
 
+    changeSet(author: 'lihao', id: '2020-07-10-iam-permission-modify-column') {
+        sql("ALTER TABLE iam_permission MODIFY COLUMN `path` VARCHAR(256) BINARY commant '权限对应的api路径'")
+    }
+
 }
