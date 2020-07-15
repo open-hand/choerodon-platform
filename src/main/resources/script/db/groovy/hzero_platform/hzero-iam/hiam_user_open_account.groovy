@@ -63,4 +63,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_user_open_account.groovy') {
         dropUniqueConstraint(constraintName: "hiam_user_open_account_u2", tableName: "hiam_user_open_account")
         addUniqueConstraint(columnNames:"open_app_code,username,union_id",tableName:"hiam_user_open_account",constraintName: "hiam_user_open_account_u2")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hiam_user_open_account") {
+        addColumn(tableName: 'hiam_user_open_account') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

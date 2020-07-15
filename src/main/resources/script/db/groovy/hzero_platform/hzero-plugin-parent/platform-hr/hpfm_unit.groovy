@@ -113,4 +113,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit.groovy') {
             column(name: "cost_name", type: "varchar(" + 128 * weight + ")", remarks: "所属成本中心名称")
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-18-hpfm_unit") {
+        createIndex(tableName: "hpfm_unit", indexName: "hpfm_unit_n1") {
+            column(name: "tenant_id")
+            column(name: "unit_type_code")
+            column(name: "unit_company_id")
+        }
+        createIndex(tableName: "hpfm_unit", indexName: "hpfm_unit_n2") {
+            column(name: "unit_type_code")
+            column(name: "level_path")
+        }
+    }
 }

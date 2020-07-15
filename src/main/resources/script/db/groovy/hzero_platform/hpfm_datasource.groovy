@@ -88,4 +88,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource.groovy') {
         dropIndex(tableName: 'hpfm_datasource', indexName: 'hpfm_datasource_u1')
         addUniqueConstraint(columnNames:"datasource_code,tenant_id",tableName:"hpfm_datasource",constraintName: "hpfm_datasource_u1")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-01-hpfm_datasource") {
+        addColumn(tableName: 'hpfm_datasource') {
+            column(name: "datasource_class", type: "varchar(" + 30 * weight + ")", defaultValue: "RDB", remarks: "数据源分类(快码：HPFM.DATASOURCE_CLASS)"){
+                constraints(nullable: "false")
+            }
+        }
+        addColumn(tableName: 'hpfm_datasource') {
+            column(name: "driver_type", type: "varchar(" + 30 * weight + ")", defaultValue: "DEFAULT", remarks: "驱动类型(快码：HPFM.DATASOURCE_DRIVER_TYPE  DEFAULT:默认 CUSTOMIZE：自定义)")
+        }
+    }
 }

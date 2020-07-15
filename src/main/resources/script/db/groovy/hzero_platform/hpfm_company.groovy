@@ -52,4 +52,24 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_company.groovy') {
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2019-07-10-hpfm_company") {
         dropUniqueConstraint(tableName: "hpfm_company", constraintName: "hpfm_company_u1")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-07-09-hpfm_company") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_company", columnName: 'legal_rep_name', newDataType: "varchar(" + 120 * weight + ")")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-07-10-hpfm_company") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_company", columnName: 'licence_url', newDataType: "varchar(" + 480 * weight + ")")
+    }
 }

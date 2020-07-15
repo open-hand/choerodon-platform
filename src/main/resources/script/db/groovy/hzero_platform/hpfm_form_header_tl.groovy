@@ -8,9 +8,6 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_form_header_tl.groovy') {
         } else if(helper.isOracle()){
             weight = 3
         }
-        if(helper.dbType().isSupportSequence()){
-            createSequence(sequenceName: 'hpfm_form_header_tl_s', startValue:"1")
-        }
         createTable(tableName: "hpfm_form_header_tl", remarks: "表单配置头多语言") {
             column(name: "form_header_id", type: "bigint", remarks: "表单配置头Id，hpfm_form_header.form_header_id")  {constraints(nullable:"false")}
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}
@@ -19,5 +16,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_form_header_tl.groovy') {
         }
 
         addUniqueConstraint(columnNames:"form_header_id,lang",tableName:"hpfm_form_header_tl",constraintName: "hpfm_form_header_tl_u1")
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_form_header_tl") {
+        addColumn(tableName: 'hpfm_form_header_tl') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
     }
 }

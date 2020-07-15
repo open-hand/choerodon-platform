@@ -8,9 +8,6 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_tenant_tl.groovy') {
         } else if(helper.isOracle()){
             weight = 3
         }
-        if(helper.dbType().isSupportSequence()){
-            createSequence(sequenceName: 'hpfm_tenant_tl_s', startValue:"1")
-        }
         createTable(tableName: "hpfm_tenant_tl", remarks: "") {
             column(name: "tenant_id", type: "bigint",  remarks: "租户id，hpfm_tenant.tenant_id")  {constraints(nullable:"false")}
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}

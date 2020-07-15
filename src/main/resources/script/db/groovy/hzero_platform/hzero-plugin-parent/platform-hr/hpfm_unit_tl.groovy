@@ -8,9 +8,6 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit_tl.groovy') {
         weight = 3
     }
     changeSet(author: "hzero@hand-china.com", id: "2019-03-01-hpfm_unit_tl") {
-		if(helper.dbType().isSupportSequence()){
-			createSequence(sequenceName: 'hpfm_unit_tl_s', startValue:"1")
-		}
         createTable(tableName: "hpfm_unit_tl", remarks: "部门多语言表") {
             column(name: "unit_id", type: "bigint",  remarks: "上级部门ID,hpfm_hr_unit.unit_id")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
@@ -29,6 +26,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit_tl.groovy') {
     }
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2019-07-22-hpfm_unit_tl") {
         modifyDataType(tableName: "hpfm_unit_tl", columnName: 'quick_index', newDataType: "varchar(" + 240 * weight + ")")
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-05-hpfm_unit_tl") {
+        addColumn(tableName: 'hpfm_unit_tl') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
     }
 
 }

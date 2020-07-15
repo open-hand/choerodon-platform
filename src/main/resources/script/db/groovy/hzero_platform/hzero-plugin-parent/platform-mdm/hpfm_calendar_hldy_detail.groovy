@@ -80,4 +80,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_calendar_hldy_detail.groovy')
             column(name: "attribute15", type: "varchar(" + 150 * weight + ")")
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-05-hpfm_calendar_hldy_detail") {
+        addColumn(tableName: 'hpfm_calendar_hldy_detail') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

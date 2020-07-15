@@ -112,4 +112,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field.groovy') {
         dropUniqueConstraint(tableName: 'hpfm_cusz_config_field', constraintName: 'hpfm_cusz_config_field_U1')
         addUniqueConstraint(columnNames: "unit_id, user_id ,model_id,field_code,tenant_id", tableName: "hpfm_cusz_config_field", constraintName: "hpfm_cusz_config_field_U1")
     }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-06-30_hpfm_cusz_config_field_add_where_option") {
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "where_option", type: "varchar(" + 30 * weight + ")", remarks: "where条件运算符")
+        }
+    }
 }

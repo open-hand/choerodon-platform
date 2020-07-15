@@ -29,4 +29,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_database.groovy') {
 
         addUniqueConstraint(columnNames:"database_code,datasource_id",tableName:"hpfm_database",constraintName: "hpfm_database_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_database") {
+        addColumn(tableName: 'hpfm_database') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

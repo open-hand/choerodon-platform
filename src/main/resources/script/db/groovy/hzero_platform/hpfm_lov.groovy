@@ -53,4 +53,18 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov.groovy') {
         dropColumn(tableName: "hpfm_lov",columnName:"value_table_alias" )
         dropColumn(tableName: "hpfm_lov",columnName:"meaning_table_alias" )
     }
+
+    changeSet(author: "qingsheng.chen@hand-china.com", id: "2020-06-15-hpfm_lov") {
+        addColumn(tableName: 'hpfm_lov') {
+            column(name: "public_flag", type: "tinyint", defaultValue: 0, remarks: "是否公开权限，0:不公开 1:公开") {
+                constraints(nullable: "false")
+            }
+        }
+    }
+
+    changeSet(author: "qingsheng.chen@hand-china.com", id: "2020-06-30-hpfm_lov") {
+        addColumn(tableName: 'hpfm_lov') {
+            column(name: "encrypt_field", type: "varchar(480)", defaultValue: 0, remarks: "加密字段")
+        }
+    }
 }

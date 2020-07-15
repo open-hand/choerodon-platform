@@ -83,4 +83,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_pur_organization_es.groovy') 
             column(name: "attribute15", type: "varchar(" + 150 * weight + ")")
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-05-hpfm_pur_organization_es") {
+        addColumn(tableName: 'hpfm_pur_organization_es') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }
