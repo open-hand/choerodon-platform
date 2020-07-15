@@ -22,4 +22,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_static_text_value.groovy') {
         }
 
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-05-hpfm_static_text_value") {
+        addColumn(tableName: 'hpfm_static_text_value') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

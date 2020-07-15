@@ -31,4 +31,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_data_hierarchy.groovy') {
 
         addUniqueConstraint(columnNames:"data_hierarchy_code,tenant_id",tableName:"hpfm_data_hierarchy",constraintName: "hpfm_data_hierarchy_u1")
     }
+
+    changeSet(author: "qingsheng.chen@hand-china.com", id: "2020-06-10-hpfm_data_hierarchy") {
+        addColumn(tableName: "hpfm_data_hierarchy") {
+            column(name: "display_style", type: "varchar(30)", defaultValue: "MODAL", remarks: "显示样式，默认模态框") {
+                constraints(nullable: "false")
+            }
+        }
+
+    }
 }

@@ -26,4 +26,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_permission.groovy') 
 
         addUniqueConstraint(columnNames:"auth_dim_id,rule_id,range_id",tableName:"hiam_doc_type_permission",constraintName: "hiam_doc_type_permission_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hiam_doc_type_permission") {
+        addColumn(tableName: 'hiam_doc_type_permission') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 } 

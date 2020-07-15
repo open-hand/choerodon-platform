@@ -25,4 +25,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_customize_range_rule.groovy')
 
         addUniqueConstraint(columnNames:"range_id,rule_id",tableName:"hpfm_customize_range_rule",constraintName: "hpfm_customize_range_rule_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_customize_range_rule") {
+        addColumn(tableName: 'hpfm_customize_range_rule') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

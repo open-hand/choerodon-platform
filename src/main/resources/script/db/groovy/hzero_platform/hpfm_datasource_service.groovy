@@ -24,4 +24,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource_service.groovy') {
         }
 
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_datasource_service") {
+        addColumn(tableName: 'hpfm_datasource_service') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

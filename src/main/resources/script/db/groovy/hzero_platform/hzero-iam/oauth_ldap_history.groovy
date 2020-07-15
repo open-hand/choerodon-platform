@@ -34,4 +34,11 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_history.groovy') {
             column(name: 'sync_type', type: "varchar(30)", defaultValue:"M", remarks: '同步类型(A-自动同步/M-手动同步)') {constraints(nullable:"false")} 
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-oauth_ldap_history") {
+        addColumn(tableName: 'oauth_ldap_history') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

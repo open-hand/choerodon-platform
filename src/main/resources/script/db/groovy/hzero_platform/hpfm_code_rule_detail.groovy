@@ -44,4 +44,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_code_rule_detail.groovy') {
             }
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_code_rule_detail") {
+        addColumn(tableName: 'hpfm_code_rule_detail') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

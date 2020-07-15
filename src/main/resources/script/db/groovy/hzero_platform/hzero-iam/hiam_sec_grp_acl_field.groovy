@@ -31,4 +31,17 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp_acl_field.groovy') {
 
         addUniqueConstraint(columnNames:"sec_grp_id,tenant_id,field_id",tableName:"hiam_sec_grp_acl_field",constraintName: "hiam_sec_grp_acl_field_u1")
     }
+
+    changeSet(author: "hzero", id: "2020-06-01-hiam_sec_grp_acl_field"){
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+
+        addColumn(tableName: 'hiam_sec_grp_acl_field') {
+            column(name: "assign_type_code", type: "varchar(" + 20 * weight + ")", remarks: "权限分配类型，Code：HAIM.SEC_GRP.ASSIGN_TYPE_CODE ([SELF/自己创建]、[PARENT/父类分配]、[SELF_PARENT/自己创建之后，父类也创建])")
+        }
+    }
 }

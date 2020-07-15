@@ -47,4 +47,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_role_authority_line.groovy') 
             where "auth_type_code='PURAGENT'"
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hiam_role_authority_line") {
+        addColumn(tableName: 'hiam_role_authority_line') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }
