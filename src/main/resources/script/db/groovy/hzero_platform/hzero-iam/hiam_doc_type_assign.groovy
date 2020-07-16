@@ -25,4 +25,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_assign.groovy') {
 
         addUniqueConstraint(columnNames:"doc_type_id,assign_value_id",tableName:"hiam_doc_type_assign",constraintName: "hiam_doc_type_assign_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hiam_doc_type_assign") {
+        addColumn(tableName: 'hiam_doc_type_assign') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

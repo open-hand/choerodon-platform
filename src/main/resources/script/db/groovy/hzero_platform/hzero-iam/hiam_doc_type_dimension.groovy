@@ -54,4 +54,21 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_dimension.groovy') {
             where "dimension_code='PURAGENT'"
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-28-1-hiam_doc_type_dimension") {
+        modifyDataType(tableName: "hiam_doc_type_dimension", columnName: "value_source", newDataType: "varchar(" + 80 * weight + ")")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-28-2-hiam_doc_type_dimension") {
+        sql {
+            "UPDATE hiam_doc_type_dimension\n" +
+            "   SET value_source = (SELECT view_code\n" +
+            "                         FROM hpfm_lov_view_header\n" +
+            "                        WHERE value_source = CONCAT(view_header_id, ''))\n" +
+            " WHERE value_source_type = 'LOV'\n" +
+            "   AND EXISTS(SELECT 1\n" +
+            "                FROM hpfm_lov_view_header\n" +
+            "               WHERE value_source = CONCAT(view_header_id, ''))"
+        }
+    }
 }

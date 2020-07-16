@@ -71,4 +71,9 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_client.groovy') {
         }
     }
 
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-19-oauth_client") {
+        addColumn(tableName: 'oauth_client') {
+            column(name: "api_encrypt_flag", type: "tinyint", defaultValue:"1", remarks: "接口加密标识") {constraints(nullable:"false")}
+        }
+    }
 }

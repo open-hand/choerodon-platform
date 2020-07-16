@@ -28,4 +28,11 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_history.groovy') {
     changeSet(author: 'hzero@hand-china.com', id: '2019-04-25-rename-password-oauth-password-history') {
         renameColumn(columnDataType: 'VARCHAR(128)', newColumnName: "HASH_PASSWORD", oldColumnName: "password", remarks: 'Hash后的用户密码', tableName: 'OAUTH_PASSWORD_HISTORY')
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-oauth_password_history") {
+        addColumn(tableName: 'oauth_password_history') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

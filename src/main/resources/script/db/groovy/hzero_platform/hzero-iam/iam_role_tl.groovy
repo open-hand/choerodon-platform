@@ -8,9 +8,6 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_tl.groovy') {
         } else if(helper.isOracle()){
             weight = 3
         }
-        if(helper.dbType().isSupportSequence()){
-            createSequence(sequenceName: 'iam_role_tl_s', startValue:"1")
-        }
         createTable(tableName: "iam_role_tl", remarks: "") {
             column(name: "lang", type: "varchar(" + 8 * weight + ")",  remarks: "语言code")  {constraints(nullable:"false")}  
             column(name: "id", type: "bigint",  remarks: "role表id")  {constraints(nullable:"false")}  
@@ -30,6 +27,13 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_tl.groovy') {
         }
         addColumn(tableName: 'iam_role_tl') {
             column(name: 'tpl_role_name', type: "varchar(" + 64 * weight + ")", remarks: '模板角色的子角色名称') {constraints(nullable:"true")}
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-iam_role_tl") {
+        addColumn(tableName: 'iam_role_tl') {
+            column(name: "h_tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
         }
     }
 }

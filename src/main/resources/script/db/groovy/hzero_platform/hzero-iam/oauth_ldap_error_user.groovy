@@ -40,4 +40,11 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_error_user.groovy') {
             column(name: "LAST_UPDATE_DATE", type: "DATETIME", defaultValueComputed: "CURRENT_TIMESTAMP")
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-oauth_ldap_error_user") {
+        addColumn(tableName: 'oauth_ldap_error_user') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

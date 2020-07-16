@@ -8,9 +8,6 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_permission_tl.groovy') {
         weight = 3
     }
     changeSet(author: "hzero@hand-china.com", id: "2019-11-26-iam_permission_tl") {
-        if(helper.dbType().isSupportSequence()){
-            createSequence(sequenceName: 'iam_permission_tl_s', startValue:"1")
-        }
 		createTable(tableName: "iam_permission_tl", remarks: "权限多语言表") {
 			column(name: "id", type: "bigint",  remarks: "iam_permission.id")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 8 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}             

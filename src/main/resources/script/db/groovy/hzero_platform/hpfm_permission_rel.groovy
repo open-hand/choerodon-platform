@@ -31,4 +31,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_permission_rel.groovy') {
             column(name: "editable_flag", type: "tinyint(1)", defaultValue:"1", remarks: "编辑标识")  {constraints(nullable:"false")}
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_permission_rel") {
+        addColumn(tableName: 'hpfm_permission_rel') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

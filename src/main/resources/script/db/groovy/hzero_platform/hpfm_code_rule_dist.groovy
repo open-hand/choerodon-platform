@@ -29,4 +29,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_code_rule_dist.groovy') {
 
         addUniqueConstraint(columnNames:"rule_id,level_code,level_value",tableName:"hpfm_code_rule_dist",constraintName: "hpfm_code_rule_dist_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_code_rule_dist") {
+        addColumn(tableName: 'hpfm_code_rule_dist') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

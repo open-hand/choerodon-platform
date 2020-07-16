@@ -47,4 +47,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_hr_sync_employee.groovy') {
             }
         }
     }
+
+    changeSet(author: "fanghan.liu@hand-china.com", id: "2020-06-05-hpfm_hr_sync_employee") {
+        dropUniqueConstraint(tableName: 'hpfm_hr_sync_employee', constraintName: "hpfm_hr_sync_employee_u1")
+        addUniqueConstraint(columnNames:"userid,sync_type_code,tenant_id",tableName:"hpfm_hr_sync_employee",constraintName: "hpfm_hr_sync_employee_u1")
+    }
 }

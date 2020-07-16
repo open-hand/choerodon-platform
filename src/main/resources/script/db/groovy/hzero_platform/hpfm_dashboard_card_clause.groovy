@@ -36,4 +36,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_dashboard_card_clause.groovy'
             column(name: "order_seq", type: "int", remarks: "排序")
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_dashboard_card_clause") {
+        addColumn(tableName: 'hpfm_dashboard_card_clause') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

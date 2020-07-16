@@ -31,4 +31,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_customize_range_point.groovy'
         }
 
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-06-11-hpfm_customize_range_point") {
+        addColumn(tableName: 'hpfm_customize_range_point') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }

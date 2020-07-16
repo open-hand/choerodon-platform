@@ -30,4 +30,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_hr_sync_dept.groovy') {
 
         addUniqueConstraint(columnNames:"department_id,sync_type_code",tableName:"hpfm_hr_sync_dept",constraintName: "hpfm_hr_sync_dept_u1")
     }
+
+    changeSet(author: "fanghan.liu@hand-china.com", id: "2020-06-05-hpfm_hr_sync_dept") {
+        dropUniqueConstraint(tableName: 'hpfm_hr_sync_dept', constraintName: "hpfm_hr_sync_dept_u1")
+        addUniqueConstraint(columnNames:"department_id,sync_type_code,tenant_id",tableName:"hpfm_hr_sync_dept",constraintName: "hpfm_hr_sync_dept_u1")
+    }
 }
