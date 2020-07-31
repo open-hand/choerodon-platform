@@ -36,4 +36,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_group.groovy') {
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2019-07-10-hpfm_group") {
         dropUniqueConstraint(tableName: "hpfm_group", constraintName: "hpfm_group_u2")
     }
+    changeSet(author: 'wanghao', id: '2020-07-21-data-fix') {
+        sql("""
+            UPDATE hpfm_group
+            SET enabled_flag = 1;
+            """)
+    }
 }
