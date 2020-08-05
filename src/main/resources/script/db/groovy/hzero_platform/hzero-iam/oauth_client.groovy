@@ -76,4 +76,11 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_client.groovy') {
             column(name: "api_encrypt_flag", type: "tinyint", defaultValue:"1", remarks: "接口加密标识") {constraints(nullable:"false")}
         }
     }
+
+    changeSet(author: 'scp', id: '2020-08-05-data-fix') {
+        sql("""
+            UPDATE oauth_client
+            SET api_encrypt_flag = 0;
+            """)
+    }
 }
