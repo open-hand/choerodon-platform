@@ -44,4 +44,20 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_event_rule.groovy') {
             }
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-09-04-hpfm_event_rule") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: 'hpfm_event_rule') {
+            column(name: "server_code", type: "varchar(" + 30 * weight + ")", remarks: "WebHook服务编码，表hmsg_webhook_server.server_code")
+        }
+        addColumn(tableName: 'hpfm_event_rule') {
+            column(name: "message_code", type: "varchar(" + 60 * weight + ")", remarks: "消息模板编码，表hmsg_message_template.template_code")
+        }
+    }
+
 }

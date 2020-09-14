@@ -64,7 +64,29 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov.groovy') {
 
     changeSet(author: "qingsheng.chen@hand-china.com", id: "2020-06-30-hpfm_lov") {
         addColumn(tableName: 'hpfm_lov') {
-            column(name: "encrypt_field", type: "varchar(480)", defaultValue: 0, remarks: "加密字段")
+            column(name: "encrypt_field", type: "varchar(480)", remarks: "加密字段")
+        }
+    }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-08-06-hpfm_lov") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_lov", columnName: 'parent_lov_code', newDataType: "varchar(" + 60 * weight + ")")
+    }
+
+    changeSet(author: "shuangfei.zhu@hand-china.com", id: "2020-09-09-hpfm_lov") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: 'hpfm_lov') {
+            column(name: "decrypt_field", type: "varchar(" + 480 * weight + ")", remarks: "存储解密字段")
         }
     }
 }

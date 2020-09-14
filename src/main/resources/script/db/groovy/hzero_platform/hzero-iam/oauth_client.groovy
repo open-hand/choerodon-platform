@@ -77,10 +77,15 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_client.groovy') {
         }
     }
 
-    changeSet(author: 'scp', id: '2020-08-05-data-fix') {
-        sql("""
-            UPDATE oauth_client
-            SET api_encrypt_flag = 0;
-            """)
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-21-oauth_client") {
+        addColumn(tableName: 'oauth_client') {
+            column(name: "api_replay_flag", type: "tinyint", defaultValue:"0", remarks: "API防重放标识") {constraints(nullable:"false")}
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-09-11-oauth_client") {
+        addColumn(tableName: 'oauth_client') {
+            column(name: "password_encrypt_flag", type: "tinyint", defaultValue:"1", remarks: "密码是否加密传输") {constraints(nullable:"false")}
+        }
     }
 }

@@ -51,5 +51,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_user_info.groovy') {
         }
     }
 
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-1-hiam_user_info") {
+        addColumn(tableName: "hiam_user_info") {
+            column(name: "sec_check_phone_flag", type: "tinyint", defaultValue: "0", remarks: "二次校验验证码是否发送给手机")  {constraints(nullable:"false")}
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-2-hiam_user_info") {
+        addColumn(tableName: "hiam_user_info") {
+            column(name: "sec_check_email_flag", type: "tinyint", defaultValue: "0", remarks: "二次校验验证码是否发送给邮箱")  {constraints(nullable:"false")}
+        }
+    }
 
 }

@@ -40,4 +40,8 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_role_authority.groovy') {
             }
         }
     }
+    changeSet(author: 'xiaoyu.zhao@hand-china.com', id: '2020-07-23-hiam_role_authority') {
+        dropUniqueConstraint(tableName: "hiam_role_authority", constraintName: "hiam_role_authority_u1")
+        addUniqueConstraint(columnNames: "role_id,auth_doc_type_id,auth_scope_code", tableName: "hiam_role_authority", constraintName: "hiam_role_authority_u1")
+    }
 }

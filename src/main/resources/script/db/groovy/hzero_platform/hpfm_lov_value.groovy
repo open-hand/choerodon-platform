@@ -16,7 +16,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_value.groovy') {
             column(name: "lov_id", type: "bigint",  remarks: "lov表Id")  {constraints(nullable:"false")}  
             column(name: "lov_code", type: "varchar(" + 60 * weight + ")",   defaultValue:"",   remarks: "值集代码")  {constraints(nullable:"false")}  
             column(name: "value", type: "varchar(" + 30 * weight + ")",  remarks: "值集值")  {constraints(nullable:"false")}
-            column(name: "meaning", type: "varchar(" + 120 * weight + ")",  remarks: "含义")   
+            column(name: "meaning", type: "varchar(" + 120 * weight + ")",  remarks: "含义")
             column(name: "description", type: "varchar(" + 240 * weight + ")",  remarks: "描述")   
             column(name: "tenant_id", type: "bigint",   defaultValue:"0",   remarks: "租户ID")  {constraints(nullable:"false")}  
             column(name: "tag", type: "varchar(" + 240 * weight + ")",  remarks: "标记")   
@@ -51,5 +51,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_value.groovy') {
             weight = 3
         }
         modifyDataType(tableName: "hpfm_lov_value", columnName: 'value', newDataType: "varchar(" + 150 * weight + ")")
+    }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-07-20-hpfm_lov_value") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_lov_value", columnName: 'meaning', newDataType: "varchar(" + 480 * weight + ")")
     }
 }

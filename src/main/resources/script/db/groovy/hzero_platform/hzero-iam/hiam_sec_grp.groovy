@@ -31,4 +31,28 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp.groovy') {
 
         addUniqueConstraint(columnNames:"sec_grp_code,level,tenant_id",tableName:"hiam_sec_grp",constraintName: "hiam_sec_grp_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-hiam_sec_grp") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: "hiam_sec_grp") {
+            column(name: "sec_grp_level", type: "varchar(" + 30 * weight + ")", remarks: "层级，引用HIAM.SECURITY_GROUP_LEVEL", defaultValue: "")  {constraints(nullable:"false")}
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-1-hiam_sec_grp") {
+        dropUniqueConstraint(tableName: "hiam_sec_grp", constraintName: "hiam_sec_grp_u1")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-2-hiam_sec_grp") {
+        addUniqueConstraint(columnNames:"sec_grp_code,sec_grp_level,tenant_id",tableName:"hiam_sec_grp",constraintName: "hiam_sec_grp_u1")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-3-hiam_sec_grp") {
+        dropColumn(tableName: "hiam_sec_grp", columnName:"level")
+    }
+
 }

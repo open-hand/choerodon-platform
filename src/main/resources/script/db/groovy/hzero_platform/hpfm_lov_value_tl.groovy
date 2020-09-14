@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_value_tl.groovy') {
         createTable(tableName: "hpfm_lov_value_tl", remarks: "LOV独立值集多语言表") {
             column(name: "lov_value_id", type: "bigint",  remarks: "表ID，主键，供其他表做外键")  {constraints(nullable:"false")}  
             column(name: "lang", type: "varchar(" + 30 * weight + ")",  remarks: "语言")  {constraints(nullable:"false")}  
-            column(name: "meaning", type: "varchar(" + 120 * weight + ")",  remarks: "含义")   
+            column(name: "meaning", type: "varchar(" + 120 * weight + ")",  remarks: "含义")
             column(name: "description", type: "varchar(" + 240 * weight + ")",  remarks: "描述")   
 
         }
@@ -24,5 +24,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_value_tl.groovy') {
                 constraints(nullable: "false")
             }
         }
+    }
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-07-20-hpfm_lov_value_tl") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_lov_value_tl", columnName: 'meaning', newDataType: "varchar(" + 480 * weight + ")")
     }
 }

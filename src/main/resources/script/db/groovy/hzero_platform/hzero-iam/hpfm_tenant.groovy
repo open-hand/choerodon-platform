@@ -37,4 +37,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_tenant.groovy') {
     changeSet(author: "qingsheng.chen@hand-china.com", id: "2020-04-20-hpfm_tenant") {
         addUniqueConstraint(columnNames: "tenant_num", tableName: "hpfm_tenant", constraintName: "hpfm_tenant_u1")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-hpfm_tenant") {
+        addColumn(tableName: "hpfm_tenant") {
+            column(name: "ext_info", type: "longtext", remarks: "")
+        }
+    }
+
 }

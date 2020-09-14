@@ -26,13 +26,13 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_permission.groovy') {
             column(name: "creation_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
         }
         addColumn(tableName: 'iam_menu_permission') {
-            column(name: "created_by", type: "bigint(20)", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
+            column(name: "created_by", type: "bigint", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
         }
         addColumn(tableName: 'iam_menu_permission') {
             column(name: "last_update_date", type: "datetime", defaultValueComputed: "CURRENT_TIMESTAMP", remarks: "") { constraints(nullable: "false") }
         }
         addColumn(tableName: 'iam_menu_permission') {
-            column(name: "last_updated_by", type: "bigint(20)", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
+            column(name: "last_updated_by", type: "bigint", defaultValue: "-1", remarks: "") { constraints(nullable: "false") }
         }
     }
     changeSet(author: "hzero@hand-china.com", id: "2020-06-11-iam_menu_permission") {
