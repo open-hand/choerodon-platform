@@ -86,4 +86,41 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_policy.groovy') {
             column(name: "force_modify_password", type: "tinyint", defaultValue: "0", remarks: "是否强制修改初始密码")
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-07-01-oauth_password_policy"){
+        addColumn(tableName: 'oauth_password_policy') {
+            column(name: "login_again", type: "tinyint", defaultValue: 0, remarks: "修改密码后需要重新登入")
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-1-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "enable_three_role", type: "tinyint", defaultValue: 0, remarks: "") {constraints(nullable:"false")}
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-2-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "enable_role_inherit", type: "tinyint", defaultValue: 1, remarks: "") {constraints(nullable:"false")}
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-3-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "enable_role_allocate", type: "tinyint", defaultValue: 1,remarks: "") {constraints(nullable:"false")}
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-4-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "enable_role_permission", type: "tinyint", defaultValue: 1,remarks: "") {constraints(nullable:"false")}
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-08-31-5-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "force_code_verify", type: "tinyint", defaultValue: "0", remarks: "密码策略：强制验证码校验(在进行密码的相关操作时，需要强制使用验证码功能进行校验)")  {constraints(nullable:"false")}
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-09-09-1-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "enable_random_password", type: "tinyint", defaultValue: "0", remarks: "是否开启随机密码模式(开启随机密码模式后，创建子账户或重置密码时会生成随机密码)")  {constraints(nullable:"false")}
+        }
+    }
 }

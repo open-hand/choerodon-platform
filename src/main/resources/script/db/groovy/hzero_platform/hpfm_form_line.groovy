@@ -48,4 +48,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_form_line.groovy') {
             column(name: "value_constraint", type: "varchar(" + 480 * weight + ")", remarks: "值约束，正则表达式")
         }
     }
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-08-06-hpfm_form_line") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: 'hpfm_form_line') {
+            column(name: "value_set", type: "varchar(" + 80 * weight + ")", remarks: "值集/值集视图编码")
+        }
+    }
 }

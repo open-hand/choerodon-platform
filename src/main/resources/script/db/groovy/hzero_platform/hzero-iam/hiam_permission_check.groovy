@@ -48,7 +48,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_permission_check.groovy') {
 	
 	changeSet(author: 'hzero@hand-china.com', id: '2020-04-23-hiam_permission_check') {
         addColumn(tableName: 'hiam_permission_check') {
-            column(name: 'menu_id', type: 'bigint(20)', remarks: '菜单ID') {constraints(nullable: "true")}
+            column(name: 'menu_id', type: 'bigint', remarks: '菜单ID') {constraints(nullable: "true")}
         }
 		
 		createIndex(tableName: "hiam_permission_check", indexName: "hiam_permission_check_n4") {

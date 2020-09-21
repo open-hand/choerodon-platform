@@ -113,4 +113,12 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
         }
     }
 
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-09-10-iam_user") {
+        dropUniqueConstraint(constraintName: "iam_user_u3", tableName: "iam_user")
+        createIndex(tableName: "iam_user", indexName: "iam_user_n2") {
+            column(name: "phone")
+            column(name: "user_type")
+        }
+    }
+
 }

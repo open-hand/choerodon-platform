@@ -25,4 +25,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_sqlid.groovy') {
 
         addUniqueConstraint(columnNames:"doc_type_id,sqlid",tableName:"hiam_doc_type_sqlid",constraintName: "hiam_doc_type_sqlid_u1")
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-07-31-hiam_doc_type_sqlid") {
+        addColumn(tableName: 'hiam_doc_type_sqlid') {
+            column(name: "tenant_id", type: "bigint", defaultValue: "0", remarks: "租户ID,hpfm_tenant.tenant_id") {
+                constraints(nullable: "false")
+            }
+        }
+    }
 }
