@@ -91,10 +91,14 @@ mybatis:
       meta-provider-redis-refresh-interval: 540000
       meta-provider-redis-expire: 600000
 
+choerodon:
+  saga:
+    service: choerodon-asgard
+
 hzero:
   service:
     platform:
-      name: cherodon-platform
+      name: choerodon-platform
     oauth:
       name: choerodon-oauth
     iam:
