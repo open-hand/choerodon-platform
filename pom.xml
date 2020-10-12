@@ -8,9 +8,9 @@
         <version>0.18.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>hzero-platform</artifactId>
+    <artifactId>choerodon-platform</artifactId>
     <version>0.24.0-SNAPSHOT</version>
-    <name>hzero-platform</name>
+    <name>choerodon-platform</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
