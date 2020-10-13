@@ -50,4 +50,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_field_con_valid.groovy')
         addUniqueConstraint(columnNames: "con_valid_id,lang", tableName: "hpfm_cusz_field_con_valid_tl", constraintName: "hpfm_con_valid_tl_U1")
     }
 
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-09-14-hpfm_cusz_field_con_valid-addColumn") {
+        addColumn(tableName: "hpfm_cusz_field_con_valid") {
+            column(name: "value", type: "varchar(" + 120 * weight + ")")
+        }
+    }
+
 }

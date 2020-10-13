@@ -123,4 +123,9 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_policy.groovy') {
             column(name: "enable_random_password", type: "tinyint", defaultValue: "0", remarks: "是否开启随机密码模式(开启随机密码模式后，创建子账户或重置密码时会生成随机密码)")  {constraints(nullable:"false")}
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-09-28-oauth_password_policy") {
+        addColumn(tableName: "oauth_password_policy") {
+            column(name: "enable_data_security", type: "tinyint", defaultValue: 0, remarks: "启用数据加密") { constraints(nullable: "false") }
+        }
+    }
 }
