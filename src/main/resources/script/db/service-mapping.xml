@@ -15,6 +15,6 @@
     <service name="hzero_monitor" filename="hzero_monitor" schema="hzero_monitor" description="监控审计服务"/>
 
     <exclusion>
-        iam_user,oauth_client,oauth_ldap,oauth_password_policy,hpfm_tenant.tenant_name
+        iam_user,oauth_client,oauth_ldap,oauth_password_policy,hpfm_tenant
     </exclusion>
 </services>
