@@ -19,7 +19,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_employee.groovy') {
             column(name: "tenant_id", type: "bigint",   defaultValue:"0",   remarks: "租户ID")  {constraints(nullable:"false")}  
             column(name: "email", type: "varchar(" + 60 * weight + ")",  remarks: "电子邮件")   
             column(name: "mobile", type: "varchar(" + 60 * weight + ")",  remarks: "移动电话")   
-            column(name: "gender", type: "tinyint",  remarks: "性别, 0: 男 1: 女")  {constraints(nullable:"false")}  
+            column(name: "gender", type: "tinyint",  remarks: "性别, 值集:HPFM.GENDER")  {constraints(nullable:"false")}
             column(name: "cid", type: "varchar(" + 60 * weight + ")",  remarks: "身份编码")   
             column(name: "quick_index", type: "varchar(" + 30 * weight + ")",  remarks: "快速检索")   
             column(name: "phoneticize", type: "varchar(" + 60 * weight + ")",  remarks: "拼音")   
@@ -102,5 +102,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_employee.groovy') {
         addColumn(tableName: 'hpfm_employee') {
             column(name: "entry_date", type: "datetime", remarks: "员工入职时间")
         }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-10-16-hpfm_employee") {
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()){
+            setColumnRemarks (tableName: "hpfm_employee", columnName: "gender", remarks: "性别, 值集:HPFM.GENDER")
+        }
+        dropNotNullConstraint (tableName: "hpfm_employee", columnName: "gender", columnDataType: "tinyint(1)")
     }
 }
