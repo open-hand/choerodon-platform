@@ -25,4 +25,8 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_label.groovy') {
     changeSet(author: "hzero@hand-china.com", id: "2020-08-31-2-iam_role_label") {
         addUniqueConstraint(columnNames: "role_id,label_id", tableName: "iam_role_label", constraintName: "iam_role_label_u1")
     }
+
+    changeSet(id: '2020-11-16-drop-iam-role-label', author: 'scp') {
+        dropTable(tableName: 'iam_role_label')
+    }
 }
