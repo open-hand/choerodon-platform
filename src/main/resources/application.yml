@@ -149,7 +149,9 @@ hzero:
     pattern: ${HZERO_RESOURCE_PATTERN:/v1/*,/hzero/*,/hpfm/v1/*,/hpfm/hzero/*,/choerodon/v1/*}
   field-permission:
     enable: true
-
+  websocket:
+    # 与当前服务的redis数据库一致
+    redisDb: ${SPRING_REDIS_DATABASE:1}
 logging:
   level:
     io.choerodon: ${LOG_LEVEL:info}
