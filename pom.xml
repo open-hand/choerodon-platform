@@ -9,12 +9,13 @@
     </parent>
 
     <artifactId>choerodon-platform</artifactId>
-    <version>0.24.0-alpha.3.RELEASE</version>
+    <version>0.24.0-alpha.4-SNAPSHOT</version>
     <name>choerodon-platform</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <hzero.websocket.version>1.6.0-SNAPSHOT</hzero.websocket.version>
     </properties>
 
     <dependencies>
@@ -45,6 +46,24 @@
                 <exclusion>
                     <artifactId>hzero-starter-integrate-wechat-enterprise</artifactId>
                     <groupId>org.hzero.starter</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hzero.starter</groupId>
+                    <artifactId>hzero-starter-websocket</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hzero.starter</groupId>
+            <artifactId>hzero-starter-websocket</artifactId>
+            <version>${hzero.websocket.version}</version>
+            <!-- 这里exclude hzero-starter-core的依赖是因为单独升级了websocket的版本，避免引入依赖冲突 -->
+            <!-- 如果websocket的版本和 hzero-starter-core 的版本一致，不需要 exclude-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hzero.starter</groupId>
+                    <artifactId>hzero-starter-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
