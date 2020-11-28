@@ -1,20 +1,34 @@
 package io.choerodon.platform.app.task;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import org.hzero.core.redis.RedisHelper;
+import org.hzero.platform.domain.entity.Group;
+import org.hzero.platform.domain.repository.HpfmGroupRepository;
+import org.hzero.platform.infra.mapper.HpfmGroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import io.choerodon.core.exception.CommonException;
+import io.choerodon.platform.infra.mapper.HpfmGroupC7nMapper;
 
 /**
  * Created by wangxiang on 2020/8/3
  */
 @Component
 public class InvalidRedisKeyRunner implements CommandLineRunner {
+
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisHelper redisHelper;
+
+    @Autowired
+    private HpfmGroupC7nMapper hpfmGroupC7nMapper;
+
+    private static final String REDIS_ERROR = "error.invalid.redis.key";
 
     /**
      * 消息类别的缓存key
@@ -29,12 +43,30 @@ public class InvalidRedisKeyRunner implements CommandLineRunner {
      */
     private static final String TEMPLATE_KEY = "hmsg:message:template:*";
 
+    /**
+     * 重新加载groupId的key
+     */
+    private static final String GROUP_SEQUENCE_KEY = "hpfm:code-rule:sequence:T.0.HPFM.GROUP.GLOBAL.GLOBAL";
+
     @Override
     public void run(String... args) throws Exception {
-        Set<String> keySet = new HashSet<>();
-        keySet.add(LOV_SUBCATEGORY_KEY);
-        Set keys = redisTemplate.keys(TEMPLATE_KEY);
-        keySet.addAll(keys);
-        redisTemplate.delete(keySet);
+        new Thread(() -> {
+            try {
+                Set<String> keySet = new HashSet<>();
+                keySet.add(LOV_SUBCATEGORY_KEY);
+                keySet.add(GROUP_SEQUENCE_KEY);
+                Set keys = redisHelper.keys(TEMPLATE_KEY);
+                keySet.addAll(keys);
+                redisHelper.delKeys(keySet);
+
+                Group group = hpfmGroupC7nMapper.selectMaxIdGroup();
+                if (!Objects.isNull(group)) {
+                    int dbMaxGroupId = Integer.parseInt(StringUtils.split(group.getGroupNum(), "BG")[1]);
+                    redisHelper.strSet(GROUP_SEQUENCE_KEY, String.valueOf(dbMaxGroupId));
+                }
+            } catch (Exception e) {
+                throw new CommonException(REDIS_ERROR);
+            }
+        }).start();
     }
 }
