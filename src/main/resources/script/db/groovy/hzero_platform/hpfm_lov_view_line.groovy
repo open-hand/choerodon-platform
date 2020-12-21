@@ -54,4 +54,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_view_line.groovy') {
             column(name: "source_code", type: "varchar(" + 60 * weight + ")",  remarks: "来源编码")
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-10-29-hpfm_lov_view_line") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_lov_view_line", columnName: 'display', newDataType: "varchar(" + 240 * weight + ")")
+    }
 }

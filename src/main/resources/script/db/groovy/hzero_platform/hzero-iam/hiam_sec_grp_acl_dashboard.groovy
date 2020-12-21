@@ -30,4 +30,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp_acl_dashboard.groovy'
 
         addUniqueConstraint(columnNames:"sec_grp_id,tenant_id,card_id",tableName:"hiam_sec_grp_acl_dashboard",constraintName: "hiam_sec_grp_acl_dashboard_u1")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-11-25-hiam_sec_grp_acl_dashboard") {
+        dropUniqueConstraint(tableName: 'hiam_sec_grp_acl_dashboard', constraintName: 'hiam_sec_grp_acl_dashboard_u1')
+        modifyDataType(tableName: "hiam_sec_grp_acl_dashboard", columnName: 'card_id', newDataType: "bigint")
+        addUniqueConstraint(columnNames:"sec_grp_id,tenant_id,card_id",tableName:"hiam_sec_grp_acl_dashboard",constraintName: "hiam_sec_grp_acl_dashboard_u1")
+    }
 }
