@@ -27,4 +27,5 @@ Thumbs.db
 gitlabci/.generated
 
 application-default.yml
+temp/
 
