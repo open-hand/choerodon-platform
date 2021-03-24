@@ -104,4 +104,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_field.groovy') {
         }
     }
 
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-10-27_hpfm_cusz_unit_field_addColumns") {
+        addColumn(tableName: 'hpfm_cusz_unit_field') {
+            column(name: "row_span", type: "int", remarks: "跨行配置")
+        }
+        addColumn(tableName: 'hpfm_cusz_unit_field') {
+            column(name: "bind_field", type: "varchar(" + 255 * weight + ")", remarks: "当前字段绑定的字段编码，多个字段使用逗号隔开")
+        }
+        addColumn(tableName: 'hpfm_cusz_unit_field') {
+            column(name: "default_active", type: "tinyint", remarks: "默认激活控制,标签页/折叠面板单元用")
+        }
+    }
+
 }

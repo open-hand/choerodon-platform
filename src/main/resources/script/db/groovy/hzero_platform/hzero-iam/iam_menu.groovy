@@ -111,5 +111,14 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu.groovy') {
             column(name: "parent_id")
         }
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-09-iam_menu') {
+        addColumn(tableName: 'iam_menu') {
+            column(name: "help_type", type: "varchar(" + 30 * weight + ")", remarks: "帮助类型")
+        }
+        addColumn(tableName: 'iam_menu') {
+            column(name: "help_value", type: "varchar(" + 480 * weight + ")", remarks: "帮助值")
+        }
+    }
 		
 }

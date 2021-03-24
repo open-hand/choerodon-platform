@@ -54,4 +54,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_dashboard_layout.groovy') {
         modifyDataType(tableName: "hpfm_dashboard_layout", columnName: 'y', newDataType: "int")
         modifyDataType(tableName: "hpfm_dashboard_layout", columnName: 'h', newDataType: "int")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_dashboard_layout") {
+        createIndex(tableName: "hpfm_dashboard_layout", indexName: "hpfm_dashboard_layout_n1") {
+            column(name: "user_id")
+            column(name: "role_id")
+            column(name: "tenant_id")
+        }
+    }
 }

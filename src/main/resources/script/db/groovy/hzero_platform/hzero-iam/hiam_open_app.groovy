@@ -80,4 +80,39 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_open_app.groovy') {
             }
         }   
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-03-hiam_open_app"){
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        dropNotNullConstraint(tableName: "hiam_open_app", columnName: "app_image", columnDataType: "varchar(" + 255 * weight + ")")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2021-01-19-hiam_open_app") {
+        dropUniqueConstraint(tableName: "hiam_open_app",constraintName: "hiam_open_app_u1")
+        addUniqueConstraint(columnNames:"app_code,channel,organization_id",tableName:"hiam_open_app",constraintName: "hiam_open_app_u1")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "hiam_open_app-2021-01-29-version-2"){
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+
+        addColumn(tableName: 'hiam_open_app') {
+            column(name: 'sub_app_id_temp', type: "varchar(" + 120 * weight + ")", remarks: '子应用ID') {
+                constraints(nullable: true)
+            }
+        }
+        sql {
+            "UPDATE hiam_open_app SET sub_app_id_temp = sub_app_id;"
+        }
+        dropColumn(tableName: 'hiam_open_app', columnName:'sub_app_id')
+        renameColumn(columnDataType: "varchar(" + 120 * weight + ")", newColumnName: "sub_app_id", oldColumnName: "sub_app_id_temp", remarks: '子应用ID', tableName: 'hiam_open_app')
+    }
 }

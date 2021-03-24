@@ -56,4 +56,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_field_con_valid.groovy')
         }
     }
 
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-11-11-hpfm_cusz_field_con_valid-modify-error_message") {
+        dropNotNullConstraint(tableName: "hpfm_cusz_field_con_valid", columnName: "error_message", columnDataType: "varchar(" + 510 * weight + ")")
+        dropNotNullConstraint(tableName: "hpfm_cusz_field_con_valid_tl", columnName: "error_message", columnDataType: "varchar(" + 510 * weight + ")")
+    }
+
 }

@@ -36,4 +36,13 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_tl.groovy') {
             }
         }
     }
+	
+	changeSet(author: "hzero@hand-china.com", id: "2020-12-01-iam_role_tl") {
+        createIndex(tableName: "iam_role_tl", indexName: "iam_role_tl_n1") {
+            column(name: "id")
+            column(name: "lang")
+            column(name: "name")
+            column(name: "tpl_role_name")
+        }
+    }
 }

@@ -17,4 +17,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_tenant_tl.groovy') {
 
         addUniqueConstraint(columnNames:"tenant_id,lang",tableName:"hpfm_tenant_tl",constraintName: "hpfm_tenant_tl_u1")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-hpfm_tenant_tl') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"hpfm_tenant_tl",constraintName: "hpfm_tenant_tl_u1")
+        addUniqueConstraint(columnNames:"lang,tenant_id",tableName:"hpfm_tenant_tl",constraintName: "hpfm_tenant_tl_u1")
+    }
 }

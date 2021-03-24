@@ -26,4 +26,8 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_domain_assign.groovy') {
 
         addUniqueConstraint(columnNames:"domain_id,tenant_id,company_id",tableName:"hiam_domain_assign",constraintName: "hiam_domain_assign_u1")
     }
+
+    changeSet(author: "bo.he02@hand-china.com", id: "hiam_domain_assign-2021-01-27-version-2") {
+        dropDefaultValue (tableName: "hiam_domain_assign", columnName: "company_id", columnDataType: "bigint")
+    }
 }

@@ -27,4 +27,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp_dcl.groovy') {
 
         addUniqueConstraint(columnNames:"sec_grp_id,authority_type_code",tableName:"hiam_sec_grp_dcl",constraintName: "hiam_sec_grp_dcl_u1")
     }
+
+    changeSet(author: "bo.he02@hand-china.com", id: "hiam_sec_grp_dcl-2021-01-25-version-2") {
+        addColumn (tableName: "hiam_sec_grp_dcl") {
+            column (name: "menu_id", type: "bigint", remarks: "菜单Id，iam_menu.id", defaultValue: "-1") {
+                constraints (nullable: "false")
+            }
+        }
+        dropUniqueConstraint (tableName: "hiam_sec_grp_dcl", constraintName: "hiam_sec_grp_dcl_u1")
+        addUniqueConstraint (tableName: "hiam_sec_grp_dcl", columnNames: "sec_grp_id,authority_type_code,menu_id", constraintName: "hiam_sec_grp_dcl_u1")
+    }
+
 }

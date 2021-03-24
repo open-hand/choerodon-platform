@@ -29,4 +29,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_static_text_value.groovy') {
             }
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_static_text_value") {
+        createIndex(tableName: "hpfm_static_text_value", indexName: "hpfm_static_text_value_n1") {
+            column(name: "text_id")
+        }
+    }
 }

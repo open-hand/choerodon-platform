@@ -27,4 +27,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_permission_range_excl.groovy'
 
         addUniqueConstraint(columnNames:"range_id,service_name,tenant_id,sql_id",tableName:"hpfm_permission_range_excl",constraintName: "hpfm_permission_range_excl_u1")
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "hpfm_permission_range_excl-2021-01-21-version-2") {
+        addColumn (tableName: "hpfm_permission_range_excl") {
+            column (name: "rule_id", type: "bigint", remarks: "规则Id,hpfm_permission_rule.rule_id", defaultValue: "0")
+        }
+        dropUniqueConstraint (tableName: "hpfm_permission_range_excl", constraintName: "hpfm_permission_range_excl_u1")
+        addUniqueConstraint (tableName: "hpfm_permission_range_excl", columnNames: "range_id,service_name,tenant_id,sql_id,rule_id", constraintName: "hpfm_permission_range_excl_u1")
+    }
+
 }

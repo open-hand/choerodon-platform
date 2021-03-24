@@ -46,4 +46,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_view_header.groovy') {
         }
         modifyDataType(tableName: "hpfm_lov_view_header", columnName: 'view_code', newDataType: "varchar(" + 80 * weight + ")")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_lov_view_header") {
+        createIndex(tableName: "hpfm_lov_view_header", indexName: "hpfm_lov_view_header_n1") {
+            column(name: "lov_id")
+        }
+    }
 }

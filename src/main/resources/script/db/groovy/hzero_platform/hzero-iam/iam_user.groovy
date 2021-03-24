@@ -22,7 +22,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
             column(name: "INTERNATIONAL_TEL_CODE", type: "varchar(" + 16 * weight + ")",   defaultValue:"+86",   remarks: "国际电话区号。")   
             column(name: "image_url", type: "varchar(" + 480 * weight + ")",  remarks: "用户头像地址")   
             column(name: "profile_photo", type: "mediumtext",  remarks: "用户二进制头像")   
-            column(name: "language", type: "varchar(" + 16 * weight + ")",   defaultValue:"zh_CN",   remarks: "语言")  {constraints(nullable:"false")}  
+            column(name: "language", type: "varchar(" + 16 * weight + ")",   defaultValue:"zh_CN",   remarks: "语言")  {constraints(nullable:"false")}
             column(name: "time_zone", type: "varchar(" + 16 * weight + ")",   defaultValue:"GMT+8",   remarks: "时区")  {constraints(nullable:"false")}  
             column(name: "last_password_updated_at", type: "datetime",   defaultValueComputed:"CURRENT_TIMESTAMP",   remarks: "上一次密码更新时间")  {constraints(nullable:"false")}  
             column(name: "last_login_at", type: "datetime",  remarks: "上一次登陆时间")   
@@ -121,4 +121,14 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
         }
     }
 
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-09-11-iam_user") {
+        dropNotNullConstraint(tableName: "iam_user", columnName: "language", columnDataType: "varchar(" + 16 * weight + ")")
+        dropDefaultValue(tableName: 'iam_user', columnName: 'language')
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-iam_user") {
+        createIndex(tableName: "iam_user", indexName: "iam_user_n3") {
+            column(name: "organization_id")
+        }
+    }
 }

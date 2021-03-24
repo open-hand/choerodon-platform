@@ -88,4 +88,22 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_client.groovy') {
             column(name: "password_encrypt_flag", type: "tinyint", defaultValue:"1", remarks: "密码是否加密传输") {constraints(nullable:"false")}
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "oauth_client-2020-10-21-version-2") {
+        addColumn (tableName: "oauth_client"){
+            column (name: "default_lang", type: "varchar(30)", remarks: "默认语言", defaultValue: "zh_CN")
+        }
+    }
+	
+	changeSet(author: "hzero@hand-china.com", id: "2020-12-25-oauth_client") {
+        addColumn(tableName: 'oauth_client') {
+            column(name: "account_encrypt_flag", type: "tinyint", defaultValue:"0", remarks: "账号是否加密传输") {constraints(nullable:"false")}
+        }
+    }
+	changeSet(author: "hzero@hand-china.com", id: "2021-01-04-oauth_client") {
+        addColumn(tableName: 'oauth_client') {
+            column(name: "menu_id_flag", type: "tinyint", defaultValue:"0", remarks: "是否传递H-Menu-Id") {constraints(nullable:"false")}
+        }
+    }
+
 }

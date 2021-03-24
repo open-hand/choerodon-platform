@@ -47,4 +47,19 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type.groovy') {
 			}
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-08-hiam_doc_type") {
+        addColumn(tableName: 'hiam_doc_type') {
+            column(name: 'public_without_dim_flag', type: 'tinyint', defaultValue: 0, remarks: '是否公开未分配维度值的数据') { constraints(nullable: false) }
+        }
+    }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-01-04-hiam_doc_type") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        dropNotNullConstraint (tableName: "hiam_doc_type", columnName: "source_service_name", columnDataType: "varchar(" + 80 * weight + ")")
+    }
 }

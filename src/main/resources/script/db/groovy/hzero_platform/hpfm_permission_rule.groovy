@@ -43,4 +43,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_permission_rule.groovy') {
             column(name: "editable_flag", type: "tinyint", defaultValue:"1", remarks: "编辑标识")  {constraints(nullable:"false")}
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2021-01-29-hpfm_permission_rule") {
+        addColumn(tableName: 'hpfm_permission_rule') {
+            column(name: "table_columns", type: "longtext", remarks: "规则查询列")
+        }
+    }
 }

@@ -74,4 +74,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit.groovy') {
             column(name: "con_related_unit", type: "varchar(" + 500 * weight + ")", remarks: "关联单元编码，多个以逗号隔开")
         }
     }
+
+    changeSet(id: '2021-2-3-add-column-hpfm_cusz_unit', author: 'yahang.liu@hand-china.com') {
+        addColumn(tableName: 'hpfm_cusz_unit') {
+            column(name: 'unit_source', type: "varchar(" + 20 * weight + ")",remarks: '导入时的单元数据来源')
+        }
+
+    }
 }

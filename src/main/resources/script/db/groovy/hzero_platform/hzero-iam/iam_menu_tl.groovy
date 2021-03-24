@@ -24,4 +24,19 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_tl.groovy') {
             }
         }
     }
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-iam_menu_tl') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"iam_menu_tl",constraintName: "iam_menu_tl_pk")
+        addUniqueConstraint(columnNames:"id,lang",tableName:"iam_menu_tl",constraintName: "iam_menu_tl_u1")
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-23-iam_menu_tl"){
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "iam_menu_tl", columnName: 'name', newDataType: "varchar(" + 128 * weight + ")")
+    }
 }

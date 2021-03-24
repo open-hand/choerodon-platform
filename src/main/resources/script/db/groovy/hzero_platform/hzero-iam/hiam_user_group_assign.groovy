@@ -27,4 +27,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_user_group_assign.groovy') {
 
         addUniqueConstraint(columnNames:"tenant_id,user_id,user_group_id",tableName:"hiam_user_group_assign",constraintName: "hiam_user_group_assign_u1")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-hiam_user_group_assign') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"hiam_user_group_assign",constraintName: "hiam_user_group_assign_u1")
+        addUniqueConstraint(columnNames:"user_id,user_group_id,tenant_id",tableName:"hiam_user_group_assign",constraintName: "hiam_user_group_assign_u1")
+    }
 }

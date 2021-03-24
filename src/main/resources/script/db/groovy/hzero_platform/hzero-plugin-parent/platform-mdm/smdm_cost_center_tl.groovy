@@ -13,7 +13,7 @@ databaseChangeLog(logicalFilePath: 'script/db/smdm_cost_center_tl.groovy') {
         createTable(tableName: "smdm_cost_center_tl") {
             column(name: "cost_id", type: "bigint", remarks: "表ID，主键")
             column(name: "lang", type: "varchar(" + 50 * weight + "))", remarks: "语言")
-            column(name: "costName", type: "varchar(" + 50 * weight + "))", remarks: "描述")
+            column(name: "costName", type: "varchar(" + 120 * weight + "))", remarks: "描述")
 
         }
     }

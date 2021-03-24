@@ -50,4 +50,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config.groovy') {
         dropUniqueConstraint(tableName: 'hpfm_cusz_config', constraintName: 'hpfm_cusz_config_U1')
         addUniqueConstraint(columnNames: "unit_id,tenant_id,user_id", tableName: "hpfm_cusz_config", constraintName: "hpfm_cusz_config_U1")
     }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-12-11_hpfm_cusz_config-addColumns") {
+        addColumn(tableName: 'hpfm_cusz_config') {
+            column(name: "show_lines", type: "int", remarks: "折叠表单显示行数")
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_cusz_config") {
+        createIndex(tableName: "hpfm_cusz_config", indexName: "hpfm_cusz_config_n1") {
+            column(name: "user_id")
+        }
+    }
 }

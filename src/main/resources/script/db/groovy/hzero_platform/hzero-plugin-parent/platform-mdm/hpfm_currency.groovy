@@ -97,4 +97,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_currency.groovy') {
             column(name: "attribute15", type: "varchar(" + 150 * weight + ")")
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_currency") {
+        createIndex(tableName: "hpfm_currency", indexName: "hpfm_currency_n1") {
+            column(name: "currency_name")
+        }
+    }
 }

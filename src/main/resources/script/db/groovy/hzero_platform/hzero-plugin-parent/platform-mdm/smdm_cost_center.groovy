@@ -107,5 +107,11 @@ databaseChangeLog(logicalFilePath: 'script/db/smdm_cost_center.groovy') {
         dropUniqueConstraint(tableName:"smdm_cost_center",constraintName: "smdm_cost_center_U1")
         addUniqueConstraint(columnNames: "tenant_id,query_cost_code,external_system_code", tableName: "smdm_cost_center", constraintName: "smdm_cost_center_U1")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-smdm_cost_center') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"smdm_cost_center",constraintName: "smdm_cost_center_U1")
+        addUniqueConstraint(columnNames:"query_cost_code,external_system_code,tenant_id",tableName:"smdm_cost_center",constraintName: "smdm_cost_center_U1")
+    }
 }
 

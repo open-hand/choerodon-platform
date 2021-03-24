@@ -52,4 +52,10 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_sync_config.groovy') {
 
         addUniqueConstraint(columnNames: "tenant_id,sync_type", tableName: "oauth_ldap_sync_config", constraintName: "oauth_ldap_sync_config_u1")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-oauth_ldap_sync_config') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"oauth_ldap_sync_config",constraintName: "oauth_ldap_sync_config_u1")
+        addUniqueConstraint(columnNames:"sync_type,tenant_id",tableName:"oauth_ldap_sync_config",constraintName: "oauth_ldap_sync_config_u1")
+    }
 }

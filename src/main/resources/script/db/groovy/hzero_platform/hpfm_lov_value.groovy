@@ -63,13 +63,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov_value.groovy') {
         modifyDataType(tableName: "hpfm_lov_value", columnName: 'meaning', newDataType: "varchar(" + 480 * weight + ")")
     }
 
-    changeSet(author: "hzero@hand-china.com", id: "2020-11-26-hpfm_lov_value") {
-        def weight = 1
-        if(helper.isSqlServer()){
-            weight = 2
-        } else if(helper.isOracle()){
-            weight = 3
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_lov_value") {
+        createIndex(tableName: "hpfm_lov_value", indexName: "hpfm_lov_value_n3") {
+            column(name: "value")
         }
-        modifyDataType(tableName: "hpfm_lov_value", columnName: 'parent_value', newDataType: "varchar(" + 150 * weight + ")")
     }
 }

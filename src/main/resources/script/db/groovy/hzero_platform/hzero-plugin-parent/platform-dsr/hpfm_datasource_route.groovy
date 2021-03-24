@@ -24,7 +24,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource_route.groovy') {
             column(name: "url", type: "varchar(" + 240 * weight + ")", remarks: "路由接口") {
                 constraints(nullable: "false")
             }
-            column(name: "method", type: "varchar(" + 30 * weight + ")", remarks: "路由接口请求方式") {
+            column(name: "method", type: "varchar(" + 60 * weight + ")", remarks: "路由接口请求方式") {
                 constraints(nullable: "false")
             }
             column(name: "enabled_flag", type: "tinyint", defaultValue:"0", remarks: "启用标识") {

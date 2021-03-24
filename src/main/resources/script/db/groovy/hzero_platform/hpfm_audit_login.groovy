@@ -53,4 +53,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_audit_login.groovy') {
     changeSet(author: "shuangfei.zhu@hand-china.com", id: "2019-11-14-hpfm_audit_login") {
         dropColumn(tableName: 'hpfm_audit_login', columnName: 'tenant_name')
     }
+
+    changeSet(id: '2020-11-10-hpfm_audit_login-add_column', author: 'xiaowei.zhang@hand-china.com') {
+        addColumn(tableName: "hpfm_audit_login") {
+            column(name: "endpoint_type", type: "varchar(60)", remarks:"认证终端", afterColumn: "tenant_id") { constraints(nullable: "true") }
+        }
+        addColumn(tableName: "hpfm_audit_login") {
+            column(name: "grant_type", type: "varchar(60)", remarks:"授权类型", afterColumn: "tenant_id") { constraints(nullable: "true") }
+        }
+    }
 }

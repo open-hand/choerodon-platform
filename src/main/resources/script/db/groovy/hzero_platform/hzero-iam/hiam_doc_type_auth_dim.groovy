@@ -66,4 +66,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type_auth_dim.groovy') {
             }
         }
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-01-04-hiam_doc_type_auth_dim") {
+        addColumn (tableName: "hiam_doc_type_auth_dim") {
+            column (name: "custom_permission_flag", type: "tinyint", remarks: "是否自定义数据权限规则", defaultValue: "0") {
+                constraints (nullable: "false")
+            }
+        }
+    }
 }

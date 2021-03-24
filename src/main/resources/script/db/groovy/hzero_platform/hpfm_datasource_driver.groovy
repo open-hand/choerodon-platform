@@ -56,4 +56,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_datasource_driver.groovy') {
         }
         addUniqueConstraint(columnNames:"tenant_id,database_type,driver_version",tableName:"hpfm_datasource_driver",constraintName: "hpfm_datasource_driver_u1")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-hpfm_datasource_driver') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"hpfm_datasource_driver",constraintName: "hpfm_datasource_driver_u1")
+        addUniqueConstraint(columnNames:"database_type,driver_version,tenant_id",tableName:"hpfm_datasource_driver",constraintName: "hpfm_datasource_driver_u1")
+    }
 }

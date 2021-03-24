@@ -44,4 +44,16 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_tenant.groovy') {
         }
     }
 
+    changeSet(author: "hzero@hand-china.com", id: "2021-02-01-hpfm_tenant") {
+        addColumn(tableName: "hpfm_tenant") {
+            column(name: "table_split_flag", type: "tinyint", defaultValue: 0, remarks: "是否分表")
+        }
+        addColumn(tableName: "hpfm_tenant") {
+            column(name: "table_split_seq", type: "int", remarks: "分表序列")
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2021-03-02-hpfm_tenant") {
+        modifyDataType(tableName: "hpfm_tenant", columnName: "table_split_seq", newDataType: "bigint")
+    }
 }

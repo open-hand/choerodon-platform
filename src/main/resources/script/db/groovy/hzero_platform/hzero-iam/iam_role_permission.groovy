@@ -52,4 +52,10 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_permission.groovy') {
             }
         }
     }
+	
+	changeSet(author: 'hzero@hand-china.com', id: '2020-12-29-iam_role_permission') {
+        createIndex(tableName: "iam_role_permission", indexName: "iam_role_permission_n1") {
+            column(name: "permission_id")
+        }
+    }
 }

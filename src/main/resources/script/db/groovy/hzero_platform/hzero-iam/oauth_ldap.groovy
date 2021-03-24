@@ -60,5 +60,10 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap.groovy') {
         }
         renameColumn(columnDataType: 'VARCHAR(128)', newColumnName: "LDAP_PASSWORD", oldColumnName: "password", remarks: 'ldap登陆密码', tableName: 'OAUTH_LDAP')
     }
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-12-29-oauth_ldap") {
+        addColumn (tableName: "oauth_ldap") {
+            column (name: "default_role_id", type: "bigint", remarks: "默认角色id")
+        }
+    }
 
 }

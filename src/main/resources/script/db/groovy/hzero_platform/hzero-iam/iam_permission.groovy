@@ -50,4 +50,14 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_permission.groovy') {
         }
     }
 
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-iam_permission") {
+        createIndex(tableName: "iam_permission", indexName: "iam_permission_n1") {
+            column(name: "service_name")
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-iam_permission-1") {
+        dropUniqueConstraint(tableName:"iam_permission",constraintName: "iam_permission_u2")
+        addUniqueConstraint(columnNames:"service_name,action,fd_resource",tableName:"iam_permission",constraintName: "iam_permission_u2")
+    }
 }

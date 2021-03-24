@@ -121,13 +121,32 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field.groovy') {
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-07-27_hpfm_cusz_config_field_add_col_span") {
         addColumn(tableName: 'hpfm_cusz_config_field') {
-            column(name: "col_span",  type:"int", remarks: "跨列配置")
+            column(name: "col_span", type: "int", remarks: "跨列配置")
         }
     }
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-07-28_hpfm_cusz_config_field_add_sorter") {
         addColumn(tableName: 'hpfm_cusz_config_field') {
-            column(name: "sorter",  type:"smallint", remarks: "可否排序")
+            column(name: "sorter", type: "smallint", remarks: "可否排序")
         }
     }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-10-27_hpfm_cusz_config_field_addColumns") {
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "row_span", type: "int", remarks: "跨行配置")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "bind_field", type: "varchar(" + 255 * weight + ")", remarks: "当前字段绑定的字段编码，多个字段使用逗号隔开")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "default_active", type: "tinyint", remarks: "默认激活控制,标签页/折叠面板单元用")
+        }
+    }
+
+    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2021-01-11-hpfm_cusz_hpfm_cusz_config_field-add_encrypt_flag"){
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "encrypt_flag", type: "smallint", remarks: "字段加密标识（-1-自动识别，0-禁用，1-启用）" ,defaultValue:"-1")
+        }
+    }
+
 }

@@ -57,7 +57,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role.groovy') {
         }
         // 重建索引
         dropUniqueConstraint(tableName:"iam_role",constraintName: "iam_role_u1")
-        addUniqueConstraint(columnNames:"h_tenant_id, code, h_parent_role_id, h_parent_role_assign_level, h_parent_role_assign_level_val, created_by_tenant_id",tableName:"iam_role",constraintName: "iam_role_u1")
+        addUniqueConstraint(columnNames:"code, h_parent_role_id, h_parent_role_assign_level, h_parent_role_assign_level_val, created_by_tenant_id, h_tenant_id",tableName:"iam_role",constraintName: "iam_role_u1")
     }
 	
 	changeSet(author: 'jiangzhou.bo@hand-china.com', id: '2020-04-30-iam_role') {
@@ -69,6 +69,43 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role.groovy') {
         }
         addColumn(tableName: 'iam_role') {
             column(name: 'tpl_role_name', type: "varchar(" + 64 * weight + ")", remarks: '模板角色的子角色名称') {constraints(nullable:"true")}
+        }
+    }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-iam_role-1") {
+        createIndex(tableName: "iam_role", indexName: "iam_role_n4") {
+            column(name: "h_inherit_role_id")
+        }
+    }
+
+    changeSet(author: "bo.he02@hand-china.com", id: "iam_role-2020-12-15-version-2") {
+        addColumn (tableName: "iam_role"){
+            column (name: "role_hierarchy", type: "tinyint", remarks: "角色体系，0-多级版(默认) 1-单级版", defaultValue: "0"){
+                constraints (nullable: "false")
+            }
+        }
+    }
+
+    changeSet(author: "bo.he02@hand-china.com", id: "iam_role-2021-01-25-version-3") {
+        addColumn (tableName: "iam_role") {
+            column (name: "enable_role_permission", type: "tinyint", remarks: "角色是否能操作数据权限等功能", defaultValue: "0"){
+                constraints (nullable: "false")
+            }
+        }
+    }
+
+    changeSet(author: "admin@hand-china.com", id: "iam_role-2021-02-20-version-4") {
+        def weight_c = 1
+        if(helper.isSqlServer()){
+            weight_c = 2
+        } else if(helper.isOracle()){
+            weight_c = 3
+        }
+
+        addColumn (tableName: "iam_role") {
+            column (name: "role_type_code", type: "varchar(" + 30* weight_c + ")", remarks: "角色类型：GEN-普通角色，SG-安全组角色", defaultValue: "GEN") {
+                constraints (nullable: "false")
+            }
         }
     }
 }

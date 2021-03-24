@@ -108,6 +108,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_employee.groovy') {
         if (!helper.isMysql()){
             setColumnRemarks (tableName: "hpfm_employee", columnName: "gender", remarks: "性别, 值集:HPFM.GENDER")
         }
-        dropNotNullConstraint (tableName: "hpfm_employee", columnName: "gender", columnDataType: "tinyint(1)")
+        dropNotNullConstraint (tableName: "hpfm_employee", columnName: "gender", columnDataType: "tinyint")
+    }
+    changeSet(author: "hzero@hand-china.com", id: "2020-10-21-hpfm_employee") {
+        addColumn(tableName: "hpfm_employee") {
+            column(name: "birthday", type: "date", remarks: "出生日期")
+        }
     }
 }

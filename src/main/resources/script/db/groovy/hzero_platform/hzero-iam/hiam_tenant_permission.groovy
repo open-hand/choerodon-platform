@@ -24,4 +24,11 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_tenant_permission.groovy') {
 		
         addUniqueConstraint(columnNames:"tenant_id,permission_id",tableName:"hiam_tenant_permission",constraintName: "hiam_tenant_permission_u1")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-hiam_tenant_permission') {
+        // 重建索引
+        dropUniqueConstraint(tableName:"hiam_tenant_permission",constraintName: "hiam_tenant_permission_u1")
+        addUniqueConstraint(columnNames:"permission_id,tenant_id",tableName:"hiam_tenant_permission",constraintName: "hiam_tenant_permission_u1")
+    }
+
 }

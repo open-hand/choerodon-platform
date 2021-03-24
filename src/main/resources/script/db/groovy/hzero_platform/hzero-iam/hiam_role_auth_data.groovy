@@ -48,4 +48,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_role_auth_data.groovy') {
             where "authority_type_code='PURAGENT'"
         }
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "hiam_role_auth_data-2021-01-08") {
+        addColumn (tableName: "hiam_role_auth_data") {
+            column (name: "menu_id", type: "bigint", remarks: "菜单Id，iam_menu.id", defaultValue: "-1") {
+                constraints (nullable: "false")
+            }
+        }
+        dropUniqueConstraint (tableName: "hiam_role_auth_data", constraintName: "hiam_role_auth_data_u1")
+        addUniqueConstraint (tableName: "hiam_role_auth_data", columnNames: "role_id,tenant_id,authority_type_code,menu_id", constraintName: "hiam_role_auth_data_u1")
+    }
 }

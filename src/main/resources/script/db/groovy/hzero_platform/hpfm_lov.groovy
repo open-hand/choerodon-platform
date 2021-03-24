@@ -89,4 +89,19 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_lov.groovy') {
             column(name: "decrypt_field", type: "varchar(" + 480 * weight + ")", remarks: "存储解密字段")
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-10-20-hpfm_lov") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: 'hpfm_lov') {
+            column(name: "request_method", type: "varchar(" + 30 * weight + ")", defaultValue: "GET", remarks: "请求方式，值集：HPFM.REQUEST_METHOD") {
+                constraints(nullable: "false")
+            }
+        }
+    }
+
 }

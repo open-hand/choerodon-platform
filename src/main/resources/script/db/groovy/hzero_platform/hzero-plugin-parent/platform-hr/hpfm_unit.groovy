@@ -128,4 +128,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit.groovy') {
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-07-20-hpfm_unit") {
         modifyDataType(tableName: "hpfm_unit", columnName: 'unit_name', newDataType: "varchar(" + 240 * weight + ")")
     }
+
+    changeSet(author: 'hzero@hand-china.com', id: '2020-12-15-hpfm_unit') {
+        // 重建索引
+        dropIndex(tableName: "hpfm_unit", indexName: "hpfm_unit_n1")
+        createIndex(tableName: "hpfm_unit", indexName: "hpfm_unit_n1") {
+            column(name: "unit_type_code")
+            column(name: "unit_company_id")
+            column(name: "tenant_id")
+        }
+    }
 }

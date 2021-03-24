@@ -80,4 +80,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_employee_user.groovy') {
             column(name: "attribute15", type: "varchar(" + 150 * weight + ")")
         }
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_employee_user") {
+        createIndex(tableName: "hpfm_employee_user", indexName: "hpfm_employee_user_n1") {
+            column(name: "employee_id")
+        }
+    }
 }

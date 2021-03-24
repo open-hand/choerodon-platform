@@ -35,4 +35,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_field_permission.groovy') {
             column(name: 'data_source',  type: 'varchar(30)', defaultValue: "DEFAULT", remarks: '数据来源') {constraints(nullable: "false")}
         }
     }
+
+    changeSet(author: "bo.he02@hand-china.com", id: "hiam_field_permission-2020-12-22-version-2") {
+        dropUniqueConstraint (tableName: "hiam_field_permission", constraintName: "hiam_field_permission_u1")
+        addUniqueConstraint (tableName: "hiam_field_permission", columnNames: "permission_dimension,dimension_value,permission_type,field_id,tenant_id", constraintName: "hiam_field_permission_u1")
+    }
+
 }
