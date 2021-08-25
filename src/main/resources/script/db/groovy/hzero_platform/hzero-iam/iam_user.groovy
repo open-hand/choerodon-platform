@@ -131,9 +131,4 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
             column(name: "organization_id")
         }
     }
-    changeSet(author: "wx@hand-china.com", id: "2021-08-17-add-column") {
-        addColumn(tableName: 'iam_user') {
-            column(name: "phone_valid", type: "tinyint", afterColumn: "phone", defaultValue: "0", remarks: "手机号是否通过校验(目前只针对非ldap用户做校验)。1是，0不是")
-        }
-    }
 }
