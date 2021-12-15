@@ -31,12 +31,13 @@ spring:
 
 server:
   undertow:
-    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接
-    # 默认值为8，建议设置每个CPU核心一个线程
-    io-threads: ${SERVER_UNDERTOW_IO_THREADS:4}
-    # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程
-    # 默认等于 io-threads*8，它的值设置取决于系统的负载，可适当调大该值
-    worker-threads: ${SERVER_UNDERTOW_WORKER_THREADS:128}
+    threads:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接
+      # 默认值为8，建议设置每个CPU核心一个线程
+      io: ${SERVER_UNDERTOW_IO_THREADS:4}
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程
+      # 默认等于 io-threads*8，它的值设置取决于系统的负载，可适当调大该值
+      worker: ${SERVER_UNDERTOW_WORKER_THREADS:128}
     # 每块buffer的空间大小，越小空间被利用越充分
     # 不要设置太大，以免影响其他应用，合适即可
     buffer-size: ${SERVER_UNDERTOW_BUFFER_SIZE:1024}
@@ -46,53 +47,35 @@ server:
     # HTTP POST请求最大的大小
     # 默认0，无限制，可设置10M
     max-http-post-size: 10485760
-    allow-unescaped-characters-in-url: true
 
 feign:
-  hystrix:
-    enabled: true
-
-hystrix:
-  threadpool:
-    default:
-      # 执行命令线程池的核心线程数，也是命令执行的最大并发量，默认10
-      coreSize: ${HYSTRIX_THREADPOOL_DEFAULT_CORE_SIZE:128}
-      # 最大执行线程数
-      maximumSize: ${HYSTRIX_THREADPOOL_DEFAULT_MAXIMUM_SIZE:256}
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            # hystrix熔断时间，12秒，需大于feign/ribbon的超时时间
-            timeoutInMilliseconds: ${HYSTRIX_COMMAND_TIMEOUT_IN_MILLISECONDS:12000}
-
-ribbon:
-  # Ribbon从DiscoveryClient同步Server的间隔时间，默认30秒
-  ServerListRefreshInterval: ${RIBBON_SERVER_LIST_REFRESH_INTERVAL:10000}
-  # 客户端读取超时时间，超时时间要小于Hystrix的超时时间，否则重试机制就无意义了
-  ReadTimeout: ${RIBBON_READ_TIMEOUT:5000}
-  # 客户端连接超时时间
-  ConnectTimeout: ${RIBBON_CONNECT_TIMEOUT:2000}
-  # 默认只重试 GET，设置为true时将重试所有类型，如 POST、PUT、DELETE
-  # 重试对Feign生效，对RestTemplate不生效，RestTemplate要重试需加入spring-retry依赖
-  OkToRetryOnAllOperations: false
-  # 同一个Server重试次数
-  MaxAutoRetries: 0
-  # 最多重试几个Server
-  MaxAutoRetriesNextServer: 1
+  circuitbreaker:
+    # 启用断路器
+    enabled: ${FEIGN_CIRCUITBREAKER_ENABLED:true}
+  # 请求压缩配置
+  compression:
+    request:
+      # 配置请求GZIP压缩
+      enabled: ${FEIGN_COMPRESSION_REQUEST_ENABLED:true}
+      # 配置压缩数据大小的下限
+      min-request-size: ${FEIGN_COMPRESSION_REQUEST_MIN_REQUEST_SIZE:2048}
+  # Feign客户端配置
+  client:
+    config:
+      # Feign客户端默认配置
+      default:
+        # 连接超时
+        connectTimeout: ${FEIGN_CLIENT_CONFIG_DEFAULT_CONNECT_TIMEOUT:2000}
+        # 读取超时
+        readTimeout: ${FEIGN_CLIENT_CONFIG_DEFAULT_READ_TIMEOUT:5000}
+        # Feign日志级别：NONE/BASIC/HEADERS/FULL
+        loggerLevel: ${FEIGN_CLIENT_CONFIG_DEFAULT_LOGGER_LEVEL:FULL}
 
 mybatis:
   mapperLocations: classpath*:/mapper/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
-    key-generator: snowflake
-    snowflake:
-      start-timestamp: 1577808000000
-      meta-provider: redis
-      meta-provider-redis-db: ${SPRING_REDIS_DATABASE:1}
-      meta-provider-redis-refresh-interval: 540000
-      meta-provider-redis-expire: 600000
+    enable-mapper-override: true
 
 choerodon:
   saga:
@@ -141,6 +124,20 @@ hzero:
     encrypt:
       public-key: ${HZERO_OAUTH_PASSWORD_PUBLIC_KEY:MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJL0JkqsUoK6kt3JyogsgqNp9VDGDp+t3ZAGMbVoMPdHNT2nfiIVh9ZMNHF7g2XiAa8O8AQWyh2PjMR0NiUSVQMCAwEAAQ==}
       private-key: ${HZERO_OAUTH_PASSWORD_PRIVATE_KEY:MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkvQmSqxSgrqS3cnKiCyCo2n1UMYOn63dkAYxtWgw90c1Pad+IhWH1kw0cXuDZeIBrw7wBBbKHY+MxHQ2JRJVAwIDAQABAkB3TKXZcVP6tSSN0UgOjLPxng99Z4xvrWJ1jdHFB7TYyUDcnOtE6GkeeMGxtszYtuZ0m5rN9r8eRvIdVUciXbQhAiEA7WGcLd+cvHHA8xNFrbT78Aq4iYm0TVTS6m05ZEOS328CIQCeetcFV8Kdb+P2Y+yWvMtbyFGhROQIFizvxM3S3TiZrQIhAJLrYPB7f9SaSyOm/+89Htk4qXJmyjM6lrgFFgpaUGL9AiB+pkCr/mSDGOYfA+AQ3rPNl5rUvI9XfxFOVAMAntYayQIhAO0hrnwtng6Ubs+58BN69vAl+sd/xugf0jsHcNgZppAb}
+  data:
+    permission:
+      db-owner: ${HZERO_DB_OWNER:}
+      # 数据权限本地缓存过期时间
+      local-cache-expiration-time: ${HZERO_DATA_PERMISSION_CACHE_EXPIR_TIME:1s}
+    change:
+      enable: false
+  audit:
+    operation:
+      # 全局开关，默认 false
+      enable: false
+    data:
+      # 是否启用数据变更监控功能
+      enable: false
   scheduler:
     executor-code: HPFM_EXECUTOR
   export:
@@ -160,8 +157,10 @@ hzero:
 
 logging:
   level:
+    org.springframework.cloud: info
+    io.github.resilience4j: info
+    com.netflix.discovery: warn
+    org.hzero.boot.platform.lov: info
+    org.apache.ibatis: ${LOG_LEVEL:info}
     io.choerodon: ${LOG_LEVEL:info}
-    org.hzero.mybatis: ${LOG_LEVEL:info}
-    org.hzero.platform: ${LOG_LEVEL:info}
-    org.hzero.starter: ${LOG_LEVEL:info}
-    org.hzero.plugin.platform: ${LOG_LEVEL:info}
+    org.hzero: ${LOG_LEVEL:info}
