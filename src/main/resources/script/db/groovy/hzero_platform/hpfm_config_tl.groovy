@@ -18,4 +18,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_config_tl.groovy') {
 
         addUniqueConstraint(columnNames:"config_id,lang",tableName:"hpfm_config_tl",constraintName: "hpfm_config_tl_u1")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2021-07-12-hpfm_config_tl"){
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        dropNotNullConstraint(tableName: "hpfm_config_tl", columnName: "config_value", columnDataType: "varchar(" + 240 * weight + ")")
+    }
 }

@@ -75,10 +75,18 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit.groovy') {
         }
     }
 
-    changeSet(id: '2021-2-3-add-column-hpfm_cusz_unit', author: 'yahang.liu@hand-china.com') {
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-03-22_hpfm_cusz_unit") {
         addColumn(tableName: 'hpfm_cusz_unit') {
-            column(name: 'unit_source', type: "varchar(" + 20 * weight + ")",remarks: '导入时的单元数据来源')
+            column(name: "show_field", type: "varchar(" + 255 * weight + ")", remarks: "默认展示字段")
         }
+    }
 
+    changeSet(author: "yupeng@going-link.com", id: "2021-04-20_hpfm_cusz_unit-addColumns") {
+        addColumn(tableName: 'hpfm_cusz_unit') {
+            column(name: "filter_sort", type: "varchar(" + 1300* weight + ")", remarks: "筛选器排序")
+        }
+        addColumn(tableName: 'hpfm_cusz_unit') {
+            column(name: "default_filter", type: "varchar(" + 60 * weight + ")", remarks: "默认筛选器编码")
+        }
     }
 }

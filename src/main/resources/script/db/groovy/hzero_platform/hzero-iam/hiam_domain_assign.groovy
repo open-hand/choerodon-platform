@@ -29,5 +29,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_domain_assign.groovy') {
 
     changeSet(author: "bo.he02@hand-china.com", id: "hiam_domain_assign-2021-01-27-version-2") {
         dropDefaultValue (tableName: "hiam_domain_assign", columnName: "company_id", columnDataType: "bigint")
+        if (helper.isMysql()) {
+            sql {
+                "ALTER TABLE hiam_domain_assign MODIFY column company_id bigint DEFAULT NULL;"
+            }
+        }
     }
 }

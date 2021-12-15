@@ -106,4 +106,27 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_client.groovy') {
         }
     }
 
+    changeSet(author: "shuangfei.zhu@hand-china.com", id: "2021-06-08-oauth_client") {
+        def weight = 1
+        if (helper.isSqlServer()) {
+            weight = 2
+        } else if (helper.isOracle()) {
+            weight = 3
+        }
+        addColumn(tableName: 'oauth_client') {
+            column(name: "date_format", type: "varchar(" + 30 * weight + ")", defaultValue: "YYYY-MM-DD", remarks: "日期格式(年月日)") { constraints(nullable: "false") }
+        }
+    }
+
+    changeSet(author: "shuangfei.zhu@hand-china.com", id: "2021-06-09-oauth_client") {
+        def weight = 1
+        if (helper.isSqlServer()) {
+            weight = 2
+        } else if (helper.isOracle()) {
+            weight = 3
+        }
+        addColumn(tableName: 'oauth_client') {
+            column(name: "time_format", type: "varchar(" + 30 * weight + ")", defaultValue: "HH:mm:ss", remarks: "时间格式(时分秒)") { constraints(nullable: "false") }
+        }
+    }
 }

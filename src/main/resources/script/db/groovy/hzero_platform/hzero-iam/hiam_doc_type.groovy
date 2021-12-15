@@ -62,4 +62,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_doc_type.groovy') {
         }
         dropNotNullConstraint (tableName: "hiam_doc_type", columnName: "source_service_name", columnDataType: "varchar(" + 80 * weight + ")")
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-03-26-hiam_doc_type") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType (tableName: "hiam_doc_type", columnName: "source_service_name", newDataType: "varchar(" + 240 * weight + ")")
+    }
 }

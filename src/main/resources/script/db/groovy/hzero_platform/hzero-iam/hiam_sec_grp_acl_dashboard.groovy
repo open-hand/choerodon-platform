@@ -17,7 +17,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp_acl_dashboard.groovy'
             column(name: "tenant_id", type: "bigint",   defaultValue:"0",   remarks: "租户")  {constraints(nullable:"false")}  
             column(name: "card_id", type: "int",  remarks: "卡片ID，hpfm.hpfm_dashboard_card.id")  {constraints(nullable:"false")}  
             column(name: "x", type: "tinyint",  remarks: "x轴")  {constraints(nullable:"false")}  
-            column(name: "y", type: "tinyint",  remarks: "y轴")  {constraints(nullable:"false")}  
+            column(name: "y", type: "tinyint",  remarks: "y轴")  {constraints(nullable:"false")}
             column(name: "default_display_flag", type: "tinyint",  remarks: "初始化标识")  {constraints(nullable:"false")}  
             column(name: "remark", type: "longtext",  remarks: "备注说明")   
             column(name: "object_version_number", type: "bigint",   defaultValue:"1",   remarks: "行版本号，用来处理锁")  {constraints(nullable:"false")}  
@@ -29,5 +29,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_sec_grp_acl_dashboard.groovy'
         }
 
         addUniqueConstraint(columnNames:"sec_grp_id,tenant_id,card_id",tableName:"hiam_sec_grp_acl_dashboard",constraintName: "hiam_sec_grp_acl_dashboard_u1")
+
+    }
+    changeSet(author: "hongjian.zhao@hand-china.com", id: "2021-9-22-hiam_sec_grp_acl_dashboard") {
+        addColumn(tableName: 'hiam_sec_grp_acl_dashboard') {
+            column(name: "w", type: "int", remarks: "宽度")
+            column(name: "h", type: "int", remarks: "高度")
+            column(name: "min_w", type: "int", remarks: "最小宽度")
+            column(name: "min_h", type: "int", remarks: "最小高度")
+        }
     }
 }

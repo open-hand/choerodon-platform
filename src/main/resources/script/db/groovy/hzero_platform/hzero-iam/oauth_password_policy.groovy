@@ -128,4 +128,12 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_policy.groovy') {
             column(name: "enable_data_security", type: "tinyint", defaultValue: 0, remarks: "启用数据加密") { constraints(nullable: "false") }
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "2021-10-11-oauth_password_policy") {
+        addColumn (tableName: "oauth_password_policy") {
+            column (name: "access_token_validity", type: "bigint", remarks: "客户端特定的AccessToken超时时间", afterColumn: "enable_data_security")
+        }
+        addColumn (tableName: "oauth_password_policy") {
+            column (name: "refresh_token_validity", type: "bigint", remarks: "客户端特定的RefreshToken超时时间", afterColumn: "access_token_validity")
+        }
+    }
 }
