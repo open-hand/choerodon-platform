@@ -23,5 +23,8 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_profile_tl.groovy') {
     changeSet(author: "hzero@hand-china.com", id: "2020-09-02-1-hpfm_profile_tl") {
         addUniqueConstraint(columnNames: "profile_id,lang", tableName: "hpfm_profile_tl", constraintName: "hpfm_profile_tl_u1")
     }
+    changeSet(author: "hzero@hand-china.com", id: "2021-06-08-hpfm_profile_tl") {
+        addDefaultValue(tableName: "hpfm_profile_tl", columnName: "tenant_id", columnDataType: "bigint", defaultValue: "0")
+    }
 }
 

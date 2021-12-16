@@ -110,5 +110,21 @@ databaseChangeLog(logicalFilePath: 'classpath:config/db/himp_tables.xml') {
         addUniqueConstraint(tableName: "himp_local_template", constraintName: "himp_local_template_u1", columnNames: "template_code,tenant_id")
     }
 
+    changeSet(author: "hzero@hand-china.com", id: "2021-08-23-himp_import") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: 'himp_import') {
+            column(name: "file_name", type: "varchar(" + 240 * weight + ")", remarks: "文件名")
+        }
+        dropIndex(tableName: "himp_data", indexName: "himp_data_n1")
+        createIndex(tableName: "himp_data", indexName: "himp_data_n1") {
+            column(name: "batch")
+            column(name: "data_status")
+        }
+    }
 
 }

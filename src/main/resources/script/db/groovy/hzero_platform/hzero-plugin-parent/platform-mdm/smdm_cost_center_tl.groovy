@@ -34,5 +34,8 @@ databaseChangeLog(logicalFilePath: 'script/db/smdm_cost_center_tl.groovy') {
             }
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "smdm_cost_center_tl-2021-07-08-version-2") {
+        addUniqueConstraint (tableName: "smdm_cost_center_tl", columnNames: "cost_id,lang", constraintName: "smdm_cost_center_tl_u1")
+    }
 }
 

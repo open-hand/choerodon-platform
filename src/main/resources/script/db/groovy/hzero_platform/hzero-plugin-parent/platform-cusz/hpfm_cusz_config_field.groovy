@@ -143,10 +143,54 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field.groovy') {
         }
     }
 
-    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2021-01-11-hpfm_cusz_hpfm_cusz_config_field-add_encrypt_flag"){
+    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2021-01-11-hpfm_cusz_hpfm_cusz_config_field-add_encrypt_flag") {
         addColumn(tableName: 'hpfm_cusz_config_field') {
-            column(name: "encrypt_flag", type: "smallint", remarks: "字段加密标识（-1-自动识别，0-禁用，1-启用）" ,defaultValue:"-1")
+            column(name: "encrypt_flag", type: "smallint", remarks: "字段加密标识（-1-自动识别，0-禁用，1-启用）", defaultValue: "-1")
         }
     }
 
+    changeSet(author: "peng.yu01@hand-china.com", id: "2021-03-22-hpfm_cusz_config_field-add_column_pro_default_flag") {
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "pro_default_flag", type: "tinyint", remarks: "高级默认值启用标识")
+        }
+    }
+
+    changeSet(author: "yupeng@goning-link.com", id: "2021-04-12_hpfm_cusz_config_field_modify-defaultValue") {
+        addDefaultValue(tableName: 'hpfm_cusz_config_field', columnName: 'default_active', defaultValue: '-1')
+    }
+
+    changeSet(author: "yupeng@going-link.com", id: "2021-04-19-hpfm_cusz_config_field-addColumns") {
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "display_field", type: "varchar(" + 120 * weight + ")", remarks: "值集显示字段编码")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "value_field", type: "varchar(" + 120 * weight + ")", remarks: "值集值字段编码")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "event_code", type: "varchar(" + 255 * weight + ")", remarks: "按钮单元字段事件编码")
+        }
+    }
+
+    changeSet(author: "yupeng@going-link.com", id: "2021-04-20-hpfm_cusz_config_field-addColumns") {
+        addColumn(tableName: 'hpfm_cusz_config_field') {
+            column(name: "help_message", type: "varchar(" + 1200 * weight + ")", remarks: "帮助信息")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field_tl') {
+            column(name: "help_message", type: "varchar(" + 1200 * weight + ")", remarks: "帮助信息")
+        }
+    }
+
+    changeSet(id: '2021-06-10-hpfm_cusz_config_field_prefix', author: 'qixiangyu@going-link.com') {
+        sql(splitStatements:"true",stripComments:"true"){
+            "update hpfm_cusz_config_field set pro_default_flag = 0;"}
+    }
+
+    changeSet(id: '2021-06-10-hpfm_cusz_config_field', author: 'qixiangyu@going-link.com') {
+        addDefaultValue(tableName: "hpfm_cusz_config_field", columnName: "pro_default_flag", defaultValue: "0")
+        addNotNullConstraint(tableName: "hpfm_cusz_config_field", columnName: "pro_default_flag", columnDataType: "tinyint")
+    }
+    changeSet(author: "hzero@hand-china.com", id: "hpfm_cusz_config_field_tl-2021-07-08-version-2") {
+        dropPrimaryKey (tableName: "hpfm_cusz_config_field_tl")
+        addUniqueConstraint (tableName: "hpfm_cusz_config_field_tl", columnNames: "config_field_id,lang", constraintName: "hpfm_cusz_config_field_tl_u1")
+    }
 }

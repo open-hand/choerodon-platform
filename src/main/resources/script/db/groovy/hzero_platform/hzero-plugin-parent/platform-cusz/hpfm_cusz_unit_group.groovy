@@ -34,16 +34,4 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_unit_group.groovy') {
         }
         addUniqueConstraint(columnNames: "group_code", tableName: "hpfm_cusz_unit_group", constraintName: "hpfm_cusz_unit_group_U1")
     }
-
-    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-12-10_hpfm_cusz_unit_group_add_enable_flag") {
-        addColumn(tableName: 'hpfm_cusz_unit_group') {
-            column(name: "enable_flag",  type:"tinyint", remarks: "启用标志" ,defaultValue: "1") {constraints(nullable:"false")}
-        }
-    }
-
-    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_cusz_unit_group") {
-        createIndex(tableName: "hpfm_cusz_unit_group", indexName: "hpfm_cusz_unit_group_n1") {
-            column(name: "group_menu_code")
-        }
-    }
 }

@@ -62,5 +62,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hiam_user_info.groovy') {
             column(name: "sec_check_email_flag", type: "tinyint", defaultValue: "0", remarks: "二次校验验证码是否发送给邮箱")  {constraints(nullable:"false")}
         }
     }
-
+    changeSet(author: "hzero@hand-china.com", id: "2021-07-21-hiam_user_info") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hiam_user_info", columnName: "nickname", newDataType: "varchar(" + 120 * weight + ")");
+    }
 }

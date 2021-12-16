@@ -61,5 +61,67 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_audit_login.groovy') {
         addColumn(tableName: "hpfm_audit_login") {
             column(name: "grant_type", type: "varchar(60)", remarks:"授权类型", afterColumn: "tenant_id") { constraints(nullable: "true") }
         }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "audit_type", remarks: "审计类型")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "email", remarks: "邮箱")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_client", remarks: "登录客户端")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_date", remarks: "登录时间")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_ip", remarks: "登录IP")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_message", remarks: "登录信息")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_name", remarks: "登录名")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_os", remarks: "登录操作系统")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_platform", remarks: "登录平台")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "login_status", remarks: "登录状态")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "phone", remarks: "电话")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "tenant_id", remarks: "租户ID")
+        }
+        //mysql不支持setColumnRemarks命令
+        if (!helper.isMysql()) {
+            setColumnRemarks (tableName: "hpfm_audit_login", columnName: "user_id", remarks: "用户ID")
+        }
+    }
+    changeSet(author: "hzero@hand-china.com", id: "hpfm_audit_login-2021-07-08-version-3") {
+        createIndex (tableName: "hpfm_audit_login", indexName: "hpfm_audit_login_n1") {
+            column (name: "user_id")
+        }
+        createIndex (tableName: "hpfm_audit_login", indexName: "hpfm_audit_login_n2") {
+            column (name: "audit_type")
+            column (name: "phone")
+            column (name: "email")
+        }
     }
 }

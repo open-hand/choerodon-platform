@@ -1,13 +1,13 @@
 package script.db
 
 databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config.groovy') {
+    def weight = 1
+    if (helper.isSqlServer()) {
+        weight = 2
+    } else if (helper.isOracle()) {
+        weight = 3
+    }
     changeSet(author: "peng.yu01@hand-china.com", id: "2020-01-14_hpfm_cusz_config") {
-        def weight = 1
-        if (helper.isSqlServer()) {
-            weight = 2
-        } else if (helper.isOracle()) {
-            weight = 3
-        }
         if (helper.dbType().isSupportSequence()) {
             createSequence(sequenceName: 'hpfm_cusz_config_s', startValue: "1")
         }
@@ -36,13 +36,13 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config.groovy') {
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-02-11_hpfm_cusz_config_add_user_id") {
         addColumn(tableName: 'hpfm_cusz_config') {
-            column(name: "user_id",  type:"bigint", remarks: "用户id",defaultValue: "-1")
+            column(name: "user_id", type: "bigint", remarks: "用户id", defaultValue: "-1")
         }
     }
 
     changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-02-11_hpfm_cusz_config_add_page_size") {
         addColumn(tableName: 'hpfm_cusz_config') {
-            column(name: "form_page_size",  type:"int", remarks: "表格分页大小")
+            column(name: "form_page_size", type: "int", remarks: "表格分页大小")
         }
     }
 
@@ -57,9 +57,18 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config.groovy') {
         }
     }
 
-    changeSet(author: "hzero@hand-china.com", id: "2020-12-15-hpfm_cusz_config") {
-        createIndex(tableName: "hpfm_cusz_config", indexName: "hpfm_cusz_config_n1") {
-            column(name: "user_id")
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-03-22_hpfm_cusz_config") {
+        addColumn(tableName: 'hpfm_cusz_config') {
+            column(name: "show_field", type: "varchar(" + 255 * weight + ")", remarks: "默认展示字段")
+        }
+    }
+
+    changeSet(author: "yupeng@going-link.com", id: "2021-04-20_hpfm_cusz_config-addColumns") {
+        addColumn(tableName: 'hpfm_cusz_config') {
+            column(name: "filter_sort", type: "varchar(" + 1300 * weight + ")", remarks: "筛选器排序")
+        }
+        addColumn(tableName: 'hpfm_cusz_config') {
+            column(name: "default_filter", type: "varchar(" + 60 * weight + ")", remarks: "默认筛选器编码")
         }
     }
 }

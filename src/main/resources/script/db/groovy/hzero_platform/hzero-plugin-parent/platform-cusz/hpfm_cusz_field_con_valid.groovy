@@ -42,6 +42,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_field_con_valid.groovy')
     }
 
     changeSet(author: "peng.yu01@hand-china.com", id: "2020-04-10-hpfm_cusz_field_con_valid_tl") {
+        if (helper.dbType().isSupportSequence()) {
+            createSequence(sequenceName: 'hpfm_cusz_field_con_valid_tl_S', startValue: "1")
+        }
         createTable(tableName: "hpfm_cusz_field_con_valid_tl") {
             column(name: "con_valid_id", type: "bigint", remarks: "hpfm_cusz_field_con_valid 主键") { constraints(nullable: false) }
             column(name: "lang", type: "varchar(" + 30 * weight + ")", remarks: "语言") { constraints(nullable: false) }
@@ -57,8 +60,7 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_field_con_valid.groovy')
     }
 
     changeSet(author: "peng.yu01@hand-china.com", id: "2020-11-11-hpfm_cusz_field_con_valid-modify-error_message") {
-        dropNotNullConstraint(tableName: "hpfm_cusz_field_con_valid", columnName: "error_message", columnDataType: "varchar(" + 510 * weight + ")")
-        dropNotNullConstraint(tableName: "hpfm_cusz_field_con_valid_tl", columnName: "error_message", columnDataType: "varchar(" + 510 * weight + ")")
+        modifyDataType(tableName: "hpfm_cusz_field_con_valid", columnName: 'error_message', newDataType: "varchar(" + 255 * weight + ")")
+        modifyDataType(tableName: "hpfm_cusz_field_con_valid_tl", columnName: 'error_message', newDataType: "varchar(" + 255 * weight + ")")
     }
-
 }

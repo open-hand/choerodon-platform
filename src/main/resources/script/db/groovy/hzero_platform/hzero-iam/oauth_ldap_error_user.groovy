@@ -47,4 +47,9 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_error_user.groovy') {
             }
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "oauth_ldap_error_user-2021-07-08-version-2") {
+        createIndex (tableName: "oauth_ldap_error_user", indexName: "oauth_ldap_error_user_n1") {
+            column (name: "LDAP_HISTORY_ID")
+        }
+    }
 }

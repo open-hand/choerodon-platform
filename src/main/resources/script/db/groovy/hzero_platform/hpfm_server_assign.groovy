@@ -26,4 +26,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_server_assign.groovy') {
         }
 
     }
+    changeSet(author: "hzero@hand-china.com", id: "hpfm_server_assign-2021-07-08-version-2") {
+        createIndex (tableName: "hpfm_server_assign", indexName: "hpfm_server_assign_n1") {
+            column (name: "CLUSTER_ID")
+        }
+    }
 }

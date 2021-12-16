@@ -56,4 +56,10 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_tenant.groovy') {
     changeSet(author: "hzero@hand-china.com", id: "2021-03-02-hpfm_tenant") {
         modifyDataType(tableName: "hpfm_tenant", columnName: "table_split_seq", newDataType: "bigint")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2021-06-25-hpfm_tenant") {
+        addColumn(tableName: "hpfm_tenant") {
+            column(name: "limit_language", type: "varchar(" + 240 * weight + ")", remarks: "租户可使用语言，null表示不限制")
+        }
+    }
 }

@@ -50,5 +50,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_export_task.groovy') {
         addUniqueConstraint(columnNames:"task_code",tableName:"hpfm_export_task",constraintName: "hpfm_export_task_U1")
     }
 
-
+    changeSet(author: "hzero@hand-china.com", id: "2021-09-02-hpfm_export_task") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        addColumn(tableName: 'hpfm_export_task') {
+            column(name: "filename", type: "varchar(" + 240 * weight + ")", remarks: "文件名")
+        }
+    }
 }
