@@ -51,14 +51,16 @@ public class LanguageAutoUpdateTask implements Runnable {
 
     @Override
     public void run() {
-        logger.info("================redisHelper:{}",redisHelper);
-        logger.info("================redisHelper:{}",redisHelper==null);
-        logger.info("================properties:{}",properties);
-        logger.info("================properties:{}",properties==null);
-        logger.info("================getLock:{}",getLock());
+        logger.info("================redisHelper:{}", redisHelper);
+        logger.info("================redisHelper:{}", redisHelper == null);
+        logger.info("================properties:{}", properties);
+        logger.info("================properties:{}", properties == null);
+        Boolean getLock = getLock();
+        logger.info("================getLock:{}", getLock);
+
         if (redisHelper == null
                 || properties == null
-                || !getLock()) {
+                || !getLock) {
             return;
         }
         loadLatestVersionLanguages();
