@@ -56,11 +56,6 @@ public class InvalidRedisKeyRunner implements CommandLineRunner {
                 keySet.addAll(keys);
                 redisHelper.delKeys(keySet);
 
-                Group group = hpfmGroupC7nMapper.selectMaxIdGroup();
-                if (!Objects.isNull(group)) {
-                    int dbMaxGroupId = Integer.parseInt(StringUtils.split(group.getGroupNum(), "BG")[1]);
-                    redisHelper.strSet(GROUP_SEQUENCE_KEY, String.valueOf(dbMaxGroupId));
-                }
             } catch (Exception e) {
                 throw new CommonException(REDIS_ERROR, e);
             }
