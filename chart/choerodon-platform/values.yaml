@@ -85,22 +85,10 @@ env:
     SPRING_DATASOURCE_MAXIMUM_POOL_SIZE: 200
     # 等待连接池分配连接的最大时长（毫秒）
     SPRING_DATASOURCE_CONNECTION_TIMEOUT: 30000
-
-    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接
-    # 默认值为8，建议设置每个CPU核心一个线程
-    SERVER_UNDERTOW_IO_THREADS: 4
-    # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程
-    # 默认等于 io-threads*8，它的值设置取决于系统的负载，可适当调大该值
-    SERVER_UNDERTOW_WORKER_THREADS: 128
-    # 每块buffer的空间大小，越小空间被利用越充分
-    # 不要设置太大，以免影响其他应用，合适即可
-    SERVER_UNDERTOW_BUFFER_SIZE: 1024
-    # Hystrix 熔断超时时间
-    HYSTRIX_COMMAND_TIMEOUT_IN_MILLISECONDS: 12000
-    # Ribbon 读取超时时间
-    RIBBON_READ_TIMEOUT: 5000
-    # Ribbon 连接超时时间
-    RIBBON_CONNECT_TIMEOUT: 2000
+    # 连接超时
+    FEIGN_CLIENT_CONFIG_DEFAULT_CONNECT_TIMEOUT: 2000
+    # 读取超时
+    FEIGN_CLIENT_CONFIG_DEFAULT_READ_TIMEOUT: 5000
     # 是否开启SQL类型LOV
     HZERO_LOV_SQL_ENABLED: true
     # 是否开启LOV值翻译
@@ -117,16 +105,10 @@ env:
     HZERO_OAUTH_PASSWORD_PRIVATE_KEY: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkvQmSqxSgrqS3cnKiCyCo2n1UMYOn63dkAYxtWgw90c1Pad+IhWH1kw0cXuDZeIBrw7wBBbKHY+MxHQ2JRJVAwIDAQABAkB3TKXZcVP6tSSN0UgOjLPxng99Z4xvrWJ1jdHFB7TYyUDcnOtE6GkeeMGxtszYtuZ0m5rN9r8eRvIdVUciXbQhAiEA7WGcLd+cvHHA8xNFrbT78Aq4iYm0TVTS6m05ZEOS328CIQCeetcFV8Kdb+P2Y+yWvMtbyFGhROQIFizvxM3S3TiZrQIhAJLrYPB7f9SaSyOm/+89Htk4qXJmyjM6lrgFFgpaUGL9AiB+pkCr/mSDGOYfA+AQ3rPNl5rUvI9XfxFOVAMAntYayQIhAO0hrnwtng6Ubs+58BN69vAl+sd/xugf0jsHcNgZppAb
     # 匹配的资源才会解析JwtToken便于得到UserDetails
     HZERO_RESOURCE_PATTERN: /v1/*,/hzero/*,/iam/v1/*,/iam/hzero/*,/choerodon/v1/*
-    # Ribbon从DiscoveryClient同步Server的间隔时间，默认30秒
-    RIBBON_SERVER_LIST_REFRESH_INTERVAL: 10000
     # 续约间隔时间，默认30秒
     EUREKA_INSTANCE_LEASE_RENEWAL_INTERVAL_IN_SECONDS: 30
     # 实例故障摘除时间，默认90秒，实际是90*2=180秒，配置45就是90秒
     EUREKA_INSTANCE_LEASE_EXPIRATION_DURATION_IN_SECONDS: 45
-    # 执行命令线程池的核心线程数，也是命令执行的最大并发量，默认10
-    HYSTRIX_THREADPOOL_DEFAULT_CORE_SIZE: 128
-    # 最大执行线程数
-    HYSTRIX_THREADPOOL_DEFAULT_MAXIMUM_SIZE: 256
     # 日志级别
     LOG_LEVEL: info
     # JVM配置
