@@ -1,20 +1,17 @@
 package io.choerodon.platform.app.task;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import io.choerodon.core.exception.CommonException;
+import io.choerodon.platform.infra.mapper.HpfmGroupC7nMapper;
 import org.hzero.core.redis.RedisHelper;
 import org.hzero.platform.domain.entity.Group;
-import org.hzero.platform.domain.repository.HpfmGroupRepository;
-import org.hzero.platform.infra.mapper.HpfmGroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import io.choerodon.core.exception.CommonException;
-import io.choerodon.platform.infra.mapper.HpfmGroupC7nMapper;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by wangxiang on 2020/8/3
@@ -65,7 +62,7 @@ public class InvalidRedisKeyRunner implements CommandLineRunner {
                     redisHelper.strSet(GROUP_SEQUENCE_KEY, String.valueOf(dbMaxGroupId));
                 }
             } catch (Exception e) {
-                throw new CommonException(REDIS_ERROR);
+                throw new CommonException(REDIS_ERROR, e);
             }
         }).start();
     }
