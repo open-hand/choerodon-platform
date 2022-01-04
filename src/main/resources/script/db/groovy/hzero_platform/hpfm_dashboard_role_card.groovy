@@ -52,4 +52,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_dashboard_role_card.groovy') 
             }
         }
     }
+    changeSet(author: "hongjian.zhao@hand-china.com",id: "2021-9-22-hpfm_dashboard_role_card") {
+        addColumn(tableName: 'hpfm_dashboard_role_card'){
+            column(name: "w", type: "int", remarks: "宽度")
+            column(name: "h", type: "int", remarks: "高度")
+            column(name: "min_w", type: "int", remarks: "最小宽度")
+            column(name: "min_h", type: "int", remarks: "最小高度")
+        }
+    }
 }

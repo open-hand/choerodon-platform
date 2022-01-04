@@ -88,4 +88,15 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_position.groovy') {
             column(name: "attribute15", type: "varchar(" + 150 * weight + ")")
         }
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-04-08-hpfm_position") {
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        modifyDataType(tableName: "hpfm_position", columnName: 'position_code', newDataType: "varchar(" + 60 * weight + ")")
+        modifyDataType(tableName: "hpfm_position", columnName: 'position_name', newDataType: "varchar(" + 480 * weight + ")")
+    }
 }

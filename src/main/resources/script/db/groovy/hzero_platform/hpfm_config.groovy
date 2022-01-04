@@ -27,4 +27,14 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_config.groovy') {
 
         addUniqueConstraint(columnNames:"config_code,tenant_id",tableName:"hpfm_config",constraintName: "hpfm_config_u1")
     }
+
+    changeSet(author: "hzero@hand-china.com", id: "2021-07-12-hpfm_config"){
+        def weight = 1
+        if(helper.isSqlServer()){
+            weight = 2
+        } else if(helper.isOracle()){
+            weight = 3
+        }
+        dropNotNullConstraint(tableName: "hpfm_config", columnName: "config_value", columnDataType: "varchar(" + 240 * weight + ")")
+    }
 }

@@ -37,5 +37,8 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit_tl.groovy') {
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-07-20-hpfm_unit_tl") {
         modifyDataType(tableName: "hpfm_unit_tl", columnName: 'unit_name', newDataType: "varchar(" + 240 * weight + ")")
     }
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-04-08-hpfm_unit_tl") {
+        modifyDataType(tableName: "hpfm_unit_tl", columnName: 'unit_name', newDataType: "varchar(" + 480 * weight + ")")
+    }
 
 }

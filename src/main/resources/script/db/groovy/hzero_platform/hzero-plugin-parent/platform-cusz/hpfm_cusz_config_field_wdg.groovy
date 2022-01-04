@@ -2,9 +2,9 @@ package script.db
 
 databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field_wdg.groovy') {
     def weight = 1
-    if(helper.isSqlServer()){
+    if (helper.isSqlServer()) {
         weight = 2
-    } else if(helper.isOracle()){
+    } else if (helper.isOracle()) {
         weight = 3
     }
     changeSet(author: "peng.yu01@hand-china.com", id: "2020-01-14_hpfm_cusz_config_field_wdg") {
@@ -48,31 +48,54 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_config_field_wdg.groovy'
         addUniqueConstraint(columnNames: "config_field_id,tenant_id", tableName: "hpfm_cusz_config_field_wdg", constraintName: "hpfm_cusz_config_field_wdg_U1")
     }
 
-    changeSet(author: "peng.yu01@hand-china.com", id: "2020-02-28-hpfm_cusz_config_field_wdg-add_column"){
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-02-28-hpfm_cusz_config_field_wdg-add_column") {
         addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
             column(name: "default_value", type: "varchar(" + 225 * weight + ")", remarks: "组件默认值")
         }
     }
 
-    changeSet(author: "peng.yu01@hand-china.com", id: "2020-02-28-hpfm_cusz_config_field_wdg-add_column"){
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-02-28-hpfm_cusz_config_field_wdg-add_column") {
         addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
             column(name: "default_value", type: "varchar(" + 225 * weight + ")", remarks: "组件默认值")
         }
     }
 
-    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-05-12-hpfm_cusz_config_field_wdg-modify_column"){
+    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-05-12-hpfm_cusz_config_field_wdg-modify_column") {
         modifyDataType(tableName: "hpfm_cusz_config_field_wdg", columnName: 'default_value', newDataType: "varchar(2000)")
     }
 
-    changeSet(author: "peng.yu01@hand-china.com", id: "2020-05-12-hpfm_cusz_config_field_wdg-add_column"){
+    changeSet(author: "peng.yu01@hand-china.com", id: "2020-05-12-hpfm_cusz_config_field_wdg-add_column") {
         addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
-            column(name: "multiple_flag ", type: "tinyint", remarks: "是否多选组件")
+            column(name: "multiple_flag", type: "tinyint", remarks: "是否多选组件")
         }
     }
 
-    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-07-27-hpfm_cusz_config_field_wdg-add_column_placeholder"){
+    changeSet(author: "xiangyu.qi01@hand-china.com", id: "2020-07-27-hpfm_cusz_config_field_wdg-add_column_placeholder") {
         addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
             column(name: "placeholder", type: "varchar(" + 225 * weight + ")", remarks: "组件placeholder")
         }
     }
+
+    changeSet(author: "peng.yu01@hand-china.com", id: "2021-03-02-hpfm_cusz_config_field_wdg-add_column_link") {
+        addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
+            column(name: "link_type", type: "varchar(" + 60 * weight + ")", remarks: "链接类型")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
+            column(name: "modal_width", type: "int", remarks: "弹框宽度")
+        }
+        addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
+            column(name: "modal_height", type: "int", remarks: "弹框高度")
+        }
+    }
+
+    changeSet(author: "yupeng@going-link.com", id: "2021-04-19-hpfm_cusz_config_field_wdg-addColumns") {
+        addColumn(tableName: 'hpfm_cusz_config_field_wdg') {
+            column(name: "upload_show_flag", type: "tinyint", remarks: "上传组件-上传文件列表展开标识")
+        }
+    }
+
+    changeSet(author: "yupeng@going-link.com", id: "2021-04-21-hpfm_cusz_config_field_wdg-addDefaultValue") {
+        addDefaultValue(tableName: 'hpfm_cusz_config_field_wdg', columnName: "upload_show_flag", columnDataType: "tinyint", defaultValue: 0)
+    }
+
 }

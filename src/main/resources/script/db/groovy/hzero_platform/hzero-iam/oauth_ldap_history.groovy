@@ -41,4 +41,9 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_history.groovy') {
             }
         }
     }
+    changeSet(author: "hzero@hand-china.com", id: "oauth_ldap_history-2021-07-08-version-2") {
+        createIndex (tableName: "oauth_ldap_history", indexName: "oauth_ldap_history_n1") {
+            column (name: "ldap_id")
+        }
+    }
 }

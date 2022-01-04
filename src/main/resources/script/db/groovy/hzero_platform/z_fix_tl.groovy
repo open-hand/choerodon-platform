@@ -12,4 +12,55 @@ databaseChangeLog(logicalFilePath: 'script/db/z_fix_tl.groovy') {
             WHERE hbt.calendar_id IN (SELECT calendar_id FROM hpfm_calendar);
         """)
     }
+    changeSet(author: "scp",id: "2021-12-15-fix-1-8"){
+        sql("""
+            UPDATE hpfm_dashboard_role_card hdrc
+            SET hdrc.w = (
+            SELECT
+            hdc.w
+            FROM
+            hpfm_dashboard_card hdc
+            WHERE
+            hdrc.card_id = hdc.id
+            ),
+            hdrc.h = (
+            SELECT
+            hdc.h
+            FROM
+            hpfm_dashboard_card hdc
+            WHERE
+            hdrc.card_id = hdc.id
+            );
+
+            UPDATE hiam_sec_grp_acl_dashboard hsgad
+            SET hsgad.w = (
+            SELECT
+            hdc.w
+            FROM
+            hpfm_dashboard_card hdc
+            WHERE
+            hsgad.card_id = hdc.id
+            ),
+            hsgad.h = (
+            SELECT
+            hdc.h
+            FROM
+            hpfm_dashboard_card hdc
+            WHERE
+            hsgad.card_id = hdc.id
+            );
+            
+            update hpfm_config set config_value = 'iceflow' where config_code = 'MENU_LAYOUT_THEME' and config_value = 'theme1';
+
+            update hpfm_config set config_value = 'peacock' where config_code = 'MENU_LAYOUT_THEME' and (config_value = 'theme2' or config_value = 'color' or config_value = 'default');
+
+            update hpfm_config set config_value = 'aurora' where config_code = 'MENU_LAYOUT_THEME' and config_value = 'theme3';
+
+            update hiam_user_config set menu_layout_theme = 'iceflow' where menu_layout_theme = 'theme1';
+
+            update hiam_user_config set menu_layout_theme = 'peacock' where menu_layout_theme = 'theme2' or menu_layout_theme = 'color' or menu_layout_theme = 'default';
+
+            update hiam_user_config set menu_layout_theme = 'aurora' where menu_layout_theme = 'theme3';
+        """)
+    }
 }

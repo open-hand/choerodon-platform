@@ -115,4 +115,12 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_employee.groovy') {
             column(name: "birthday", type: "date", remarks: "出生日期")
         }
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-04-08-hpfm_employee") {
+        modifyDataType(tableName: "hpfm_employee", columnName: 'employee_num', newDataType: "varchar(" + 60 * weight + ")")
+        modifyDataType(tableName: "hpfm_employee", columnName: 'name', newDataType: "varchar(" + 480 * weight + ")")
+        modifyDataType(tableName: "hpfm_employee", columnName: 'email', newDataType: "varchar(" + 120 * weight + ")")
+        modifyDataType(tableName: "hpfm_employee", columnName: 'mobile', newDataType: "varchar(" + 120 * weight + ")")
+    }
+
 }

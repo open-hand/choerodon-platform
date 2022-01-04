@@ -53,10 +53,4 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_cusz_model_field_wdg.groovy')
             column(name: "default_value", type: "varchar(" + 225 * weight + ")", remarks: "组件默认值")
         }
     }
-
-    changeSet(author: "hzero@hand-china.com", id: "2021-01-20-hpfm_cusz_model_field_wdg-add_column"){
-        addColumn(tableName: 'hpfm_cusz_model_field_wdg') {
-            column(name: "display_name", type: "varchar(" + 120 * weight + ")", remarks: "显示名称")
-        }
-    }
 }

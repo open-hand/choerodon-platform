@@ -138,4 +138,9 @@ databaseChangeLog(logicalFilePath: 'script/db/hpfm_unit.groovy') {
             column(name: "tenant_id")
         }
     }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-04-08-hpfm_unit") {
+        modifyDataType(tableName: "hpfm_unit", columnName: 'unit_code', newDataType: "varchar(" + 60 * weight + ")")
+        modifyDataType(tableName: "hpfm_unit", columnName: 'unit_name', newDataType: "varchar(" + 480 * weight + ")")
+    }
 }

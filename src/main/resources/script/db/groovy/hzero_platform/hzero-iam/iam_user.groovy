@@ -124,11 +124,49 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
     changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2020-09-11-iam_user") {
         dropNotNullConstraint(tableName: "iam_user", columnName: "language", columnDataType: "varchar(" + 16 * weight + ")")
         dropDefaultValue(tableName: 'iam_user', columnName: 'language')
+        if (helper.isMysql()) {
+            sql {
+                "ALTER TABLE iam_user MODIFY column language VARCHAR(16) DEFAULT NULL;"
+            }
+        }
     }
 
     changeSet(author: "hzero@hand-china.com", id: "2020-12-15-iam_user") {
         createIndex(tableName: "iam_user", indexName: "iam_user_n3") {
             column(name: "organization_id")
         }
+    }
+
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-03-04-iam_user") {
+        addColumn(tableName: 'iam_user') {
+            column(name: "quick_index", type: "varchar(" + 240 * weight + ")", remarks: "快速索引")
+        }
+    }
+    changeSet(author: "xiaoyu.zhao@hand-china.com", id: "2021-04-08-iam_user") {
+        modifyDataType(tableName: "iam_user", columnName: 'email', newDataType: "varchar(" + 240 * weight + ")")
+        modifyDataType(tableName: "iam_user", columnName: 'phone', newDataType: "varchar(" + 60 * weight + ")")
+    }
+
+    changeSet(author: "wx@hand-china.com", id: "2021-08-17-add-column") {
+        addColumn(tableName: 'iam_user') {
+            column(name: "phone_bind", type: "tinyint", defaultValue: "0", remarks: "手机号是否通过校验(目前只针对非ldap用户做校验)。1是，0不是")
+        }
+    }
+
+    changeSet(author: "Admin@hand-china.com", id: "iam_user-2021-10-14-version-3") {
+        dropIndex (tableName: "iam_user", indexName: "iam_user_n1")
+        dropIndex (tableName: "iam_user", indexName: "iam_user_n2")
+        dropUniqueConstraint (tableName: "iam_user", constraintName: "iam_user_u1")
+        createIndex (tableName: "iam_user", indexName: "iam_user_n1") {
+            column (name: "email")
+            column (name: "user_type")
+            column (name: "organization_id")
+        }
+        createIndex (tableName: "iam_user", indexName: "iam_user_n2") {
+            column (name: "phone")
+            column (name: "user_type")
+            column (name: "organization_id")
+        }
+        addUniqueConstraint (tableName: "iam_user", columnNames: "login_name,organization_id", constraintName: "iam_user_u1")
     }
 }
