@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>choerodon-platform</artifactId>
-    <version>1.2.0-alpha.2.RELEASE</version>
+    <version>1.2.0-alpha.3-SNAPSHOT</version>
     <name>choerodon-platform</name>
     <description>Demo project for Spring Boot</description>
 
@@ -93,6 +93,10 @@
         <dependency>
             <groupId>org.hzero.starter</groupId>
             <artifactId>hzero-starter-config-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.choerodon</groupId>
+            <artifactId>choerodon-starter-asgard</artifactId>
         </dependency>
 
     </dependencies>
