@@ -63,4 +63,10 @@ databaseChangeLog(logicalFilePath: 'script/db/z_fix_tl.groovy') {
             update hiam_user_config set menu_layout_theme = 'aurora' where menu_layout_theme = 'theme3';
         """)
     }
+
+    changeSet(author: "scp",id: "2022-01-26-fix-1-8"){
+        sql("""
+           DELETE FROM hpfm_lov_value WHERE lov_code = 'HPFM.CUST.FIELD_COND_REALTION' AND `VALUE` = '~AFTER';
+        """)
+    }
 }
