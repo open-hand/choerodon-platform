@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>choerodon-platform</artifactId>
-    <version>release-1.2.0-SNAPSHOT</version>
+    <version>release-1.2.0.RELEASE</version>
     <name>choerodon-platform</name>
     <description>Demo project for Spring Boot</description>
 
