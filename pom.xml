@@ -29,42 +29,42 @@
         <dependency>
             <groupId>org.hzero</groupId>
             <artifactId>hzero-platform-saas</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>hzero-starter-dynamic-route</artifactId>
-                    <groupId>org.hzero.starter</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.hzero.starter</groupId>
-                    <artifactId>hzero-starter-hitoa</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>hzero-starter-integrate-dd</artifactId>
-                    <groupId>org.hzero.starter</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>hzero-starter-integrate-wechat-enterprise</artifactId>
-                    <groupId>org.hzero.starter</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.hzero.starter</groupId>
-                    <artifactId>hzero-starter-websocket</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>hzero-starter-dynamic-route</artifactId>-->
+<!--                    <groupId>org.hzero.starter</groupId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.hzero.starter</groupId>-->
+<!--                    <artifactId>hzero-starter-hitoa</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>hzero-starter-integrate-dd</artifactId>-->
+<!--                    <groupId>org.hzero.starter</groupId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>hzero-starter-integrate-wechat-enterprise</artifactId>-->
+<!--                    <groupId>org.hzero.starter</groupId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.hzero.starter</groupId>-->
+<!--                    <artifactId>hzero-starter-websocket</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
-        <dependency>
-            <groupId>org.hzero.starter</groupId>
-            <artifactId>hzero-starter-websocket</artifactId>
-            <!-- 这里exclude hzero-starter-core的依赖是因为单独升级了websocket的版本，避免引入依赖冲突 -->
-            <!-- 如果websocket的版本和 hzero-starter-core 的版本一致，不需要 exclude-->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hzero.starter</groupId>
-                    <artifactId>hzero-starter-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.hzero.starter</groupId>-->
+<!--            <artifactId>hzero-starter-websocket</artifactId>-->
+<!--            &lt;!&ndash; 这里exclude hzero-starter-core的依赖是因为单独升级了websocket的版本，避免引入依赖冲突 &ndash;&gt;-->
+<!--            &lt;!&ndash; 如果websocket的版本和 hzero-starter-core 的版本一致，不需要 exclude&ndash;&gt;-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.hzero.starter</groupId>-->
+<!--                    <artifactId>hzero-starter-core</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.hzero.plugin</groupId>
@@ -72,16 +72,16 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>xstream</artifactId>
-                    <groupId>com.thoughtworks.xstream</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>xstream</artifactId>-->
+<!--                    <groupId>com.thoughtworks.xstream</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
@@ -90,10 +90,10 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.hzero.starter</groupId>
-            <artifactId>hzero-starter-config-client</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.hzero.starter</groupId>-->
+<!--            <artifactId>hzero-starter-config-client</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.choerodon</groupId>
             <artifactId>choerodon-starter-asgard</artifactId>
