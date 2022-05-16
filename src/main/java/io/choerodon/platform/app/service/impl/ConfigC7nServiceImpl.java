@@ -16,25 +16,24 @@ import io.choerodon.platform.app.service.ConfigC7nService;
  */
 @Component
 public class ConfigC7nServiceImpl implements ConfigC7nService {
-    private static final String TENANT_DEFAULT_LANGUAGE = "TENANT_DEFAULT_LANGUAGE";
     @Autowired
     private ConfigMapper configMapper;
     @Autowired
     private ConfigRepository configRepository;
 
     @Override
-    public void updateDefaultLanguage(String language) {
+    public void updateConfig(String code, String value) {
         Config query = new Config();
         query.setTenantId(0L);
-        query.setConfigCode(TENANT_DEFAULT_LANGUAGE);
+        query.setConfigCode(code);
         Config result = configMapper.selectOne(query);
         if (result == null) {
             result = new Config();
-            result.setConfigCode(TENANT_DEFAULT_LANGUAGE);
+            result.setConfigCode(code);
             result.setTenantId(0L);
             result.setCategory("system");
         }
-        result.setConfigValue(language);
+        result.setConfigValue(value);
         configRepository.insertOrUpdateConfig(Collections.singletonList(result), 0L);
     }
 }

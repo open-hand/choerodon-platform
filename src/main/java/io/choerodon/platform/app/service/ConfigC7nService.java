@@ -5,5 +5,5 @@ package io.choerodon.platform.app.service;
  * @since 2022/5/12
  */
 public interface ConfigC7nService {
-    void updateDefaultLanguage(String language);
+    void updateConfig(String code, String value);
 }

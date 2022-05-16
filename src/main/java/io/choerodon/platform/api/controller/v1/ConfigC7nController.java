@@ -21,9 +21,9 @@ public class ConfigC7nController {
 
     @Permission(level = ResourceLevel.SITE)
     @ApiOperation(value = "更改系统默认语言")
-    @PutMapping(value = "/default_language")
-    public ResponseEntity<Void> updateDefaultLanguage(@RequestParam String language) {
-        configC7nService.updateDefaultLanguage(language);
+    @PutMapping(value = "/config")
+    public ResponseEntity<Void> updateConfig(@RequestParam String code, @RequestParam String value) {
+        configC7nService.updateConfig(code, value);
         return Results.success();
     }
 
