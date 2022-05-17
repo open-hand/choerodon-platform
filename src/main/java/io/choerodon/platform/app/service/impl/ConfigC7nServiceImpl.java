@@ -5,6 +5,8 @@ import java.util.Collections;
 import org.hzero.platform.domain.entity.Config;
 import org.hzero.platform.domain.repository.ConfigRepository;
 import org.hzero.platform.infra.mapper.ConfigMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,8 @@ import io.choerodon.platform.app.service.ConfigC7nService;
  */
 @Component
 public class ConfigC7nServiceImpl implements ConfigC7nService {
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private ConfigMapper configMapper;
     @Autowired
@@ -23,6 +27,7 @@ public class ConfigC7nServiceImpl implements ConfigC7nService {
 
     @Override
     public void updateConfig(String code, String value) {
+        LOGGER.info("======update config :{}", code);
         Config query = new Config();
         query.setTenantId(0L);
         query.setConfigCode(code);
