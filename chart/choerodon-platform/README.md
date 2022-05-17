@@ -1,6 +1,6 @@
 # choerodon-platform
 
-Gateway of Choerodon.
+Platform service of Choerodon.
 
 ## Installing the Chart
 
