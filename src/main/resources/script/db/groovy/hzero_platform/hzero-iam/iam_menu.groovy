@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu.groovy') {
         if (helper.dbType().isSupportSequence()) {
             createSequence(sequenceName: 'iam_menu_s', startValue: "1")
         }
-        createTable(tableName: "iam_menu", remarks: "") {
+        createTable(tableName: "iam_menu", remarks: "菜单表") {
             column(name: "id", type: "bigint", autoIncrement: true, remarks: "") { constraints(primaryKey: true) }
             column(name: "code", type: "varchar(" + 128 * weight + ")", remarks: "菜单的标识") {
                 constraints(nullable: "false")

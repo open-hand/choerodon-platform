@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_permission.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_menu_permission_s', startValue:"1")
         }
-        createTable(tableName: "iam_menu_permission", remarks: "") {
+        createTable(tableName: "iam_menu_permission", remarks: "菜单权限表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "menu_id", type: "bigint",  remarks: "菜单id")   
             column(name: "permission_code", type: "varchar(" + 128 * weight + ")",  remarks: "权限的标识")   

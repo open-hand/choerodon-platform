@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_label_tl.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_label_tl_s', startValue:"1")
         }
-        createTable(tableName: "iam_label_tl", remarks: "") {
+        createTable(tableName: "iam_label_tl", remarks: "标签多语言表") {
             column(name: "id", type: "bigint",  remarks: "")  {constraints(nullable:"false")}
             column(name: "lang", type: "varchar(" + 16 * weight + ")",  remarks: "")  {constraints(nullable:"false")}
             column(name: 'description', type: "varchar(" + 128 * weight + ")", remarks: '描述')

@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_label.groovy') {
         if (helper.dbType().isSupportSequence()) {
             createSequence(sequenceName: 'iam_label_s', startValue: "1")
         }
-        createTable(tableName: "iam_label", remarks: "") {
+        createTable(tableName: "iam_label", remarks: "标签表") {
             column(name: "id", type: "bigint", autoIncrement: true, remarks: "") { constraints(primaryKey: true) }
             column(name: "name", type: "varchar(" + 64 * weight + ")", remarks: "名称") { constraints(nullable: "false") }
             column(name: "type", type: "varchar(" + 32 * weight + ")", remarks: "类型") { constraints(nullable: "false") }

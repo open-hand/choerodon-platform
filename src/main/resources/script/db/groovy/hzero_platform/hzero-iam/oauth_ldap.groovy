@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'oauth_ldap_s', startValue:"1")
         }
-        createTable(tableName: "oauth_ldap", remarks: "") {
+        createTable(tableName: "oauth_ldap", remarks: "ldap配置表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "name", type: "varchar(" + 64 * weight + ")",  remarks: "ldap的名称")  {constraints(nullable:"false")}  
             column(name: "organization_id", type: "bigint",  remarks: "组织id")  {constraints(nullable:"false")}  

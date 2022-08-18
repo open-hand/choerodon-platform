@@ -8,7 +8,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_tl.groovy') {
         } else if(helper.isOracle()){
             weight = 3
         }
-        createTable(tableName: "iam_role_tl", remarks: "") {
+        createTable(tableName: "iam_role_tl", remarks: "角色多语言表") {
             column(name: "lang", type: "varchar(" + 8 * weight + ")",  remarks: "语言code")  {constraints(nullable:"false")}  
             column(name: "id", type: "bigint",  remarks: "role表id")  {constraints(nullable:"false")}  
             column(name: "name", type: "varchar(" + 64 * weight + ")",  remarks: "多语言字段")  {constraints(nullable:"false")}  

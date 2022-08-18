@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_role_s', startValue:"1")
         }
-        createTable(tableName: "iam_role", remarks: "") {
+        createTable(tableName: "iam_role", remarks: "角色表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "name", type: "varchar(" + 64 * weight + ")",  remarks: "角色名")  {constraints(nullable:"false")}  
             column(name: "code", type: "varchar(" + 128 * weight + ")",  remarks: "角色编码")  {constraints(nullable:"false")}  

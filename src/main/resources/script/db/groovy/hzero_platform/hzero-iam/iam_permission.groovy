@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_permission.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_permission_s', startValue:"1")
         }
-        createTable(tableName: "iam_permission", remarks: "") {
+        createTable(tableName: "iam_permission", remarks: "iam接口(权限)表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "code", type: "varchar(" + 128 * weight + ")",  remarks: "权限的标识")  {constraints(nullable:"false")}  
             column(name: "path", type: "varchar(" + 128 * weight + ")",  remarks: "权限对应的api路径")  {constraints(nullable:"false")}  

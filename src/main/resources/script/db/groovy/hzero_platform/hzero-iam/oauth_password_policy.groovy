@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_password_policy.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'oauth_password_policy_s', startValue:"1")
         }
-        createTable(tableName: "oauth_password_policy", remarks: "") {
+        createTable(tableName: "oauth_password_policy", remarks: "密码策略表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "code", type: "varchar(" + 64 * weight + ")",  remarks: "密码策略标识")  {constraints(nullable:"false")}  
             column(name: "name", type: "varchar(" + 64 * weight + ")",  remarks: "密码策略名")  {constraints(nullable:"false")}  

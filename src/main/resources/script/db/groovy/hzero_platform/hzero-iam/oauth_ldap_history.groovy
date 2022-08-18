@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_history.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'oauth_ldap_history_s', startValue:"1")
         }
-        createTable(tableName: "oauth_ldap_history", remarks: "") {
+        createTable(tableName: "oauth_ldap_history", remarks: "ldap同步记录表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "ldap_id", type: "bigint",  remarks: "ldap id")  {constraints(nullable:"false")}  
             column(name: "new_user_count", type: "int",  remarks: "同步用户新增数量")   

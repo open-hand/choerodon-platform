@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_member_role.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_member_role_s', startValue:"1")
         }
-        createTable(tableName: "iam_member_role", remarks: "") {
+        createTable(tableName: "iam_member_role", remarks: "用户角色权限表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "role_id", type: "bigint",  remarks: "角色id")  {constraints(nullable:"false")}  
             column(name: "member_id", type: "bigint",  remarks: "成员id,可以是userId,clientId等，与member_type对应")  {constraints(nullable:"false")}  

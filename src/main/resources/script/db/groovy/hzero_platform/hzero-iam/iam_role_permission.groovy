@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_role_permission.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_role_permission_s', startValue:"1")
         }
-        createTable(tableName: "iam_role_permission", remarks: "") {
+        createTable(tableName: "iam_role_permission", remarks: "角色权限表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "role_id", type: "bigint",  remarks: "角色id")   
             column(name: "permission_id", type: "bigint",  remarks: "权限集id")   

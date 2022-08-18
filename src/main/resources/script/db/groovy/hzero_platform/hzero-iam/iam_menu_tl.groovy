@@ -8,7 +8,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_menu_tl.groovy') {
         } else if(helper.isOracle()){
             weight = 3
         }
-        createTable(tableName: "iam_menu_tl", remarks: "") {
+        createTable(tableName: "iam_menu_tl", remarks: "菜单多语言表") {
             column(name: "lang", type: "varchar(" + 16 * weight + ")",  remarks: "")  {constraints(nullable:"false")}  
             column(name: "id", type: "bigint",  remarks: "")  {constraints(nullable:"false")}  
             column(name: "name", type: "varchar(" + 64 * weight + ")",  remarks: "菜单名")   

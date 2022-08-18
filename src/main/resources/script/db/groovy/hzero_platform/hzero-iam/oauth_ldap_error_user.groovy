@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_ldap_error_user.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'OAUTH_LDAP_ERROR_USER_S', startValue:"1")
         }
-        createTable(tableName: "OAUTH_LDAP_ERROR_USER") {
+        createTable(tableName: "OAUTH_LDAP_ERROR_USER",remarks: "ldap同步出错表") {
             column(name: 'ID', type: 'BIGINT', autoIncrement: true, remarks: '表ID，主键，供其他表做外键， bigint、单表时自增、步长为 1') {
                 constraints(primaryKey: true, primaryKeyName: 'PK_OAUTH_LDAP_ERROR_USER')
             }

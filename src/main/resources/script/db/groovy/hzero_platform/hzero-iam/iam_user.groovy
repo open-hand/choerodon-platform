@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/iam_user.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'iam_user_s', startValue:"1")
         }
-        createTable(tableName: "iam_user", remarks: "") {
+        createTable(tableName: "iam_user", remarks: "用户表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)} 
             column(name: "login_name", type: "varchar(" + 128 * weight + ")",  remarks: "用户名")  {constraints(nullable:"false")}  
             column(name: "email", type: "varchar(" + 128 * weight + ")",  remarks: "电子邮箱地址")  {constraints(nullable:"false")}  

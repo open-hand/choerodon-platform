@@ -11,7 +11,7 @@ databaseChangeLog(logicalFilePath: 'script/db/oauth_client.groovy') {
         if(helper.dbType().isSupportSequence()){
             createSequence(sequenceName: 'oauth_client_s', startValue:"1")
         }
-        createTable(tableName: "oauth_client", remarks: "") {
+        createTable(tableName: "oauth_client", remarks: "客户端表") {
             column(name: "id", type: "bigint", autoIncrement: true ,   remarks: "")  {constraints(primaryKey: true)}
             column(name: "name", type: "varchar(" + 32 * weight + ")",  remarks: "客户端名称")  {constraints(nullable:"false")}
             column(name: "organization_id", type: "bigint",  remarks: "组织ID")  {constraints(nullable:"false")}
